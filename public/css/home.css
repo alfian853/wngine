@@ -1,0 +1,33 @@
+body{
+  background: linear-gradient(
+      rgba(18, 26, 29, 0.14),
+      rgba(27, 46, 54, 0.6)
+    ),url('../assets/home-banner.jpg');
+  background-attachment:fixed;
+  background-size:cover;
+}
+
+#top-navbar li{
+  margin-right: 10px;
+}
+
+#home-search{
+  margin-top: 300px;
+}
+#home-search .row{
+  border: 1px solid red;
+}
+#fpass-form{
+  border: 1px solid blue;
+  padding: 0;
+}
+#fpass-form input{
+  height: 100%;
+  width: 90%;
+}
+
+#search-button{
+  width: 5%;
+  margin-left: 0;
+  height: 100%;
+}
