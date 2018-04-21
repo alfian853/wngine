@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Mail\Mailer;
+use Illuminate\Support\Facades\Mail;
 Route::get('home', function () {
-  // Session::put('login','heheh');
+          Mail::to("alfian853@gmail.com")->send(new Mailer());
   return view('home',array('name' =>'alfian'));
 });
