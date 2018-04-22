@@ -8,7 +8,7 @@ class CreateSkill extends Migration
 {
     public function up()
     {
-        Schema::create('skill', function (Blueprint $table) {
+        Schema::create('skills', function (Blueprint $table) {
             $table->increments('s_id');
             $table->string('s_name',50);
         });
@@ -16,6 +16,6 @@ class CreateSkill extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('skill');
+        Schema::dropIfExists('skills');
     }
 }

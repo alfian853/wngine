@@ -8,19 +8,19 @@ class CreateJob extends Migration
 {
     public function up()
     {
-        Schema::create('job', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->increments('j_id');
-	    $table->integer('cj_id')->unsigned();
-	    $table->foreign('cj_id')->references('c_id')->on('company');
+	        $table->integer('cj_id')->unsigned();
+	        $table->foreign('cj_id')->references('c_id')->on('company');
             $table->string('j_name',50)->unique();
-	    $table->date('j_uploadDate');
-	    $table->date('j_finishDate');
-	    $table->integer('j_point');
+	        $table->date('j_uploadDate');
+	        $table->date('j_finishDate');
+	        $table->integer('j_point');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('job');
+        Schema::dropIfExists('jobs');
     }
 }

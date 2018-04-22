@@ -13,12 +13,12 @@ class CreateCoinSkillPartition extends Migration
      */
     public function up()
     {
-        Schema::create('coinPart', function (Blueprint $table) {
+        Schema::create('coinParts', function (Blueprint $table) {
             $table->increments('cpt_id');
             $table->integer('cpt_j_id')->unsigned();
 	    $table->integer('cpt_s_id')->unsigned();
-	    $table->foreign('cpt_j_id')->references('j_id')->on('job');
-	    $table->foreign('cpt_s_id')->references('s_id')->on('skill');		
+	    $table->foreign('cpt_j_id')->references('j_id')->on('jobs');
+	    $table->foreign('cpt_s_id')->references('s_id')->on('skills');		
         });
     }
 
@@ -29,6 +29,6 @@ class CreateCoinSkillPartition extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coinPart');
+        Schema::dropIfExists('coinParts');
     }
 }

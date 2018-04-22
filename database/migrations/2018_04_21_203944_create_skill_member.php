@@ -13,12 +13,12 @@ class CreateSkillMember extends Migration
      */
     public function up()
     {
-        Schema::create('skillPoint', function (Blueprint $table) {
+        Schema::create('skillPoints', function (Blueprint $table) {
             $table->integer('spm_m_id')->unsigned();
             $table->integer('spm_s_id')->unsigned();
 	    $table->integer('spm_point');
-	    $table->foreign('spm_m_id')->references('m_id')->on('member');
-	    $table->foreign('spm_s_id')->references('s_id')->on('skill');
+	    $table->foreign('spm_m_id')->references('m_id')->on('members');
+	    $table->foreign('spm_s_id')->references('s_id')->on('skills');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateSkillMember extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skillPoint');
+        Schema::dropIfExists('skillPoints');
     }
 }
