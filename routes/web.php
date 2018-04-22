@@ -13,6 +13,6 @@
 use App\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
 Route::get('home', function () {
-          Mail::to("alfian853@gmail.com")->send(new Mailer());
+          //Mail::to("alfian853@gmail.com")->send(new Mailer());
   return view('home',array('name' =>'alfian'));
 });

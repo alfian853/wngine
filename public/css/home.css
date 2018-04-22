@@ -12,21 +12,42 @@ body{
 }
 
 #home-search{
-  margin-top: 300px;
+  margin-top: 250px;
 }
+
 #home-search .row{
-  border: 1px solid red;
+
 }
+
 #fpass-form{
-  border: 1px solid blue;
-  padding: 0;
+  position:relative;
 }
+
+#fpass-form input[type=text]{
+  padding-left:15px;
+}
+
 #fpass-form input{
-  height: 100%;
+  height: 80.3%;
   width: 90%;
+  margin-left:15px;
+  border-radius:10px 0 0 10px;
+  float:left;
 }
+
 #search-button{
-  width: 5%;
-  margin-left: 0;
-  height: 100%;
+  width: 8%;
+  height: 80.3%;
+  color:white;
+  background-color:#1d1d1d;
+  border-radius:0 10px 10px 0;
+  margin-top:1.475px;
+}
+
+#search-button:hover{
+  color:grey;
+}
+
+#optionDropDown{
+  margin-left:15px;
 }
