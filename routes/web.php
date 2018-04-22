@@ -16,3 +16,6 @@ Route::get('home', function () {
           //Mail::to("alfian853@gmail.com")->send(new Mailer());
   return view('home',array('name' =>'alfian'));
 });
+Route::get('members', 'MemberController@index');
+Route::post('members', 'MemberController@createUser');
+Route::get('members/register', 'MemberController@register');
