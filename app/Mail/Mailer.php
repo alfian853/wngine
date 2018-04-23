@@ -16,8 +16,21 @@ class Mailer extends Mailable
      *
      * @return void
      */
+    public const REGISTER=0,
+                 RESET_PWD=1;
+
+    private $name,$token;
+    private $mailType=null;
+
     public function __construct()
     {
+
+    }
+
+    public function setRegistMail($name,$token){
+      $this->mailType = Mailer::REGISTER;
+      $this->name = $name;
+      $this->token = $token;
     }
 
     /**
@@ -27,7 +40,16 @@ class Mailer extends Mailable
      */
     public function build()
     {
-      return $this->from('wngine.noreply@gmail.com')->subject('Wngine account register confirmation')
-                  ->text('mails.register_plaintext');
+      if($this->mailType == Mailer::REGISTER){
+        return $this->from('wngine.noreply@gmail.com')->subject('Wngine account registration confirmation')
+                    ->view('mails.register')
+                    ->with(['name' => $this->name,
+                            'token' => $this->token]);
+      }
+      else if($this->mailType == Mailer::REGISTER){
+        die('not implemented yet');
+      }
+
+
   }
 }
