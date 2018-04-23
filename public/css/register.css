@@ -20,7 +20,7 @@ body
     opacity:0.9;
 }
 
-input,label
+input,input[type=submit],label
 {
     font-weight:bold;
 }
