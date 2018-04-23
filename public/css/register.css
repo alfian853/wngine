@@ -1,7 +1,36 @@
-*[role="form"] {
-    max-width: 530px;
+body
+{ 
+    background: linear-gradient(
+      rgba(18, 26, 29, 0.05),
+      rgba(27, 46, 54, 0.2)
+    ),url('../assets/officedesk.jpg');
+    background-attachment:fixed;
+    background-size:cover;
+}
+
+*[role="form"] 
+{
+    max-width: 550px;
     padding: 15px;
     margin: 0 auto;
-    background-color: blue;
+    background-color: #424040;
     border-radius: 0.3em;
+    color:white;
+    margin-bottom:30px;
+    opacity:0.9;
 }
+
+input,label
+{
+    font-weight:bold;
+}
+
+h2
+{
+    text-align:center;
+    font-weight:bold;
+    font-size:60px;
+    font-family: impact;
+    letter-spacing:2px;
+}
+
