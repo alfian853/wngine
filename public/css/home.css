@@ -28,7 +28,7 @@ body{
 }
 
 #fpass-form input{
-  height: 80.3%;
+  height: 80%;
   width: 90%;
   margin-left:15px;
   border-radius:10px 0 0 10px;
@@ -37,7 +37,7 @@ body{
 
 #search-button{
   width: 8%;
-  height: 80.3%;
+  height: 80%;
   color:white;
   background-color:#1d1d1d;
   border-radius:0 10px 10px 0;
