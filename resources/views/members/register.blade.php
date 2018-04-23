@@ -36,18 +36,15 @@
 			<div class="col-sm-12">
 				<input type="password" name="password" placeholder="Password" class="form-control">
 			</div>
-<<<<<<< Updated upstream
-		</div>	
+		</div>
 
 		<div class="form-group">
 			<label for="" class="col-sm-5 control-label">Re-type Password</label>
 			<div class="col-sm-12">
 				<input type="password" name="repassword" placeholder="Re-Type password" class="form-control">
 			</div>
-		</div>			
-=======
 		</div>
->>>>>>> Stashed changes
+
 
 		<div class="form-group">
 			<label for="" class="col-sm-3 control-label">Email</label>
