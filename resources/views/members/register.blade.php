@@ -2,7 +2,7 @@
 
 @section('title', 'Register')
 
-@section('add-css')
+@section('add-script')
   @parent
   <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 @endsection
@@ -36,6 +36,7 @@
 			<div class="col-sm-12">
 				<input type="password" name="password" placeholder="Password" class="form-control">
 			</div>
+<<<<<<< Updated upstream
 		</div>	
 
 		<div class="form-group">
@@ -44,6 +45,9 @@
 				<input type="password" name="repassword" placeholder="Re-Type password" class="form-control">
 			</div>
 		</div>			
+=======
+		</div>
+>>>>>>> Stashed changes
 
 		<div class="form-group">
 			<label for="" class="col-sm-3 control-label">Email</label>
@@ -63,7 +67,7 @@
 			<label for="" class="col-sm-3 control-label">Telephone</label>
 			<div class="col-sm-12">
 				<input type="text" name="telp" placeholder="Telephone Number" class="form-control">
-			</div> 
+			</div>
 		</div>
 
 		<div class="form-group">

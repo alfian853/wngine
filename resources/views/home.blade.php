@@ -2,14 +2,13 @@
 
 @section('title', 'Home')
 
-@section('add-css')
+@section('add-script')
   @parent
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @endsection
 
 
 @section('header')
-<header>
   @if(!empty(Session::get('login')))
     @include('template.header_login')
   @else

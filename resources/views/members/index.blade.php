@@ -2,7 +2,7 @@
 
 @section('title', 'Home')
 
-@section('add-css')
+@section('add-script')
   @parent
   <link rel="stylesheet" href="css/home.css">
 @endsection
