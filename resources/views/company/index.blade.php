@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Members')
+@section('title', 'Company')
 
 @section('add-script')
   @parent
@@ -20,7 +20,7 @@
 
 
 @section('content')
-Members
+Company 
 
 
 

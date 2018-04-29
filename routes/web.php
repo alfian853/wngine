@@ -16,7 +16,17 @@ Route::get('home', function () {
   return view('home',array('name' =>'alfian'));
 });
 
+//members
 Route::get('members/confirmation','MemberController@confirmRegistration');
 Route::get('members', 'MemberController@index');
 Route::post('members', 'MemberController@createUser');
 Route::get('members/register', 'MemberController@register');
+
+//company
+Route::get('company','CompanyController@index');
+Route::get('company/register','CompanyController@register');
+Route::post('company','CompanyController@createCompany');
+Auth::routes();
+
+//home
+Route::get('/home', 'HomeController@index')->name('home');
