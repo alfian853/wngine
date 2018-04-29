@@ -22,7 +22,7 @@
 @section('content')
 <div class="container">
 	<form class="form-horizontal" role="form" action="/members" method="post">
-	<h2>Form Regitration</h2>
+	<h2>Form Registration</h2>
 	<hr>	
 	{{ csrf_field() }}
 		<div class="form-group">

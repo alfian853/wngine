@@ -27,6 +27,7 @@ Route::get('members/register', 'MemberController@register');
 Route::get('company','CompanyController@index');
 Route::get('company/register','CompanyController@register');
 Route::post('company','CompanyController@createCompany');
+Route::get('company/confirmation','CompanyController@confirmRegistration');
 
 //home
 Route::get('/home', 'HomeController@index')->name('home');

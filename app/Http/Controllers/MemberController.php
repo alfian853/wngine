@@ -8,6 +8,7 @@ use App\Registrations;
 use App\Mail\Mailer;
 use Session;
 use Mail;
+
 class MemberController extends Controller
 {
     public function index() {
@@ -28,9 +29,9 @@ class MemberController extends Controller
       $userRow=$userRow[0];
       Member::create([
   			'm_name' => $userRow['rg_name'],
-        'm_email' => $userRow['rg_email'],
-        'm_borndate' => $userRow['rg_borndate'],
-        'm_address' => $userRow['rg_address'],
+        		'm_email' => $userRow['rg_email'],
+        		'm_borndate' => $userRow['rg_borndate'],
+        		'm_address' => $userRow['rg_address'],
   			'm_password' => $userRow['rg_password'],
   			'm_telp' => $userRow['rg_telp'],
   		]);
@@ -79,9 +80,7 @@ class MemberController extends Controller
 		// 	'm_telp' => $request->telp,
 		// 	'm_borndate' => $request->tgllahir,
 		// ]);
-
   }
-
 
     public function store(Request $request)
     {
