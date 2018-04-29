@@ -12,6 +12,7 @@
 */
 use App\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
+
 Route::get('home', function () {
   return view('home',array('name' =>'alfian'));
 });
@@ -26,7 +27,6 @@ Route::get('members/register', 'MemberController@register');
 Route::get('company','CompanyController@index');
 Route::get('company/register','CompanyController@register');
 Route::post('company','CompanyController@createCompany');
-Auth::routes();
 
 //home
 Route::get('/home', 'HomeController@index')->name('home');
