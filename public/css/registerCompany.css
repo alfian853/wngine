@@ -1,25 +1,23 @@
 body
 { 
-    background: url('../assets/officedesk.jpg');
+    background: linear-gradient(
+      rgba(18, 26, 29, 0.05),
+      rgba(27, 46, 54, 0.2)
+    ),url('../assets/officedesk.jpg');
     background-attachment:fixed;
     background-size:cover;
 }
 
-hr
-{
-    border: 3px dotted;
-}
-
 *[role="form"] 
 {
-    max-width: 650px;
+    max-width: 550px;
     padding: 15px;
-    margin: 20px auto;
-    background-color: #4a4c4b;
+    margin: 0 auto;
+    background-color: #424040;
     border-radius: 0.3em;
     color:white;
-    opacity:0.95;
-    margin-bottom:20px;
+    margin-bottom:30px;
+    opacity:0.9;
 }
 
 input,input[type=submit],label
@@ -31,8 +29,8 @@ h2
 {
     text-align:center;
     font-weight:bold;
-    font-size:50px;
+    font-size:60px;
     font-family: impact;
-    letter-spacing:1px;
-    color: white;
+    letter-spacing:2px;
 }
+

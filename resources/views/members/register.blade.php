@@ -21,9 +21,20 @@
 
 @section('content')
 <div class="container">
-	<h2>Form Regitration</h2>
 	<form class="form-horizontal" role="form" action="/members" method="post">
+	<h2>Form Regitration</h2>
+	<hr>	
 	{{ csrf_field() }}
+		<div class="form-group">
+		<div class="col-sm-12">
+        		<div class="text-center">
+       		 		<img src="//placehold.it/120" class="avatar img-circle" alt="avatar">
+        			<h6>Profile image</h6>  
+        			<input class="form-control" name="photo" type="file">
+        		</div>
+		</div>
+		<hr>
+		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-3 control-label">Full Name</label>
 			<div class="col-sm-12">
@@ -73,7 +84,7 @@
 				<input type="date" name="tgllahir" placeholder="Borndate" class="form-control">
 			</div>
 		</div>
-
+		<hr>
 		<div class="form-group">
 			<div class="col-sm-12 col-sm-offset-3">
 				<input type="submit" value="Register" class="btn btn-primary btn-block">

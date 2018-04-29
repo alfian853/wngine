@@ -4,7 +4,7 @@
 
 @section('add-script')
   @parent
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/registerCompany.css') }}">
 @endsection
 
 
