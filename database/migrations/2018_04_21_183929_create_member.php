@@ -21,6 +21,7 @@ class CreateMember extends Migration
 	    $table->string('m_password',40);
 	    $table->string('m_telp',15);
             $table->string('m_email',50)->unique();
+	    $table->string('m_image',100)->unique();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateRegistrations extends Migration
         $table->string('rg_address',100);
         $table->string('rg_password',40);
         $table->string('rg_telp',15);
+	$table->string('rg_image',100)->unique();
       });
     }
 

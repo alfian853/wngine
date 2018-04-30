@@ -19,6 +19,7 @@ class CreateCompany extends Migration
 	    $table->string('c_address',100);
 	    $table->string('c_email',50);
 	    $table->string('c_telp',15);
+	    $table->string('c_image',100)->unique();
         });
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
-use App\RegistrationsCompany;
+use App\RegistrationsCompany                                                          ;
 use App\Mail\Mailer;
 use Session;
 use Mail;
@@ -23,7 +23,7 @@ class CompanyController extends Controller
 	
     public function confirmRegistration(Request $request)
     {
-    
+	    
     }
 	
     public function createCompany(Request $request)
