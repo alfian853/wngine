@@ -31,3 +31,8 @@ Route::get('company/confirmation','CompanyController@confirmRegistration');
 
 //home
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//login
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
