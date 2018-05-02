@@ -16,31 +16,23 @@
 
 
 @section('content')
-<div class="ui center aligned segment">
-  <div class="ui button">A</div>
-  <div class="ui horizontal divider">and</div>
-  <div class="teal ui button">B</div>
-</div>
-<div class="ui two column stackable center aligned grid segment">
-  <div class="column">
-    <div class="ui button">A</div>
+<div class="container-fluid" id="home-search">
+  <div class="row container-fluid">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <form id="fpass-form" class="h-100" method="post" action="arahkan ke controller">
+          <input type="text" name="search-query" placeholder="Enter some keywords"/>
+          <button id="search-button" type="button" name="button"><i class="fa fa-search"></i></button>
+          <select name="cars" id="optionDropDown">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+        </form>
+      </div>
+      <div class="col-sm-2"></div>
   </div>
-  <div class="ui vertical divider">or</div>
-  <div class="column">
-    <div class="teal ui button">B</div>
-  </div>
-</div>
-<div class="ui horizontal divider">
-  <i class="heart icon"></i>
-</div>
-<h5 class="ui horizontal header divider">
-  <i class="bar chart icon"></i>
-  Specifications
-</h5>
-<div class="ui inverted segment">
-  <p>A</p>
-  <div class="ui inverted divider"></div>
-  <p>B</p>
 </div>
 
 @endsection
