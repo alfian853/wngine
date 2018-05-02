@@ -9,6 +9,5 @@
         <a class="nav-link" href="#">Sign In</a>
       </li>
     </ul>
-
   </div>
 </nav>

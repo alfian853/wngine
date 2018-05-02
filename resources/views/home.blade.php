@@ -7,16 +7,11 @@
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @endsection
 
-
 @section('header')
-  @if(!empty(Session::get('login')))
-    @include('template.header_login')
-  @else
+<header>
     @include('template.header')
-  @endif
 </header>
 @endsection
-
 
 @section('content')
 <div class="container-fluid" id="home-search">

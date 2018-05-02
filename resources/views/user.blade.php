@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
-@section('title', 'Home')
+@section('title', 'Profile')
 
 @section('add-script')
   @parent
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @endsection
 
 
 @section('header')
 <header>
-    @include('template.header')
+    @include('template.header_user_profile')
 </header>
 @endsection
 
@@ -21,9 +21,9 @@
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <form id="fpass-form" class="h-100" method="post" action="arahkan ke controller">
-          <input type="text" name="search-query" placeholder="Job??"/>
+          <input type="text" name="search-query" placeholder="Enter some keywords"/>
           <button id="search-button" type="button" name="button"><i class="fa fa-search"></i></button>
-          <select name="cars">
+          <select name="cars" id="optionDropDown">
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
             <option value="fiat">Fiat</option>

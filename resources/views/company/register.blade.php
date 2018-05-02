@@ -10,11 +10,7 @@
 
 @section('header')
 <header>
-  @if(!empty(Session::get('login')))
     @include('template.header_login')
-  @else
-    @include('template.header')
-  @endif
 </header>
 @endsection
 
