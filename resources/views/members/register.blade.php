@@ -17,15 +17,15 @@
 
 @section('content')
 <div class="container">
-	<form class="form-horizontal" role="form" action="/members" method="post">
+	<form class="form-horizontal" role="form" action="{{route('post.member.register')}}" method="post">
 	<h2>Form Registration</h2>
-	<hr>	
+	<hr>
 	{{ csrf_field() }}
 		<div class="form-group">
 		<div class="col-sm-12">
         		<div class="text-center">
        		 		<img src="//placehold.it/120" class="avatar img-circle" alt="avatar">
-        			<h6>Profile image</h6>  
+        			<h6>Profile image</h6>
         			<input class="form-control" name="photo" type="file">
         		</div>
 		</div>

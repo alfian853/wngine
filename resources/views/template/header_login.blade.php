@@ -3,10 +3,10 @@
   <div class="w-100" id="top-navbar">
     <ul class="navbar-nav float-right">
       <li>
-        <a class="nav-link" href="#">Sign Up</a>
+        <a class="nav-link" href="#">Profil</a>
       </li>
       <li>
-        <a class="nav-link" href="#">Sign In</a>
+        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
       </li>
     </ul>
   </div>

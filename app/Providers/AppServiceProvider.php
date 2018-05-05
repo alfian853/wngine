@@ -1,6 +1,8 @@
 <?php
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
+use Validator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -10,7 +12,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	\Schema::defaultStringLength(191);
+    Validator::extend('is_odd_string', function($attribute, $value, $parameters, $validator) {
+          if(!empty($value) && (strlen($value) % 2) == 0){
+
+              return true;
+
+          }
+
+              return false;
+
+      },"harus ganjil bos");
     }
     /**
      * Register any application services.

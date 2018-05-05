@@ -16,23 +16,22 @@
 
 @section('content')
 <div class="container">
-        <div class="col-md-12 col-md-offset-2">
+    <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('home') }}" role="form">
+                    <form class="form-horizontal" method="POST" action="{{ route('post.member.password.request') }}" role="form">
                         {{ csrf_field() }}
-			                      <h2>Reset Password</h2><hr>
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" >
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
+			                  <h2>Reset Password</h2>
+                        <div class="form-group" >
+                            <label for="email" class="col-md-12 control-label">E-Mail Address</label>
                             <div class="col-md-12">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
-                                @if ($errors->has('email'))
+                                {{-- @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
 
@@ -44,8 +43,8 @@
                             </div>
                         </div>
                     </form>
-        </div>
-    </div>
-</div>
-</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 @endsection

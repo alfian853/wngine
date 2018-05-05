@@ -14,35 +14,42 @@ use App\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('home', function () {
-  return view('home',array('name' =>'alfian'));
+  return view('home');
 });
 
 //members
-Route::get('members/confirmation','MemberController@confirmRegistration');
-Route::get('members', 'MemberController@index');
-Route::post('members', 'MemberController@createUser');
-Route::get('members/register', 'MemberController@register');
+Route::get('members/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
+Route::post('members/register', 'MemberController@requestMailVerification')->name('post.member.register');
+Route::get('members/register', 'MemberController@register')->name('member.register');
+Route::post('members/login', 'Auth\LoginController@doLoginMember')->name('post.member.login');
+Route::get('members/login', 'Auth\LoginController@showMemberLoginForm')->name('member.login');
+Route::get('members/password/reset','Auth\ForgotPasswordController@memberPwdForm')->name('member.password.request');
+Route::post('members/password/reset','Auth\ForgotPasswordController@doMemberPwdRequest')->name('post.member.password.request');
+Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
+Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
 
 //company
-Route::get('company','CompanyController@index');
-Route::get('company/register','CompanyController@register');
-Route::post('company','CompanyController@createCompany');
-Route::get('company/confirmation','CompanyController@confirmRegistration');
+Route::get('company/register','CompanyController@register')->name('company.register');
+Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
+Route::get('company/confirmation','CompanyController@confirmRegistration')->name('company.confirmation');
+Route::post('company/login', 'Auth\LoginController@doLoginCompany')->name('post.company.login');
+Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('company.login');
+Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdForm')->name('company.password.request');
+Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
+Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdReset')->name('company.password.reset');
+Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
+
 
 //home
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('home', 'HomeController@index')->name('home');
 
 // Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 //user
 Route::get('user','UserController@index');

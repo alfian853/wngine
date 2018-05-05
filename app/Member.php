@@ -2,15 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticable;
 
-class Member extends Model
+
+class Member extends Authenticable
 {
     protected $primaryKey = "m_id";
 
 	protected $fillable = [
         'm_name', 'm_borndate', 'm_address',
-		'm_password', 'm_email', 'm_telp',
+		'password', 'email', 'm_telp',
     ];
 
 	protected $guarded = ['m_borndate'];

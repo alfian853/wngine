@@ -1,7 +1,11 @@
 Hi {{ $name }}, thankyou for your registration, please confirm your registration by click the link below
 <br />
 <br />
-http://localhost:8000/members/confirmation?token={{ $token }}
+  @if ($type == "member")
+    {{ route('member.confirmation') }}?token={{ $token }}
+  @else
+    {{ route('company.confirmation') }}?token={{ $token }}
+  @endif
 <br />
 <br />
 - Wngine Team

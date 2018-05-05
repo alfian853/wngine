@@ -1,7 +1,10 @@
 <?php
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -14,13 +17,61 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    use AuthenticatesUsers;
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+
+     public function showMemberLoginForm(){
+       return view('members.login');
+     }
+
+     public function showCompanyLoginForm(){
+       return view('company.login');
+     }
+
+
+    public function logout(){
+      Auth::logout();
+      return redirect('home');
+    }
+
+    public function doLoginMember(Request $request){
+
+      $credentials = $request->only('email','password');
+
+      if ($login = Auth::guard('member')->attempt($credentials)) {
+        Session::flash('alert','welcome '.$request['email']);
+        Session::flash('alert-type','success');
+        return redirect('home');
+      }
+      else{
+        Session::flash('alert','Wrong Username/Password');
+        Session::flash('alert-type','failed');
+        return redirect('member.login');
+      }
+
+    }
+
+    public function doLoginCompany(Request $request){
+
+      $credentials = $request->only('email','password');
+
+      if ($login = Auth::guard('company')->attempt($credentials)) {
+        Session::flash('alert','welcome '.$request['email']);
+        Session::flash('alert-type','success');
+          return redirect('home');
+        }
+        else{
+          Session::flash('alert','Wrong Username/Password');
+          Session::flash('alert-type','failed');
+          return redirect('company.login');
+        }
+
+    }
+
+    protected $redirectTo = '/';
     /**
      * Create a new controller instance.
      *

@@ -19,7 +19,7 @@
         <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('home') }}" role="form">
+                    <form class="form-horizontal" method="POST" action="{{ route('post.company.password.reset') }}" role="form">
                         {{ csrf_field() }}
 			                      <h2>Reset Password</h2><hr>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" >

@@ -20,7 +20,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/login" role="form">
+                    <form class="form-horizontal" method="POST" action="{{ route('post.member.login') }}" role="form">
                         {{ csrf_field() }}
 			<h2>Login</h2><hr>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
