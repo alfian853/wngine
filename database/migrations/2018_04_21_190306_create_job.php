@@ -15,7 +15,8 @@ class CreateJob extends Migration
             $table->string('j_name',50)->unique();
 	        $table->date('j_uploadDate');
 	        $table->date('j_finishDate');
-	        $table->integer('j_point');
+            $table->integer('j_point');
+            $table->string('j_document',100)->unique();
         });
     }
 

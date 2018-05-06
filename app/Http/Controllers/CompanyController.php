@@ -80,4 +80,14 @@ class CompanyController extends Controller
     {
 
     }
+
+    public function showPostingJobForm()
+    {
+      return view('company.postingJob');
+    }
+
+    public function postingJobValidation()
+    {
+      return;
+    }
 }

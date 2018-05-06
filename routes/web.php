@@ -27,6 +27,7 @@ Route::get('members/password/reset','Auth\ForgotPasswordController@memberPwdForm
 Route::post('members/password/reset','Auth\ForgotPasswordController@doMemberPwdRequest')->name('post.member.password.request');
 Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
+
 //company
 Route::get('company/register','CompanyController@register')->name('company.register');
 Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
@@ -37,7 +38,8 @@ Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdFor
 Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
 Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdReset')->name('company.password.reset');
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
-
+Route::get('company/postingJob','CompanyController@showPostingJobForm')->name('company.postingJob');
+Route::post('company/postingJob','CompanyController@PostingJobValidation')->name('post.company.postingJob.validation');
 
 //home
 Route::get('home', 'HomeController@index')->name('home');
