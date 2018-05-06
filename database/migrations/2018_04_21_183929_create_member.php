@@ -22,7 +22,7 @@ class CreateMember extends Migration
 	      $table->string('password',72);
 	      $table->string('m_telp',15);
 	      $table->string('m_image',100)->nullable(true);
-        $table->string('remember_token',60)
+        $table->string('remember_token',60);
       });
     }
 
