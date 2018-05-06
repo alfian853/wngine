@@ -27,7 +27,6 @@ Route::get('members/password/reset','Auth\ForgotPasswordController@memberPwdForm
 Route::post('members/password/reset','Auth\ForgotPasswordController@doMemberPwdRequest')->name('post.member.password.request');
 Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
-
 //company
 Route::get('company/register','CompanyController@register')->name('company.register');
 Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
