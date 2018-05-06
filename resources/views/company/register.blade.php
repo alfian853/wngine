@@ -25,7 +25,7 @@
 		<div class="col-sm-12">
         		<div class="text-center">
        		 		<img src="//placehold.it/120" class="avatar img-circle" alt="avatar">
-        			<h6>Profile image</h6>
+        			<h6>Company Profile Image</h6>
         			<input class="form-control" name="photo" type="file">
         		</div>
 		</div>
@@ -71,13 +71,6 @@
 			<label for="" class="col-sm-3 control-label">Telephone</label>
 			<div class="col-sm-12">
 				<input type="text" name="telp" placeholder="Telephone Number" class="form-control">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label for="" class="col-sm-3 control-label">Borndate</label>
-			<div class="col-sm-12">
-				<input type="date" name="tgllahir" placeholder="Borndate" class="form-control">
 			</div>
 		</div>
 		<hr>

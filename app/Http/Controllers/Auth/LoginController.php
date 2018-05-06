@@ -51,7 +51,6 @@ class LoginController extends Controller
         Session::flash('alert-type','failed');
         return redirect('member.login');
       }
-
     }
 
     public function doLoginCompany(Request $request){
