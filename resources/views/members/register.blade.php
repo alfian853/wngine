@@ -4,7 +4,7 @@
 
 @section('add-script')
   @parent
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/registerCompany.css') }}">
 @endsection
 
 
@@ -25,7 +25,7 @@
 		<div class="col-sm-12">
         		<div class="text-center">
        		 		<img src="//placehold.it/120" class="avatar img-circle" alt="avatar">
-        			<h6>Profile image</h6>
+        			<h6>Profile Image</h6>
         			<input class="form-control" name="photo" type="file">
         		</div>
 		</div>
