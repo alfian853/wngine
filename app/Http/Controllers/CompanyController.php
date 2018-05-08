@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Company;
 use App\RegistrationsCompany                                                          ;
 use App\Mail\Mailer;
@@ -48,32 +49,48 @@ class CompanyController extends Controller
 
     public function requestMailVerification(Request $request)
     {
-      $request->validate([
-        'name' => 'required|min:4',
-        'password' => 'required|min:8|confirmed',
-        'email' => 'required|email',
-        'address' => 'required|min:5',
-        'telp' => 'required|min:8',
-        //'tgllahir' => 'required|date_format:Y-m-d',
-      ]);
+		$validator = $request->validate([
+			'name' => 'required|min:4',
+			'password' => 'required|min:8|confirmed',
+			'email' => 'required|email',
+			'address' => 'required|min:5',
+			'telp' => 'required|min:8',
+		]);
 
-      $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
-      RegistrationsCompany::create([
-        'rgc_email' => $request->email,
-        'rgc_name' => $request->name,
-        'rgc_token' => $linkToken,
-        'rgc_address' => $request->address,
-        'rgc_password' => bcrypt($request->password),
-        'rgc_telp' => $request->telp
-      ]);
-      $mailObj = new Mailer();
-      $mailObj->setRegistMail($request->name,$linkToken,Mailer::$Company);
-      Mail::to($request->email)->send($mailObj);
+		//if ($validator->fails()) {
+		//	return Redirect::back()->withErrors($validator);
+		//}
 
-      Session::flash('alert','Please confirm the registration through email we sent to you');
-      Session::flash('alert-type','success');
-      return redirect('home');
+		// Check company name and email
+		$found_company = Company::where('c_name', $request->name)
+							->orWhere('email', $request->email)->get();
+		$found_registration_company = RegistrationsCompany::where('rgc_name', $request->name)
+							->orWhere('rgc_email', $request->email)->get();
 
+		if (count($found_company) != 0 || count($found_registration_company) != 0) {
+			return Redirect::back()->withErrors([
+				'name' => 'Either company name or email is currently used',
+				'email' => 'Either company name or email is currently used',
+			]);
+		}
+
+		$linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
+		RegistrationsCompany::create([
+			'rgc_email' => $request->email,
+			'rgc_name' => $request->name,
+			'rgc_token' => $linkToken,
+			'rgc_address' => $request->address,
+			'rgc_password' => bcrypt($request->password),
+			'rgc_telp' => $request->telp
+		]);
+
+		$mailObj = new Mailer();
+		$mailObj->setRegistMail($request->name,$linkToken,Mailer::$Company);
+		Mail::to($request->email)->send($mailObj);
+
+		Session::flash('alert','Please confirm the registration through email we sent to you');
+		Session::flash('alert-type','success');
+		return redirect('home');
     }
 
     public function store(Request $request)
