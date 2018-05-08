@@ -68,6 +68,7 @@ return [
         'companies' => [
             'driver' => 'eloquent',
             'model' => App\Company::class
+            // 'model' => App\Company::class
         ]
         // 'users' => [
         //     'driver' => 'database',
@@ -93,6 +94,6 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
-        ],
+        ]
     ],
 ];

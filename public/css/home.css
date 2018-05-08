@@ -15,24 +15,20 @@ body{
   margin-top: 250px;
 }
 
-#home-search .row{
-
-}
-
-#fpass-form{
-  position:relative;
-}
-
-#fpass-form input[type=text]{
-  padding-left:15px;
+#tes{
+  width:90%;
 }
 
 #fpass-form input{
-  height: 80%;
+  height: 60%;
   width: 90%;
   margin-left:15px;
   border-radius:10px 0 0 10px;
   float:left;
+}
+#fpass-form select{
+  border: 1px solid red;
+  color: #61c79a;
 }
 
 #search-button{

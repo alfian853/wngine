@@ -9,7 +9,7 @@ use App\RegistrationsCompany                                                    
 use App\Mail\Mailer;
 use Session;
 use Mail;
-
+use Auth;
 class CompanyController extends Controller
 {
     public function index()
@@ -33,8 +33,8 @@ class CompanyController extends Controller
         $userRow=$userRow[0];
         Company::create([
           'c_name' => $userRow['rgc_name'],
-              'email' => $userRow['rgc_email'],
-              'c_address' => $userRow['rgc_address'],
+          'email' => $userRow['rgc_email'],
+          'c_address' => $userRow['rgc_address'],
           'password' => $userRow['rgc_password'],
           'c_telp' => $userRow['rgc_telp']
         ]);
@@ -103,8 +103,8 @@ class CompanyController extends Controller
       return view('company.postingJob');
     }
 
-    public function postingJobValidation()
+    public function postingJob(Request $request)
     {
-      return;
+      dd(Auth::guard());
     }
 }

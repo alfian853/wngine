@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +19,8 @@ Route::get('/', function(){
 Route::get('home', function () {
   return view('home');
 });
+
+Route::post('action','searchController@homeQuery');
 
 //members
 Route::get('members/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
@@ -42,19 +43,17 @@ Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdFor
 Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
 Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdReset')->name('company.password.reset');
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
-Route::get('company/postingJob','CompanyController@showPostingJobForm')->name('company.postingJob');
-Route::post('company/postingJob','CompanyController@PostingJobValidation')->name('post.company.postingJob.validation');
+
+Route::group(['middleware' => 'authUser:company'],function(){
+  Route::get('company/postjob','CompanyController@showPostingJobForm')->name('company.postingJob');
+  Route::post('company/postjob','CompanyController@PostingJob')->name('post.company.postingJob');
+});
 
 //home
 Route::get('home', 'HomeController@index')->name('home');
 
 // Authentication Routes...
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Password Reset Routes...
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 //user
 Route::get('user','UserController@index');

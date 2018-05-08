@@ -7,15 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticable;
 
 class Company extends Authenticable
 {
-    protected $primaryKey = "m_id";
+    protected $primaryKey = "c_id";
     protected $table = 'company';
 
 	protected $fillable = [
         'c_name', 'c_address',
-		'password', 'email', 'c_telp','c_image'
+		'password', 'email', 'c_telp','c_image','remember_token'
     ];
-
-	protected $guarded = ['m_borndate'];
 
 	public $timestamps = false;
 }
