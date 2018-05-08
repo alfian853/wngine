@@ -13,6 +13,10 @@
 use App\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
 
+Route::get('/', function(){
+    return redirect('/home');
+});
+
 Route::get('home', function () {
   return view('home');
 });
