@@ -50,11 +50,11 @@ class CompanyController extends Controller
     {
       $request->validate([
         'name' => 'required|min:4',
-        'password' => 'required|min:8',
+        'password' => 'required|min:8|confirmed',
         'email' => 'required|email',
         'address' => 'required|min:5',
         'telp' => 'required|min:8',
-        'tgllahir' => 'required|date_format:Y-m-d',
+        //'tgllahir' => 'required|date_format:Y-m-d',
       ]);
 
       $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");

@@ -48,7 +48,7 @@
 		<div class="form-group">
 			<label for="" class="col-sm-5 control-label">Re-type Password</label>
 			<div class="col-sm-12">
-				<input type="password" name="repassword" placeholder="Re-Type password" class="form-control">
+				<input type="password" name="password_confirmation" placeholder="Re-Type password" class="form-control">
 			</div>
 		</div>
 
