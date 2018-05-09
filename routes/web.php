@@ -20,6 +20,7 @@ Route::get('home', function () {
   return view('home');
 });
 
+//seacrh
 Route::post('action','searchController@homeQuery');
 
 //members
@@ -57,3 +58,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 //user
 Route::get('user','UserController@index');
+
+//profle
+Route::get('viewProfile','ProfileController@index');
