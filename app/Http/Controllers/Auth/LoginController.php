@@ -33,7 +33,9 @@ class LoginController extends Controller
 
 
     public function logout(){
-      Auth::logout();
+      // Auth::logout() tidak bisa
+      Auth::guard('company')->logout();
+      Auth::guard('member')->logout();
       return redirect('home');
     }
 
@@ -42,14 +44,14 @@ class LoginController extends Controller
       $credentials = $request->only('email','password');
 
       if ($login = Auth::guard('member')->attempt($credentials)) {
-        Session::flash('alert','welcome '.$request['email']);
+        Session::flash('alert','welcome ');
         Session::flash('alert-type','success');
-        return redirect('home');
+        return redirect(route('home'));
       }
       else{
         Session::flash('alert','Wrong Username/Password');
         Session::flash('alert-type','failed');
-        return redirect('member.login');
+        return redirect(route('member.login'));
       }
     }
 
@@ -60,12 +62,12 @@ class LoginController extends Controller
       if ($login = Auth::guard('company')->attempt($credentials)) {
         Session::flash('alert','welcome '.$request['email']);
         Session::flash('alert-type','success');
-          return redirect('home');
+          return redirect(route('home'));
         }
         else{
           Session::flash('alert','Wrong Username/Password');
           Session::flash('alert-type','failed');
-          return redirect('company.login');
+          return redirect(route('company.login'));
         }
 
     }

@@ -8,7 +8,7 @@
           <a class="dropdown-item" href="#">Edit Profile</a>
           <a class="dropdown-item" href="#">Hide Account</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sign Out</a>
+          <a class="dropdown-item" href="{{ route('logout') }}">Sign Out</a>
         </div>
       </li>
     </ul>

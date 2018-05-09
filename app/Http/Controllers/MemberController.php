@@ -47,7 +47,7 @@ class MemberController extends Controller
 	public function requestMailVerification(Request $request) {
 		$request->validate([
 			'name' => 'required|min:4',
-			'password' => 'required|min:8',
+			'password' => 'required|min:8|confirmed',
 			'email' => 'required|email',
 			'address' => 'required|min:5',
 			'telp' => 'required|min:8',

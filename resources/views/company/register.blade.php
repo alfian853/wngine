@@ -35,6 +35,9 @@
 			<label for="" class="col-sm-3 control-label">Full Name</label>
 			<div class="col-sm-12">
 				<input type="text" name="name" placeholder="Name" class="form-control" autofocus>
+				@if ($errors->has('name'))
+					<div> {{ $errors->first('name') }} </div>
+				@endif
 			</div>
 		</div>
 
@@ -43,12 +46,15 @@
 			<div class="col-sm-12">
 				<input type="password" name="password" placeholder="Password" class="form-control">
 			</div>
+			@if ($errors->has('password'))
+				<div> {{ $errors->first('password') }} </div>
+			@endif
 		</div>
 
 		<div class="form-group">
 			<label for="" class="col-sm-5 control-label">Re-type Password</label>
 			<div class="col-sm-12">
-				<input type="password" name="repassword" placeholder="Re-Type password" class="form-control">
+				<input type="password" name="password_confirmation" placeholder="Re-Type password" class="form-control">
 			</div>
 		</div>
 
@@ -57,6 +63,9 @@
 			<label for="" class="col-sm-3 control-label">Email</label>
 			<div class="col-sm-12">
 				<input type="email" name="email" placeholder="Email" class="form-control">
+				@if ($errors->has('email'))
+					<div> {{ $errors->first('email') }} </div>
+				@endif
 			</div>
 		</div>
 
