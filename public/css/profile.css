@@ -1,0 +1,16 @@
+button
+{
+    margin-top : 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+#text2,#text3
+{
+    display: none;
+    background-color: blue;
+}
+
+#text1
+{
+    background-color:blue;
+}

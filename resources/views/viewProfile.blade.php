@@ -36,13 +36,19 @@
     </div>
 
     <div class="row">  
-        <button class="btn btn-primary col-lg-4">Biodata</button>
-        <button class="btn btn-primary col-lg-4">On Progress</button>
-        <button class="btn btn-primary col-lg-4">History</button>
+        <button class="col-lg-2" id="btn1">Biodata</button>
+        <button class="col-lg-2" id="btn2">On Progress</button>
+        <button class="col-lg-2" id="btn3">History</button>
     </div>
 
-    <div class="row" style="border:1px solid black;height:500px;"> 
-        Text of button clicked
+    <div class="row" id="text1" style="border:1px solid black;height:500px;"> 
+        Text1 of button clicked
+    </div>
+    <div class="row" id="text2" style="border:1px solid black;height:500px;"> 
+        Text2 of button clicked
+    </div>
+    <div class="row" id="text3" style="border:1px solid black;height:500px;"> 
+        Text3 of button clicked
     </div>
 </div>
 @endsection
