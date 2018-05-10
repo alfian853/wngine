@@ -86,4 +86,9 @@ class MemberController extends Controller
         $task = Task::create(['title' => $request->title,'description' => $request->description]);
         return redirect('/tasks/'.$task->id);
     }
+
+    public function showProfile()
+    {
+      return view('members.viewProfile');
+    }
 }

@@ -107,4 +107,9 @@ class CompanyController extends Controller
     {
       dd(Auth::guard());
     }
+
+    public function showProfile()
+    {
+      return view('company.viewProfile');
+    }
 }
