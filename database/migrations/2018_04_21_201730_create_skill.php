@@ -10,7 +10,7 @@ class CreateSkill extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->increments('s_id');
-            $table->string('s_name',50);
+            $table->string('s_name',50)->unique();
         });
     }
 
