@@ -1,21 +1,11 @@
 $(document).ready(function()
 {
-    $("#btn1").click(function()
+    $("#point").click(function()
     {
-        $("#text3").hide(800);
-        $("#text2").hide(800);
-        $("#text1").show(400);
+        
     });
-    $("#btn2").click(function()
+    $("#star").click(function()
     {
-        $("#text1").hide(800);
-        $("#text3").hide(800);
-        $("#text2").show(400);
-    });
-    $("#btn3").click(function()
-    {
-        $("#text1").hide(800);
-        $("#text2").hide(800);
-        $("#text3").show(400);
+        
     });
 });
