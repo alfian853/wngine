@@ -7,6 +7,7 @@ use App\Registrations;
 use App\Mail\Mailer;
 use Session;
 use Mail;
+use Auth;
 
 class MemberController extends Controller
 {

@@ -25,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      if(Auth::guard('company')->check()){
+        return view('home',['user' => 'company']);
+      }
+      else if(Auth::guard('member')->check()){
+        return view('home',['user' => 'member']);
+      }
+      else{
+        return view('home',['user' => 'guest']);
+      }
     }
 }
