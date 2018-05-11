@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class searchController extends Controller
 {
     public function homeQuery(Request $request){
-      dd($request['query']);
+      // dd($request['query']);
+      return redirect('google.com');
     }
 
     public function showJobSearch(){
