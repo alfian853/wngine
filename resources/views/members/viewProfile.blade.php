@@ -10,18 +10,18 @@
 
 @section('header')
 <header>
-    @include('template.header_user_profile')
+    @include('template.member_header')
 </header>
 @endsection
 
 
 @section('content')
 <div class="container">
-    <div class="row" style="margin-top:20px;"> 
-        <div class="col-lg-4" style="margin-top:10px;">
+    <div class="row container" style="margin-top:20px;">
+        <div class="col-lg-4 container" style="margin-top:10px;">
             <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-75 rounded-circle img-fluid mx-auto d-block">
             <div class="row d-flex justify-content-center">
-                <h3>Alcredo Simanjuntak</h3>
+                <h3>{{Auth::guard('member')->user()->m_name}}</h3>
             </div>
             <div class="row d-flex justify-content-center">
                 <h6 style="font-style:italic">"God in the first place"</h6>
@@ -31,18 +31,18 @@
                 <div class="btn btn-warning" style="margin: 0 2px;">Change Picture</div>
             </div>
         </div>
-        <div class="col-lg-8" style="border:1px solid black;padding:10px 40px;height:400px;">
+        <div class="col-lg-8 container" style="border:1px solid black;padding:10px 40px;">
             <h1>Skill</h1><hr>
-                
             <div class="col-12">
+                Programming 300pts<br />
                 <div class="progress mb-3">
-                    1<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">25%</div>
-                    Type1
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
                 </div>
+                Programming 300pts<br />
                 <div class="progress mb-3">
-                    2<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type2
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: {{1/100}}">{{1/100}}</div>
                 </div>
+                Programming 300pts<br />
                 <div class="progress mb-3">
                     3<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
                     Type3
@@ -81,7 +81,7 @@
         <div class="col-lg-6 btn btn-primary" id="point" style="border-right:1px dashed white;height:50px;"><h6>Point<br>100&#x20BD</h6></div>
         <div class="col-lg-6 btn btn-primary" id="star" style="border-left:1px dashed white;height:50px;"><h6>Star<br>50&#x2605</h6></div>
     </div>
-    
+
     <hr>
     <div class="card">
         <div class="card-header" id="headingOne">

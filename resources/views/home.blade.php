@@ -10,10 +10,12 @@
 
 @section('header')
 <header>
-    @if (Auth::check())
-      @include('template.header_login')
-  @else
-    @include('template.header')
+    @if ($user == 'company')
+      @include('template.company_header')
+    @elseif ($user == 'member')
+      @include('template.member_header')
+    @else
+      @include('template.guest_header')
     @endif
 </header>
 @endsection

@@ -1,24 +1,28 @@
 @import 'https://fonts.googleapis.com/css?family=Raleway';
 
-.borderYtoX
+.borderYtoX{
+  background: rgba(48, 50, 51, 0.56);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.borderYtoX ul
 {
   font-family: Raleway;
   text-align: center;
   list-style-type: none;
-  border: 1px solid red;
 }
 
 .borderYtoX a
 {
-    color: #FFF;
-    border: 1px solid red;
+
+    color: #ffffff;
     text-decoration: none;
-    font: 20px Raleway;
+    text-align: center;
+    font: 18px Raleway;
     margin: 0px 10px;
-    padding: 10px 10px;
     position: relative;
     z-index: 0;
-    float: right;
     cursor: pointer;
 }
 
@@ -36,19 +40,24 @@
 
 .borderYtoX a:before
 {
-    left: 0px;
-    top: 0px;
+  left: 0px;
+  bottom: 0px;
 }
 
 .borderYtoX a:after
 {
-    right: 0px;
-    bottom: 0px;
+  left: 0px;
+  top: 0px;
+}
+
+.borderYtoX a:hover{
+  color: rgb(0, 247, 255);
 }
 
 .borderYtoX a:hover:before, .borderYtoX a:hover:after
 {
     opacity: 1;
+    background: rgb(0, 247, 255);
     height: 2px;
     width: 100%;
 }
