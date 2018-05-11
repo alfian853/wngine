@@ -10,7 +10,7 @@
 
 @section('header')
 <header>
-    @include('template.header_user_profile')
+    @include('template.company_header')
 </header>
 @endsection
 

@@ -10,7 +10,7 @@
 
 @section('header')
 <header>
-    @include('template.header_login')
+    @include('template.guest_header')
 </header>
 @endsection
 
