@@ -9,4 +9,8 @@ class searchController extends Controller
     public function homeQuery(Request $request){
       dd($request['query']);
     }
+
+    public function showJobSearch(){
+      return view('job_search');
+    }
 }

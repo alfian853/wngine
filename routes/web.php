@@ -63,4 +63,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('user','UserController@index');
 
 //profle
-Route::get('viewProfile','ProfileController@index');
+Route::get('view_profile','ProfileController@index');
+
+Route::get('job_search','searchController@showJobSearch');

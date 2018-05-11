@@ -8,13 +8,6 @@
 @endsection
 
 
-@section('header')
-<header>
-    @include('template.header_login')
-</header>
-@endsection
-
-
 @section('content')
 <div class="container">
 	<form class="form-horizontal" role="form" action="{{route('post.member.register')}}" method="post">

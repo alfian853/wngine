@@ -8,13 +8,6 @@
 @endsection
 
 
-@section('header')
-<header>
-    @include('template.header_user_profile')
-</header>
-@endsection
-
-
 @section('content')
 <div class="container-fluid" id="home-search">
   <div class="row container-fluid">

@@ -8,13 +8,6 @@
   <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
 
-@section('header')
-<header>
-    @include('template.member_header')
-</header>
-@endsection
-
-
 @section('content')
 <div class="container">
     <div class="row container" style="margin-top:20px;">
