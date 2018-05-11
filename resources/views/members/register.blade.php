@@ -7,14 +7,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/registerCompany.css') }}">
 @endsection
 
-
-@section('header')
-<header>
-    @include('template.guest_header')
-</header>
-@endsection
-
-
 @section('content')
 <div class="container">
 	<form class="form-horizontal" role="form" action="{{route('post.member.register')}}" method="post">

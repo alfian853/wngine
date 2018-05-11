@@ -8,17 +8,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
 @endsection
 
-@section('header')
-<header>
-    @if ($user == 'company')
-      @include('template.company_header')
-    @elseif ($user == 'member')
-      @include('template.member_header')
-    @else
-      @include('template.guest_header')
-    @endif
-</header>
-@endsection
+
 
 @section('content')
 <div class="container-fluid" id="home-search">

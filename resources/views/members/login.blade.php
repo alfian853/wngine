@@ -7,13 +7,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 @endsection
 
-
-@section('header')
-<header>
-    @include('template.guest_header')
-</header>
-@endsection
-
 @section('content')
 <div class="container">
         <div class="col-md-12 col-md-offset-2">

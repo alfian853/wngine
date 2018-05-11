@@ -13,7 +13,14 @@
     @show
   </head>
   <body>
-    @yield('header')
+    @if (Auth::guard('company')->user() != null)
+      @include('template.company_header')
+    @elseif (Auth::guard('member')->user() != null)
+      @include('template.member_header')
+    @else
+      @include('template.guest_header')
+    @endif
+
 
     @if(!empty(Session::has('alert')))
 
