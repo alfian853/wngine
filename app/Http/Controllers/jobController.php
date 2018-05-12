@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class searchController extends Controller
+class jobController extends Controller
 {
     public function homeQuery(Request $request){
       // dd($request['query']);
@@ -12,6 +12,11 @@ class searchController extends Controller
     }
 
     public function showJobSearch(){
-      return view('job_search');
+      return view('job.job_search');
     }
+
+    public function showDescriptionJob(){
+      return view('job.job_description');
+    }
+
 }

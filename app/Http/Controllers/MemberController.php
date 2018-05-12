@@ -11,10 +11,6 @@ use Auth;
 
 class MemberController extends Controller
 {
-   public function index() {
-		return view('members.index');
-	 }
-
 	public function register() {
 		return view('members.register');
 	}

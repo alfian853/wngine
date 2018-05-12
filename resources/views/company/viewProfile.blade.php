@@ -26,18 +26,20 @@
     <div class="col-sm-12" style=" height:auto">
         <div class="col-sm-12 btn btn-primary" id="t1">Company Name</div>
         <div class="col-sm-12 btn btn-default" id="s1">Explain about t1</div>
-        <div class="col-sm-12 btn btn-primary" id="t2">Established</div>
+        <div class="col-sm-12 btn btn-primary" id="t2">Owner</div>
         <div class="col-sm-12 btn btn-default" id="s2">Explain about t2</div>
-        <div class="col-sm-12 btn btn-primary" id="t3">Main Sector</div>
+        <div class="col-sm-12 btn btn-primary" id="t3">Established</div>
         <div class="col-sm-12 btn btn-default" id="s3">Explain about t3</div>
-        <div class="col-sm-12 btn btn-primary" id="t4">Address</div>
+        <div class="col-sm-12 btn btn-primary" id="t4">Main Sector</div>
         <div class="col-sm-12 btn btn-default" id="s4">Explain about t4</div>
-        <div class="col-sm-12 btn btn-primary" id="t5">Email</div>
+        <div class="col-sm-12 btn btn-primary" id="t5">Address</div>
         <div class="col-sm-12 btn btn-default" id="s5">Explain about t5</div>
-        <div class="col-sm-12 btn btn-primary" id="t6">Telephone Number</div>
+        <div class="col-sm-12 btn btn-primary" id="t6">Email</div>
         <div class="col-sm-12 btn btn-default" id="s6">Explain about t6</div>
-        <div class="col-sm-12 btn btn-primary" id="t7">Additional Info</div>
+        <div class="col-sm-12 btn btn-primary" id="t7">Telephone Number</div>
         <div class="col-sm-12 btn btn-default" id="s7">Explain about t7</div>
+        <div class="col-sm-12 btn btn-primary" id="t8">Additional Info</div>
+        <div class="col-sm-12 btn btn-default" id="s8">Explain about t8</div>
     </div>
 
     <hr>
@@ -50,7 +52,8 @@
             </button>
             </h5>
         </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+            <!--row 1 , contains 4 card-->
             <div class="row" style="padding:15px;">
                 <div class="card col-lg-3" >
                     <img class="card-img-top" src="..." alt="Card image cap">
@@ -85,6 +88,8 @@
                     </div>
                 </div>
             </div>
+
+            <!--row 2 , contains 4 card-->
             <div class="row" style="padding:15px;">
                 <div class="card col-lg-3" >
                     <img class="card-img-top" src="..." alt="Card image cap">

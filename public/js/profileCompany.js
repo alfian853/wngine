@@ -28,4 +28,8 @@ $(document).ready(function()
     {
         $("#s7").slideToggle("slow");
     });
+    $("#t8").click(function()
+    {
+        $("#s8").slideToggle("slow");
+    });
 });

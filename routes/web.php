@@ -20,7 +20,7 @@ Route::get('home', function () {
   return view('home');
 });
 
-//seacrh
+//search
 Route::post('action','searchController@homeQuery');
 
 //members
@@ -47,7 +47,6 @@ Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@compa
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
 Route::get('company/viewProfile','CompanyController@showProfile')->name('company.profile');
 
-
 Route::group(['middleware' => 'authUser:company'],function(){
   Route::get('company/postjob','CompanyController@showPostingJobForm')->name('company.postingJob');
   Route::post('company/postjob','CompanyController@PostingJob')->name('post.company.postingJob');
@@ -62,7 +61,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //user
 Route::get('user','UserController@index');
 
-//profle
-Route::get('view_profile','ProfileController@index');
-
-Route::get('job_search','searchController@showJobSearch');
+//job
+Route::get('job/job_search','jobController@showJobSearch');
+Route::get('job/job_description','jobController@showDescriptionJob');
