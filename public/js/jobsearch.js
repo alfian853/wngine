@@ -22,24 +22,73 @@ var emptydata=[]
 $(document).ready(function(){
   var isNameFilter = true;
 
-  $("#search-select2").select2({placeholder: "search by name"});
+  $("#search-select2").select2({placeholder: "search by category"});
 
   $('#by-category').click(function(event){
+    if(isNameFilter == false){return;}
+    isNameFilter = false;
+    $('#search-text').css('display','none');
+    $('<select id="search-select2" placeholder="di js nya" name="query[]" style="height:100%" multiple="true"></select>')
+    .insertAfter('#search-text');
     $("#search-select2").select2({
       placeholder: "search by skill category",
       data:data
     });
+
   });
 
   $('#by-name').click(function(event){
-    $("#search-select2").select2({placeholder: "search by name"});
-    $('#search-select2').empty();
+    if(isNameFilter == true){return;}
+    isNameFilter = true;
+    $("#search-select2").select2('destroy');
+    $("#search-select2").remove();
+    $('#search-text').css('display','inline-block');
   });
 
 
   $("#search-btn").click( function(event) {
-    $.get('tes');
-    alert('ssss');
+    $.ajaxSetup({
+      headers: {
+         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+    });
+    alert($('#search-select2').select2('data'));
+    console.log($('#search-select2').select2('data'));
+    var data_send = null;
+    if(isNameFilter){
+      data_send = JSON.stringify({"text" : $('#search-text').val()});
+    }
+    else{
+      data_send = JSON.stringify($('#search-select2').select2('data'));
+    }
+    console.log(data_send);
+    $.ajax({
+      type: 'post',
+      url: 'tesdoang',
+      data: {'query':data_send},
+      success: function (data) {
+          alert('successss '+data);
+      },
+      error: function(data){
+        console.log(data);
+      }
+  });
+
+
+
+    // $.get( "tesdoang",function(data) {
+    //  alert( "success" +data);
+    // })
+    //  .done(function() {
+    //    alert( "second success" );
+    //  })
+    //  .fail(function() {
+    //    alert( "error" );
+    //  })
+    //  .always(function() {
+    //    alert( "finished" );
+    //  });
+
   });
 
   $('.search-panel .dropdown-menu').find('a').click(function(e) {
