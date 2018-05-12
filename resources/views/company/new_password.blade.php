@@ -7,13 +7,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}">
 @endsection
 
-
-@section('header')
-<header>
-    @include('template.header_login')
-</header>
-@endsection
-
 @section('content')
 <div class="container">
         <div class="col-md-12 col-md-offset-2">
@@ -23,10 +16,19 @@
                         {{ csrf_field() }}
 			                      <h2>Reset Password</h2><hr>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" >
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
+                            <label for="password_1" class="col-md-4 control-label">New password</label>
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="password_1" type="password" class="form-control" name="password_1" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <label for="email" class="col-md-12 control-label">Retype new password</label>
+                            <div class="col-md-12">
+                                <input id="password_2" type="password" class="form-control" name="password_2" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -35,11 +37,12 @@
                                 @endif
                             </div>
                         </div>
+                        <input type="hidden" name="email" value="@php echo $_GET['email']; @endphp"/>
 
                         <div class="form-group">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">
-                                    Send to Email
+                                    Submit
                                 </button>
                             </div>
                         </div>
