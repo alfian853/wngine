@@ -15,7 +15,7 @@
     <div class="row justify-content-center d-flex">
         <div class="col-xs-8 col-xs-offset-2">
   		    <div id="search-form" method="post" action="/action" class="input-group">
-            <meta name="_token" content="{!! csrf_token() !!}" />
+            {{ csrf_field() }}
               <div class="input-group-btn search-panel">
                 <button id="category-btn" type="button" style="width:150px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 	 <span id="search_concept">By name</span> <span class="caret"></span>
@@ -26,8 +26,7 @@
                 </ul>
               </div>
                 <input type="hidden" name="search_param" value="all" id="search_param"/>
-                <input id="search-text" type="text" name="input-by-name" placeholder="search by name"/>
-
+                <select id="search-select2" name="query[]" style="height:100%" multiple="true"></select>
                 <span class="input-group-btn">
                     <button id="search-btn" class="btn btn-default" style="height:100%" type="button"><i class="fa fa-search"></i></button>
                 </span>

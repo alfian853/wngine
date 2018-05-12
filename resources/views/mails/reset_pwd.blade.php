@@ -1,4 +1,4 @@
-Hi {{ $name }}, please reset your password by click the link below
+Hi {{ $name }}, , please reset your password by click the link below
 <br />
 <br />
 @if ($type == "member")

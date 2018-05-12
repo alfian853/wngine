@@ -43,7 +43,7 @@ Route::post('company/login', 'Auth\LoginController@doLoginCompany')->name('post.
 Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('company.login');
 Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdForm')->name('company.password.request');
 Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
-Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdForm')->name('company.password.reset');
+Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdReset')->name('company.password.reset');
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
 Route::get('company/viewProfile','CompanyController@showProfile')->name('company.profile');
 
