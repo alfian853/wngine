@@ -14,7 +14,7 @@
         <div class="col-lg-4 container" style="margin-top:10px;">
             <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-75 rounded-circle img-fluid mx-auto d-block">
             <div class="row d-flex justify-content-center">
-                <h3>{{Auth::guard('member')->user()->m_name}}</h3>
+                <h3>Alcredo Simanjuntak</h3>
             </div>
             <div class="row d-flex justify-content-center">
                 <h6 style="font-style:italic">"God in the first place"</h6>
