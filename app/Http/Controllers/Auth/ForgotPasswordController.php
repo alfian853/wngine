@@ -39,18 +39,18 @@ class ForgotPasswordController extends Controller
 
      public function doMemberPwdRequest(Request $request){
 
-
-       // $this->validate($request, [
-       //   'email' => 'required|is_odd_string'
-       // ]);
-
        $userRow = Member::where('email',$request->email)->take(1)->get();
        if(count($userRow) == 0){
          Session::flash('alert',"Email not registered");
          Session::flash('alert-type','warning');
          return redirect(route('member.password.request'));
        }
-       else{
+       else {
+		// Old reset token found, delete first
+		if(count(DB::table('member_rpass')->where('email', $request->email)->get())) {
+			DB::table('member_rpass')->where('email',$request->email)->delete();
+		}
+
          $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
          $userRow = $userRow[0];
          $mailObj = new Mailer();
@@ -72,6 +72,11 @@ class ForgotPasswordController extends Controller
          Session::flash('alert-type','warning');
        }
        else{
+		// Old reset token found, delete first
+		if(count(DB::table('company_rpass')->where('email', $request->email)->get())) {
+			DB::table('company_rpass')->where('email',$request->email)->delete();
+		}
+
          $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
          $userRow = $userRow[0];
          $mailObj = new Mailer();
