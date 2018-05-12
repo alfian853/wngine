@@ -59,8 +59,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('member.password.reset') }}">
+                                <a class="btn btn-link" href="{{ route('member.password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>

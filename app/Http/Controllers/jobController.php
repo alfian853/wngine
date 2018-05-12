@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 class jobController extends Controller
 {
     public function homeQuery(Request $request){
-      // dd($request['query']);
       return redirect('google.com');
+    }
+
+    public function searchQuery(Request $request){
+      return "ntaps";
     }
 
     public function showJobSearch(){
