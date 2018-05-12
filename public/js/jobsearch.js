@@ -17,7 +17,7 @@ var data = [
     }
 ];
 
-var emptydata=[]
+var emptydata=[] 
 
 $(document).ready(function(){
   var isNameFilter = true;
