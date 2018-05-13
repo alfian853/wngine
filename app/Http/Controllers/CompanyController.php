@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use App\Company;
+use App\Job;
 use App\RegistrationsCompany                                                          ;
 use App\Mail\Mailer;
 use Session;
@@ -98,9 +100,39 @@ class CompanyController extends Controller
       return view('company.postingJob');
     }
 
-    public function postingJob(Request $request)
+	public function postingJob(Request $request)
     {
-      dd(json_decode($request->job_list,true));
+		$company_id = Auth::guard('company')->user()->c_id;
+
+		$request->validate([
+			'name'				=>	'required',
+			'finishDate' 		=>	'required|date_format:Y-m-d',
+			'job_list'			=>	'required',
+			'shortDescription'	=>	'required',
+		]);
+
+		$job = Job::create([
+			'name'				=> $request->name,
+			'description'		=> $request->shortDescription,
+			'upload_date'		=> date('Y-m-d'),
+			'finish_date'		=> $request->finishDate,
+			'document'			=> 'dummyyy',
+			'company_id'		=> $company_id,
+		]);
+
+
+		$skill_list = json_decode($request->job_list, true);
+		foreach($skill_list as $s_id => $point)
+		{
+			DB::table('job_skills')
+				->insert([
+					'job_id'	=>	$job->id,
+					'skill_id'	=>	$s_id,
+					'point'		=>	$point,
+				]);
+		}
+
+		return view('home');
     }
 
     public function showProfile()
