@@ -85,7 +85,7 @@
     <div class="form-group">
       <label for="" class="col-sm-3 control-label">Short description</label>
       <div class="col-sm-12">
-        <textarea rows="" cols="" style="width: inherit;"></textarea>
+        <textarea rows="" cols="" name="shortDescription"  style="width: inherit;"></textarea>
       </div>
     </div>
 

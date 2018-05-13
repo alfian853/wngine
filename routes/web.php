@@ -47,10 +47,11 @@ Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@compa
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
 Route::get('company/viewProfile','CompanyController@showProfile')->name('company.profile');
 
-Route::group(['middleware' => 'authUser:company'],function(){
+// Route::group(['middleware' => 'authUser:company'],function(){
   Route::get('company/postjob','CompanyController@showPostingJobForm')->name('company.postingJob');
   Route::post('company/postjob','CompanyController@PostingJob')->name('post.company.postingJob');
-});
+// });
+
 
 //home
 Route::get('home', 'HomeController@index')->name('home');

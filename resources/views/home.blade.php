@@ -5,11 +5,35 @@
 @section('add-script')
   @parent
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
 @endsection
 
-
-
 @section('content')
-<script src="{{ asset('js/home.js') }}"></script>
+<div class="container-fluid" style="border:1px solid black;height:100px;">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <img class="d-block img-fluid" src="{{ asset('assets/officedesk.jpg') }}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block img-fluid" src="{{ asset('assets/officedesk.jpg') }}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block img-fluid" src="{{ asset('assets/officedesk.jpg') }}" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
 @endsection
