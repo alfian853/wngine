@@ -9,14 +9,14 @@ class CreateJob extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->increments('j_id');
-	        $table->integer('cj_id')->unsigned();
-	        $table->foreign('cj_id')->references('c_id')->on('company');
-            $table->string('j_name',50)->unique();
-	        $table->date('j_uploadDate');
-	        $table->date('j_finishDate');
-            $table->integer('j_point');
-            $table->string('j_document',100)->unique();
+            $table->increments('id');
+            $table->string('name', 50)->unique();
+            $table->string('description', 250)->unique();
+	        $table->integer('company_id')->unsigned();
+	        $table->date('upload_date');
+	        $table->date('finish_date');
+            $table->string('document',100)->unique();
+	        $table->foreign('company_id')->references('c_id')->on('company');
         });
     }
 

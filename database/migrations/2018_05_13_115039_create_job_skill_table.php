@@ -18,8 +18,8 @@ class CreateJobSkillTable extends Migration
             $table->integer('job_id')->unsigned();
 	    	$table->integer('skill_id')->unsigned();
 			$table->integer('point')->unsigned();
-		    $table->foreign('job_id')->references('j_id')->on('jobs');
-		    $table->foreign('skill_id')->references('s_id')->on('skills');	
+		    $table->foreign('job_id')->references('id')->on('jobs');
+		    $table->foreign('skill_id')->references('id')->on('skills');	
         });
     }
 
