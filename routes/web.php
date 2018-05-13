@@ -63,5 +63,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('user','UserController@index');
 
 //job
-Route::get('job/job_search','jobController@showJobSearch');
-Route::get('job/detail/{id}','jobController@showDescriptionJob');
+Route::get('job/job_search','JobController@showJobSearch');
+Route::get('job/detail/{id}','JobController@showDescriptionJob');
