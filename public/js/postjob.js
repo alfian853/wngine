@@ -17,14 +17,14 @@ $(document).ready(function() {
     else{
       items[skill]=point;
       $('#skill-list').append(
-        '<div class="row skill-row " id="row-'+id+'">'+
-        '<div class="col-sm-5">'+
+        '<div class="row skill-row d-flex justify-content-center" id="row-'+id+'">'+
+        '<div class="col-sm-5" style="text-align:center;">'+
         '<p>'+skill+'</p>'+
         '</div>'+
-        '<div class="col-sm-2">'+
+        '<div class="col-sm-2" style="text-align:center;">'+
         '<p>'+point+'</p>'+
         '</div>'+
-        '<div class="col-sm-1">'+
+        '<div class="col-sm-3" style="text-align:center;">'+
         '<input type="button" class="skill-remove" value="cancel" onclick="remove('+id+')"/>'+
         '</div>'+
         '</div>'

@@ -48,42 +48,47 @@
 		</div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Job Point</label>
-      <div class="row">
-        <div class="col-sm-5">
-          <p>Skill</p>
+      <label class="col-sm-3 control-label d-flex">Job Point</label>
+        <div class="col-sm-12">
+          <div class="row d-flex justify-content-center">
+          <div class="col-sm-5">
+            <p style="text-align:center;">Skill</p>
+          </div>
+          <div class="col-sm-2">
+            <p style="text-align:center;">Point</p>
+          </div>
+          <div class="col-sm-3">
+            <p style="text-align:center;">Rp 50.000/point</p>
+          </div>
+          </div>
         </div>
-        <div class="col-sm-2">
-          <p>Point</p>
-        </div>
-        <div class="col-sm-1">
-          <p>Rp 50.000/point</p>
-        </div>
-      </div>
-      <input id="job-list" type="hidden" name="job_list" value="">
-      <div class="row">
-        <div class="col-sm-5">
-          <select id="input-skill" type="text" style="width:100%" placeholder="skill" class="js-example-basic-single">
-            <option value="front-end">front-end</option>
-            <option value="back-end">back-end</option>
-            <option value="android">android</option>
-            <option value="ios">ios</option>
-          </select>
-        </div>
-        <div class="col-sm-2">
-          <input id="input-point" type="number" name="point" placeholder="Point" value="50" class="form-control"/>
-        </div>
-        <div class="col-sm-1">
-          <input type="button" id="add-skill" value="Add" class="hehe"/>
-        </div>
-      </div>
-      <div id="skill-list">
+        <input id="job-list" type="hidden" name="job_list" value="">
 
+        <div class="col-sm-12">
+        <div class="row d-flex justify-content-center">
+          <div class="col-sm-5">
+            <select id="input-skill" type="text" style="width:100%;text-align:center" placeholder="skill" class="js-example-basic-single d-flex justify-content-center">
+              <option value="front-end">front-end</option>
+              <option value="back-end">back-end</option>
+              <option value="android">android</option>
+              <option value="ios">ios</option>
+            </select>
+          </div>
+          <div class="col-sm-2 d-flex justify-content-center">
+            <input id="input-point" type="number" name="point" placeholder="Point" value="50" class="form-control"/>
+          </div>
+          <div class="col-sm-3 d-flex justify-content-center">
+            <input type="button" id="add-skill" value="Add" class="hehe"/>
+          </div>
+        </div>
+        </div>
+      <div class="col-sm-12" id="skill-list">
       </div>
     </div>
+
     <hr>
     <div class="form-group">
-      <label for="" class="col-sm-3 control-label">Short description</label>
+      <label for="" class="col-sm-5 control-label">Short description</label>
       <div class="col-sm-12">
         <textarea rows="" cols="" name="shortDescription"  style="width: inherit;"></textarea>
       </div>
