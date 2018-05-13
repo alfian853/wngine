@@ -68,10 +68,10 @@
         <div class="row d-flex justify-content-center">
           <div class="col-sm-5">
             <select id="input-skill" type="text" style="width:100%;text-align:center" placeholder="skill" class="js-example-basic-single d-flex justify-content-center">
-              <option value="front-end">front-end</option>
-              <option value="back-end">back-end</option>
-              <option value="android">android</option>
-              <option value="ios">ios</option>
+              <option value="1">front-end</option>
+              <option value="2">back-end</option>
+              <option value="3">android</option>
+              <option value="4">ios</option>
             </select>
           </div>
           <div class="col-sm-2 d-flex justify-content-center">
