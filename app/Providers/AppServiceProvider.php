@@ -12,16 +12,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    Validator::extend('is_odd_string', function($attribute, $value, $parameters, $validator) {
-          if(!empty($value) && (strlen($value) % 2) == 0){
+      Validator::extend('strong_pwd', function($attribute, $value, $parameters, $validator) {
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).{6,}$/', (string)$value);
+      },"weak password");
 
-              return true;
-
-          }
-
-              return false;
-
-      },"harus ganjil bos");
+      Validator::extend('phone_number', function($attribute, $value, $parameters, $validator) {
+        return preg_match('/^\+[0-9]{12,15}$/', (string)$value);
+      },"invalid phone number");
+    
     }
     /**
      * Register any application services.

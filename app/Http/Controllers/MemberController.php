@@ -7,6 +7,7 @@ use App\Registrations;
 use App\Mail\Mailer;
 use Session;
 use Mail;
+use Validator;
 use Auth;
 
 class MemberController extends Controller
@@ -42,14 +43,23 @@ class MemberController extends Controller
   }
 
 	public function requestMailVerification(Request $request) {
-		$request->validate([
+		$time = strtotime("-18 year", time());
+		$date = date("Y-m-d", $time);
+
+		Validator::make($request->all(),[
+			''
 			'name' => 'required|min:4',
-			'password' => 'required|min:8|confirmed',
-			'email' => 'required|email',
-			'address' => 'required|min:5',
-			'telp' => 'required|min:8',
-			'tgllahir' => 'required|date_format:Y-m-d',
-		]);
+			'password' => 'required|min:8|confirmed|strong_pwd',
+			'password_confirmation' => 'required|min:8|confirmed|same:password',
+			'email' => 'required|email|unique:members',
+			'address' => 'required|min:10',
+			'telp' => 'required|phone_number',
+			'tgllahir' => 'required|date_format:Y-m-d|before:'.$date,
+		],
+		[
+			'tgllahir.before' => 'your age must atleast 18 years old'
+		]
+	)->validate()->with($request->all());
 
 
     $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");

@@ -100,7 +100,7 @@ class CompanyController extends Controller
 
     public function postingJob(Request $request)
     {
-      dd(json_decode($request->job_list,true)['android']);
+      dd(json_decode($request->job_list,true));
     }
 
     public function showProfile()
