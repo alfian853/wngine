@@ -60,7 +60,7 @@
           <p>Rp 50.000/point</p>
         </div>
       </div>
-      <input id="job-list" type="hidden" name="job-list" value="">
+      <input id="job-list" type="hidden" name="job_list" value="">
       <div class="row">
         <div class="col-sm-5">
           <select id="input-skill" type="text" style="width:100%" placeholder="skill" class="js-example-basic-single">
@@ -98,4 +98,3 @@
 	</form>
 </div>
 @endsection
-

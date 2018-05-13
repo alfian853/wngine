@@ -67,7 +67,7 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('company.password.reset') }}">
+                                <a class="btn btn-link" href="{{ route('company.password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>

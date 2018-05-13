@@ -108,7 +108,7 @@ class ForgotPasswordController extends Controller
        if(count($userRow) == 0){
          Session::flash('alert',"Invalid confirmation token!");
          Session::flash('alert-type','failed');
-         return redirec('home');
+         return redirect('home');
        }
        else{
          return view('company.new_password');

@@ -20,6 +20,9 @@ class AuthUser
         if(Auth::guard('company')->check() && $usertype == "company"){
           return $next($request);
         }
+        else if(Auth::guard('member')->check() && $usertype == "member"){
+          return $next($request);
+        }
         Session::flash('alert','You are not allowed to access that page!');
         Session::flash('alert-type','failed');
         return redirect(route('home'));

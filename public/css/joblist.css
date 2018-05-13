@@ -9,7 +9,7 @@
   padding-left: 5px;
   background: transparent;
   overflow-y: auto;
-  height: 46px;
+  height: 45px;
 }
 
 #search-btn{
@@ -31,4 +31,4 @@
 
 .search-result-container{
   background: rgb(210, 210, 210);
-} 
+}
