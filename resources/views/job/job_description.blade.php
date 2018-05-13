@@ -11,7 +11,7 @@
 <div class="container">
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
-            <div class="h1" style="font-family:script;font-style:italic;font-weight:bold;text-align:center">Software Developement</div>
+            <div class="h1" style="font-family:script;font-style:italic;font-weight:bold;text-align:center">{{ $data['job_name'] }}</div>
         </div>
         <div class="row">
             <div class="col-lg-6">
@@ -28,7 +28,7 @@
                     </h5>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
-                    Date
+                    {{ $data['start_date'] }} to {{ $data['due_date'] }}
                 </div>
             </div>
             <div class="card row">
@@ -52,7 +52,9 @@
                     </h5>
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
-                    Reward
+                    @foreach ($data['skills'] as $v => $p)
+						<div> {{ $v }} {{ $p }} </div>
+					@endforeach
                 </div>
             </div>
             <div class="card row">
@@ -76,7 +78,7 @@
                     </h5>
                 </div>
                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix">
-                    Company
+                    {{ $data['company_name'] }}
                 </div>
             </div>
         </div>
@@ -92,7 +94,7 @@
             </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
-                Description
+                {{ $data['description'] }}
         </div>
     </div>
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">

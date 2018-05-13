@@ -64,4 +64,4 @@ Route::get('user','UserController@index');
 
 //job
 Route::get('job/job_search','jobController@showJobSearch');
-Route::get('job/job_description','jobController@showDescriptionJob');
+Route::get('job/detail/{id}','jobController@showDescriptionJob');
