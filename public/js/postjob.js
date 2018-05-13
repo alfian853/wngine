@@ -39,7 +39,4 @@ $(document).ready(function() {
     $('#job-list').val(JSON.stringify(items));
   });
 
-
-
-
 });
