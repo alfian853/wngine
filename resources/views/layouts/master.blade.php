@@ -23,24 +23,22 @@
 
 
     @if(!empty(Session::has('alert')))
-
       @if (Session::get('alert-type') == 'success')
-        <div class="alert alert-success alert-dismissible fixed-top">
+        <div class="alert alert-success alert-dismissible fixed-top" style="margin-top:60px;">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Success!</strong> {{ Session::get('alert') }}
         </div>
       @elseif (Session::get('alert-type') == 'failed')
-        <div class="alert alert-danger alert-dismissible fixed-top">
+        <div class="alert alert-danger alert-dismissible fixed-top" style="margin-top:60px;">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Error!</strong> {{ Session::get('alert') }}
         </div>
       @elseif (Session::get('alert-type') == 'warning')
-        <div class="alert alert-warning alert-dismissible fixed-top">
+        <div class="alert alert-warning alert-dismissible fixed-top" style="margin-top:60px;">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Warning!</strong> {{ Session::get('alert') }}
         </div>
       @endif
-
     @endif
 
     @yield('content')

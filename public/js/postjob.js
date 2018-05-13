@@ -1,7 +1,8 @@
-var item=[];
+var items={};
 function remove(id){
+    delete items[$('#row-'+id+' .col-sm-5 p').text()];
     $('#row-'+id).remove();
-    item.splice(id,1);
+    console.log(items);
 }
 
 $(document).ready(function() {
@@ -9,25 +10,33 @@ $(document).ready(function() {
   $('#add-skill').click(function(event){
     var skill=$('#input-skill').val();
     var point=$('#input-point').val();
-    item.push([skill,point]);
-    $('#skill-list').append(
+
+    if(skill in items){
+      return;
+    }
+    else{
+      items[skill]=point;
+      $('#skill-list').append(
         '<div class="row skill-row " id="row-'+id+'">'+
-          '<div class="col-sm-5">'+
-            '<p>'+skill+'</p>'+
-          '</div>'+
-          '<div class="col-sm-2">'+
-            '<p>'+point+'</p>'+
-          '</div>'+
-          '<div class="col-sm-1">'+
-          '<input type="button" class="skill-remove" value="cancel" onclick="remove('+id+')"/>'+
-          '</div>'+
+        '<div class="col-sm-5">'+
+        '<p>'+skill+'</p>'+
+        '</div>'+
+        '<div class="col-sm-2">'+
+        '<p>'+point+'</p>'+
+        '</div>'+
+        '<div class="col-sm-1">'+
+        '<input type="button" class="skill-remove" value="cancel" onclick="remove('+id+')"/>'+
+        '</div>'+
         '</div>'
-    );
-    id++;
+      );
+      id++;
+    }
+    console.log(items);
   });
 
   $('#submit-job').click(function(event){
-    $('#job-list').val(JSON.stringify(item));
+    console.log(JSON.stringify(items));
+    $('#job-list').val(JSON.stringify(items));
   });
 
 
