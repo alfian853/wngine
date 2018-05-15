@@ -1,0 +1,14 @@
+.container-fluid
+{
+    padding:0;
+}
+
+#quote 
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    border-radius: 50%;
+    border: 5px dashed grey;
+}
