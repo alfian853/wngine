@@ -19,36 +19,45 @@
 
 @section('content')
 <div class="container">
-	<form class="form-horizontal" role="form" action="{{ route('post.company.postingJob') }}" method="post">
+	<form class="form-horizontal" role="form" action="{{ route('post.company.postingJob') }}" method="post" enctype="multipart/form-data">
 	<h2>Posting Job</h2>
 	<hr>
 	{{ csrf_field() }}
 		<div class="form-group">
-        <label for="" class="col-sm-4 control-label">Additional Document</label>
+        <label for="documentnya" class="container control-label">Additional Document
+          {!! $errors->first('documentnya','<span class="help-block text-danger">*:message</span>') !!}
+        </label>
     		<div class="col-sm-12">
             		<div class="text-center">
-            			<input class="form-control" name="photo" type="file">
+            			<input class="form-control" name="documentnya" type="file">
             		</div>
     		</div>
 		    <hr>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-3 control-label">Job Name</label>
+			<label for="" class="container control-label">Job Name
+        {!! $errors->first('name','<span class="help-block text-danger">*:message</span>') !!}
+      </label>
 			<div class="col-sm-12">
-				<input type="text" name="name" placeholder="Name" class="form-control" autofocus/>
+				<input type="text" name="name" placeholder="Name" class="form-control" autofocus value="{{old('name')}}"/>
 			</div>
 		</div>
 
 
     <div class="form-group">
-			<label for="" class="col-sm-3 control-label">Due to</label>
+			<label for="" class="container control-label">Due to
+        {!! $errors->first('finishDate','<span class="help-block text-danger">*:message</span>') !!}
+      </label>
 			<div class="col-sm-12">
-				<input type="date" name="finishDate" placeholder="dd/mm/yyyy" class="form-control">
+				<input type="date" name="finishDate" placeholder="dd/mm/yyyy" class="form-control" value="{{old('finishDate')}}">
 			</div>
 		</div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label d-flex">Job Point</label>
+      <label class="container control-label d-flex">Job Point
+        {!! $errors->first('job_list','<span class="help-block text-danger">*:message</span>') !!}
+      </label>
+
         <div class="col-sm-12">
           <div class="row d-flex justify-content-center">
           <div class="col-sm-5">
@@ -78,7 +87,7 @@
             <input id="input-point" type="number" name="point" placeholder="Point" value="50" class="form-control"/>
           </div>
           <div class="col-sm-3 d-flex justify-content-center">
-            <input type="button" id="add-skill" value="Add" class="hehe"/>
+            <input type="button" id="add-skill" value="Add"/>
           </div>
         </div>
         </div>
@@ -88,9 +97,11 @@
 
     <hr>
     <div class="form-group">
-      <label for="" class="col-sm-5 control-label">Short description</label>
+      <label for="" class="container control-label">Short description
+        {!! $errors->first('shortDescription','<span class="help-block text-danger">*:message</span>') !!}
+      </label>
       <div class="col-sm-12">
-        <textarea rows="" cols="" name="shortDescription"  style="width: inherit;"></textarea>
+        <textarea rows="" cols="" name="shortDescription"  style="width: inherit;">{{old('shortDescription')}}</textarea>
       </div>
     </div>
 

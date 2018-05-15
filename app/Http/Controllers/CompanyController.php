@@ -12,6 +12,8 @@ use App\Mail\Mailer;
 use Session;
 use Mail;
 use Auth;
+use Storage;
+use Validator;
 class CompanyController extends Controller
 {
     public function register()
@@ -99,24 +101,37 @@ class CompanyController extends Controller
     {
       return view('company.postingJob');
     }
-
 	public function postingJob(Request $request)
-    {
-		$company_id = Auth::guard('company')->user()->c_id;
+  {
+    Validator::make($request->all(),[
+      'name' => 'required|min:6',
+      'finishDate' => 'required|date_format:Y-m-d|after:'.date("Y-m-d"),
+      'job_list' => 'required|min:3',
+      'shortDescription' => 'required',
+      'documentnya' => 'mimes:pdf'
+    ],
+    [
+      'job_list.required' => 'you must pay :(',
+      'finishDate.after' => 'the deadline must be atleast tomorrow',
+      'job_list.min' => 'you must put atleast one skill point reward'
+    ]
+    )->validate()->with($request->all());
 
-		$request->validate([
-			'name'				=>	'required',
-			'finishDate' 		=>	'required|date_format:Y-m-d',
-			'job_list'			=>	'required',
-			'shortDescription'	=>	'required',
-		]);
+    $targetPath = null;
+    if($request->has('document')){
+      $path = Storage::putFile('public', $request->file('documentnya'));
+      $targetPath = date('Y-m-d').$request->file('documentnya')->getClientOriginalName();
+      Storage::move($path,'job_documents/'.$targetPath);
+    }
+
+		$company_id = Auth::guard('company')->user()->c_id;
 
 		$job = Job::create([
 			'name'				=> $request->name,
 			'description'		=> $request->shortDescription,
 			'upload_date'		=> date('Y-m-d'),
 			'finish_date'		=> $request->finishDate,
-			'document'			=> 'dummyyy',
+			'document'			=> $targetPath,
 			'company_id'		=> $company_id,
 		]);
 

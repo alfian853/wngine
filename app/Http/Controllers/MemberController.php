@@ -47,7 +47,6 @@ class MemberController extends Controller
 		$date = date("Y-m-d", $time);
 
 		Validator::make($request->all(),[
-			''
 			'name' => 'required|min:4',
 			'password' => 'required|min:8|confirmed|strong_pwd',
 			'password_confirmation' => 'required|min:8|confirmed|same:password',
