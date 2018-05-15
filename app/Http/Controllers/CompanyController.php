@@ -103,7 +103,7 @@ class CompanyController extends Controller
     }
 	public function postingJob(Request $request)
   {
-    Validator::make($request->all(),[
+    $xx = Validator::make($request->all(),[
       'name' => 'required|min:6',
       'finishDate' => 'required|date_format:Y-m-d|after:'.date("Y-m-d"),
       'job_list' => 'required|min:3',
@@ -115,17 +115,17 @@ class CompanyController extends Controller
       'finishDate.after' => 'the deadline must be atleast tomorrow',
       'job_list.min' => 'you must put atleast one skill point reward'
     ]
-    )->validate()->with($request->all());
+    )->validate($request->all());
 
     $targetPath = null;
-    if($request->has('document')){
+    if($request->has('documentnya')){
       $path = Storage::putFile('public', $request->file('documentnya'));
-      $targetPath = date('Y-m-d').$request->file('documentnya')->getClientOriginalName();
+      $targetPath = date('Y-m-d-H-m-s').'-'.$request->file('documentnya')->getClientOriginalName();
       Storage::move($path,'job_documents/'.$targetPath);
     }
-
+    // dd($targetPath)
 		$company_id = Auth::guard('company')->user()->c_id;
-
+    // dd($targetPath);
 		$job = Job::create([
 			'name'				=> $request->name,
 			'description'		=> $request->shortDescription,

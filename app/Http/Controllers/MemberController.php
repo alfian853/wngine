@@ -49,7 +49,7 @@ class MemberController extends Controller
 		Validator::make($request->all(),[
 			'name' => 'required|min:4',
 			'password' => 'required|min:8|confirmed|strong_pwd',
-			'password_confirmation' => 'required|min:8|confirmed|same:password',
+			'password_confirmation' => 'same:password',
 			'email' => 'required|email|unique:members',
 			'address' => 'required|min:10',
 			'telp' => 'required|phone_number',
@@ -58,7 +58,7 @@ class MemberController extends Controller
 		[
 			'tgllahir.before' => 'your age must atleast 18 years old'
 		]
-	)->validate()->with($request->all());
+	)->validate($request->all());
 
 
     $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");

@@ -14,12 +14,11 @@ class CreateJobSkillTable extends Migration
     public function up()
     {
         Schema::create('job_skills', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('job_id')->unsigned();
-	    	$table->integer('skill_id')->unsigned();
-			$table->integer('point')->unsigned();
-		    $table->foreign('job_id')->references('id')->on('jobs');
-            $table->foreign('skill_id')->references('id')->on('skills');
+          $table->integer('job_id')->unsigned();
+	    	  $table->integer('skill_id')->unsigned();
+			    $table->integer('point')->unsigned();
+		      $table->foreign('job_id')->references('id')->on('jobs');
+          $table->foreign('skill_id')->references('id')->on('skills');
         });
     }
 

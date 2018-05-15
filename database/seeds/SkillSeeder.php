@@ -23,6 +23,11 @@ class SkillSeeder extends Seeder
 
         Skill::create([
 			'name'	=>	'Android',
-		]);
+		 ]);
+
+     Skill::create([
+     'name'	=>	'IOS',
+     ]);
+
     }
 }

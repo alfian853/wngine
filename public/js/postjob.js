@@ -8,14 +8,14 @@ function remove(id){
 $(document).ready(function() {
   var id=0;
   $('#add-skill').click(function(event){
-    var skill=$('#input-skill').val();
+    var skill=$('#input-skill :selected').text();
     var point=$('#input-point').val();
-
+    // console.log(skill);
     if(skill in items){
       return;
     }
     else{
-      items[skill]=point;
+      items[skill]=[$('#input-skill').val(),point];
       $('#skill-list').append(
         '<div class="row skill-row d-flex justify-content-center" id="row-'+id+'">'+
         '<div class="col-sm-5" style="text-align:center;">'+
@@ -31,12 +31,15 @@ $(document).ready(function() {
       );
       id++;
     }
-    console.log(items);
+
   });
 
   $('#submit-job').click(function(event){
-    console.log(JSON.stringify(items));
-    $('#job-list').val(JSON.stringify(items));
+    var uploaded = {};
+    $.each( items, function( key, value ) {
+      uploaded[ value[0] ] = value[1];
+    });
+    $('#job-list').val(JSON.stringify(uploaded));
   });
 
 });
