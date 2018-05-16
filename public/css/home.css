@@ -12,3 +12,19 @@
     border-radius: 50%;
     border: 5px dashed grey;
 }
+
+#update,#about
+{
+    display:none;
+}
+
+#butNews,#butUp,#butAbout
+{
+    background-image: rgba(48, 50, 51, 0.56);
+    border-radius:20px;
+}
+
+hr
+{
+    border : 5px dashed rgba(48, 50, 51, 0.56);
+}

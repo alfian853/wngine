@@ -1,9 +1,17 @@
 $(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-
-    $("#search-button").click( function(event) {
-      $('#search-form').submit();
+    $("#butUp").click( function(event) {
+      $('#news').hide();
+      $('#about').hide();
+      $('#update').show();
+    });
+    $("#butAbout").click( function(event) {
+      $('#news').hide();
+      $('#update').hide();
+      $('#about').show();
+    });
+    $("#butNews").click( function(event) {
+      $('#update').hide();
+      $('#about').hide();
+      $('#news').show();
     });
 });
-<select id="search-select2" placeholder="di js nya" name="query[]" style="height:100%" multiple="true">
-</select>

@@ -5,6 +5,7 @@
 @section('add-script')
   @parent
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+  <script src="{{ asset('js/home.js') }}"></script>
 @endsection
 
 @section('content')
@@ -96,10 +97,32 @@
           is to do what you believe is great work. And the only way to do great work is to love what you do
         </h2>
         <h4 style="text-align:center">--Steve Jobs--</h4>
+        <div class="col-lg-12 mx-auto d-flex justify-content-center">
+          <div class="btn btn-primary" style="margin-top:30px;">&#8711;</div>
+        </div>
       </div>
     </div>
-    <div class="row" style="border:1px solid black;height:600px;margin-top:10px;margin-bottom:10px;background:grey;">
-
+    <div id="news_update" class="row" style="height:auto;margin-top:10px;margin-bottom:10px;">
+      <div class="col-lg-12" id="header" style="background:Grey;height:100px;border-bottom:">
+        <h1>News and Update</h1>
+      </div>
+      <div class="col-lg-12" id="contain" style="background:green;height:500px;">
+        <div class="row">
+          <div class="col-lg-4" id="leftContain" style="background:red;height:500px;">
+            Menulist
+          </div>
+          <div class="col-lg-8" id="rightContain" style="background:blue;height:500px;">
+            <div class="row">
+              <div class="col-lg-12" style="background:violet;height:350px;">
+                  image and slideshow
+              </div>
+              <div class="col-lg-12" style="background:orange;height:150px;">
+                  short description
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   </div>
