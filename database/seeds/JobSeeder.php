@@ -24,7 +24,7 @@ class JobSeeder extends Seeder
         {
             $job = Job::create([
                 'name' => $faker->name,
-                'description' => $faker->paragraph(3),
+                'description' => $faker->paragraph(1),
                 'company_id' => rand(1, $company_count),
                 'upload_date' => date('Y-m-d'),
                 'finish_date' => '2018-12-6',
