@@ -21,7 +21,7 @@ Route::get('home', function () {
 });
 
 //search
-Route::post('action','searchController@homeQuery');
+//Route::post('action','searchController@homeQuery');
 
 //members
 Route::get('members/confirmation','MemberController@confirmRegistration')->name('member.confirmation');

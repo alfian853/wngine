@@ -67,7 +67,7 @@
             <p style="text-align:center;">Point</p>
           </div>
           <div class="col-sm-3">
-            <p style="text-align:center;">Rp 50.000/point</p>
+            <p style="text-align:center;">Rp50.000/point</p>
           </div>
           </div>
         </div>
@@ -77,10 +77,9 @@
         <div class="row d-flex justify-content-center">
           <div class="col-sm-5">
             <select id="input-skill" type="text" style="width:100%;text-align:center" placeholder="skill" class="js-example-basic-single d-flex justify-content-center">
-              <option value="1">front-end</option>
-              <option value="2">back-end</option>
-              <option value="3">android</option>
-              <option value="4">ios</option>
+            @foreach($skill as $v => $name)
+              <option value="{{ $v }}"> {{ $name }} </option>
+            @endforeach
             </select>
           </div>
           <div class="col-sm-2 d-flex justify-content-center">

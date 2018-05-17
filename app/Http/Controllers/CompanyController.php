@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Company;
 use App\Job;
+use App\Skill;
 use App\RegistrationsCompany                                                          ;
 use App\Mail\Mailer;
 use Session;
@@ -99,10 +100,17 @@ class CompanyController extends Controller
 
     public function showPostingJobForm()
     {
-      return view('company.postingJob');
+        $skill = Skill::all();
+
+        $skill_list = array();
+        foreach($skill as $s)
+            $skill_list[$s->id] = $s->name;
+
+        return view('company.postingJob', ['skill' => $skill_list]);
     }
+
 	public function postingJob(Request $request)
-  {
+    {
     $xx = Validator::make($request->all(),[
       'name' => 'required|min:6',
       'finishDate' => 'required|date_format:Y-m-d|after:'.date("Y-m-d"),
@@ -147,7 +155,7 @@ class CompanyController extends Controller
 				]);
 		}
 
-		return view('home');
+		return redirect('job/detail/'.$job->id);
     }
 
     public function showProfile()
