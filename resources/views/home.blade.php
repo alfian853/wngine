@@ -38,14 +38,17 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  <div class="col-lg-12" style="height:auto">
+    <h1 style="text-align:center;margin:30px 0;">Our Advantages</h1>
+  </div>
   <div class="col-lg-12" style="border:1px solid black;height:auto;margin-top:10px;">
     <div class="row d-flex">
       <div class="col-lg-4" style="border:1px solid black;height:auto">
         <div class="col-lg-12" style="border:1px solid black;height:100px">
           <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:50px">
-          <h2 style="text-align:center;">Title1</h2>
+        <div class="col-lg-12" style="border:1px solid black;height:auto;margin:10px 0">
+          <h2 style="text-align:center;">Advanced Your Skill</h2>
         </div>
         <div class="col-lg-12" style="border:1px solid black;height:auto">
           <p style="padding:10px 30px;font-style:italic;">
@@ -61,8 +64,8 @@
         <div class="col-lg-12" style="border:1px solid black;height:100px">
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:50px">
-          <h2 style="text-align:center;">Title2</h2>
+        <div class="col-lg-12" style="border:1px solid black;height:auto;margin:10px 0">
+          <h2 style="text-align:center;">You'll Get Money and Point</h2>
         </div>
         <div class="col-lg-12" style="border:1px solid black;height:auto">
           <p style="padding:10px 30px;font-style:italic;">
@@ -78,8 +81,8 @@
         <div class="col-lg-12" style="border:1px solid black;height:100px">
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:50px">
-          <h2 style="text-align:center;">Title3</h2>
+        <div class="col-lg-12" style="border:1px solid black;height:auto;margin:10px 0">
+          <h2 style="text-align:center;">Expand Your Connection</h2>
         </div>
         <div class="col-lg-12" style="border:1px solid black;height:auto">
           <p style="padding:10px 30px;font-style:italic;">
@@ -124,6 +127,39 @@
         </div>
       </div>
     </div>
+
+    <div class="row" style="border:1px solid black;height:auto;margin-top:10px;">
+      <div class="col-lg-12">
+        <h1 style="text-align:center">Testimonials About This Web</h1>
+      </div>
+      <div class="col-lg-12" style="border:1px solid black;height:500px">
+        <h1 style="text-align:center">Contain</h1>
+      </div>
+    </div>
+
+    <div class="row" style="border:1px solid black;height:600px;margin-top:10px;">
+      <div class="col-lg-12" style="background:orange;border:1px solid black;height:100px">
+        <h1 style="text-align:center">Contact and Address</h1>
+      </div>
+      <div class="col-lg-6" style="background:blue;border:1px solid black;height:500px"> 
+        <div class="row" style="background:red;border:1px solid black;height:100px">
+          Contact
+        </div>
+        <div class="row" style="background:purple;border:1px solid black;height:400px">
+          Contact Contain
+        </div>
+      </div>
+      <div class="col-lg-6" style="background:violet;border:1px solid black;height:500px"> 
+        <div class="row" style="background:brown;border:1px solid black;height:100px">
+          Address
+        </div>
+        <div class="row" style="background:grey;border:1px solid black;height:400px">
+          Address Contain
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="border:1px solid black;height:50px;margin-top:10px;">Footer</div>
   </div>
   </div>
 </div>
