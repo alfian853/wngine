@@ -77,13 +77,21 @@ class JobController extends Controller
         $data_sent = json_decode($request->data_send);
         if($data_sent->type == "name-filter"){
             $jobs = DB::table('jobs')
-            ->select('jobs.*',DB::raw('GROUP_CONCAT(job_skills.skill_id) as skills'),
-             DB::raw('GROUP_CONCAT(job_skills.point) as points'))
-            ->where('jobs.name','like','%'.$data_sent->query.'%')
+            ->select('jobs.*','company.c_name','company.c_image',
+             DB::raw('GROUP_CONCAT(job_skills.skill_id) as skill_list'),
+             DB::raw('GROUP_CONCAT(job_skills.point) as point_list'),
+             DB::raw('sum(job_skills.point) as point')
+             )
             ->join('job_skills','jobs.id','=','job_skills.job_id')
-            ->groupBy('jobs.id')->paginate(15);
-
-            return view('search_result_subpage',compact('jobs'));
+            ->join('skills','skills.id','=','job_skills.skill_id')
+            ->join('company','company.c_id','=','jobs.company_id')
+            ->where('jobs.name','like','%'.$data_sent->query.'%')
+            ->orWhere('company.c_name','like','%'.$data_sent->query.'%')
+            ->groupBy('jobs.id')->paginate(10);
+            foreach ($jobs as $job) {
+                $job->skill_list = preg_split("/,/",$job->skill_list);
+            }
+            return view('job.search_result_subpage',compact('jobs'));
         }
         else{
             $data_sent = $data_sent->data;
@@ -94,15 +102,32 @@ class JobController extends Controller
                 array_push($skill_search,$data->id);
             }
             $jobs = DB::table('jobs')
-            ->select('jobs.*',DB::raw('GROUP_CONCAT(job_skills.skill_id) as skills'),
-             DB::raw('GROUP_CONCAT(job_skills.point) as points'))
-            ->join('job_skills','jobs.id','=','job_skills.job_id')
-            ->whereIn('job_skills.skill_id',$skill_search)
-            ->groupBy('jobs.id')->paginate(15);
+            ->select('jobs.id as jid')
+            ->join('job_skills',function($join) use($skill_search) {
+                $join->on('jobs.id','=','job_skills.job_id')->whereIn('job_skills.skill_id',$skill_search);
+            })->distinct()->get();
+            $target_id = [];
+            foreach ($jobs as $job) {
+                array_push($target_id,$job->jid);
+            }
+            $jobs = DB::table('jobs')
+            ->select('jobs.*','company.c_name','company.c_image',
+             DB::raw('GROUP_CONCAT(job_skills.skill_id) as skill_list'),
+             DB::raw('GROUP_CONCAT(job_skills.point) as point_list'),
+             DB::raw('sum(job_skills.point) as point')
+             )
+            ->join('job_skills',function($join) use($target_id) {
+                $join->whereIn('jobs.id',$target_id);
+                $join->on('jobs.id','=','job_skills.job_id');
+            })
+            ->join('company','company.c_id','=','jobs.company_id')
+            ->groupBy('jobs.id')->paginate(10);
 
-            //compact jobs artinya dia parsing $jobs dengan nama jobs
-            //cara lain parsing data ke view
-            return view('search_result_subpage',compact('jobs'));
+            foreach ($jobs as $job) {
+                $job->skill_list = preg_split("/,/",$job->skill_list);
+            }
+
+            return view('job.search_result_subpage',compact('jobs'));
         }
 
     }
