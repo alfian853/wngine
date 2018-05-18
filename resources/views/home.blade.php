@@ -41,9 +41,9 @@
   <div class="col-lg-12" style="height:auto">
     <h1 style="text-align:center;margin:30px 0;">Our Advantages</h1>
   </div>
-  <div class="col-lg-12" style="border:1px solid black;height:auto;margin-top:10px;">
+  <div class="col-lg-12" style="height:auto;margin-top:10px;">
     <div class="row d-flex">
-      <div class="col-lg-4" style="border:1px solid black;height:auto">
+      <div class="col-lg-4" style="height:auto">
         <div class="col-lg-12" style="border:1px solid black;height:100px">
           <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
@@ -60,7 +60,7 @@
           </p>
         </div>
       </div>
-      <div class="col-lg-4" style="border:1px solid black;height:auto">
+      <div class="col-lg-4" style="height:auto">
         <div class="col-lg-12" style="border:1px solid black;height:100px">
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
@@ -77,7 +77,7 @@
           </p>
         </div>
       </div>
-      <div class="col-lg-4" style="border:1px solid black;height:auto">
+      <div class="col-lg-4" style="height:auto">
         <div class="col-lg-12" style="border:1px solid black;height:100px">
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
@@ -94,72 +94,67 @@
           </p>
         </div>
       </div>
-      <div class="col-lg-12" style="border:1px solid black;height:auto;margin-top:20px;">
+      <div class="col-lg-12" style="height:auto;margin-top:20px;">
         <h2 style="text-align:center;font-style:italic;font-weight:bold;margin-top:10px;">
           Your work is going to fill a whole part of your life, and the only way to be truly satisfied
           is to do what you believe is great work. And the only way to do great work is to love what you do
         </h2>
         <h4 style="text-align:center">--Steve Jobs--</h4>
         <div class="col-lg-12 mx-auto d-flex justify-content-center">
-          <div class="btn btn-primary" style="margin-top:30px;">&#8711;</div>
+          <div class="btn btn-primary" style="margin-top:10px;">&#8711;</div>
         </div>
       </div>
     </div>
-    <div id="news_update" class="row" style="height:auto;margin-top:10px;margin-bottom:10px;">
-      <div class="col-lg-12" id="header" style="background:Grey;height:100px;border-bottom:">
-        <h1>News and Update</h1>
+    <div class="row" style="background:#1c7776;border:1px solid black;height:auto;margin-top:10px;">
+      <div class="col-lg-12" style="border:1px solid black;height:100px">
+        <h1 style="text-align:center;color:white;margin-top:30px;">Our Contact</h1>
       </div>
-      <div class="col-lg-12" id="contain" style="background:green;height:500px;">
-        <div class="row">
-          <div class="col-lg-4" id="leftContain" style="background:red;height:500px;">
-            Menulist
-          </div>
-          <div class="col-lg-8" id="rightContain" style="background:blue;height:500px;">
-            <div class="row">
-              <div class="col-lg-12" style="background:violet;height:350px;">
-                  image and slideshow
-              </div>
-              <div class="col-lg-12" style="background:orange;height:150px;">
-                  short description
-              </div>
-            </div>
+      <div class="col-lg-4" style="border:1px solid black;height:auto"> 
+        <div class="row justify-content-center" style="border:1px solid black;height:auto">
+          <div class="row" style="height:100px;width:100px;">
+            <img style="h-100 w-100" src="{{ asset('assets/phone.png') }}" alt="phone logo">
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row" style="border:1px solid black;height:auto;margin-top:10px;">
-      <div class="col-lg-12">
-        <h1 style="text-align:center">Testimonials About This Web</h1>
-      </div>
-      <div class="col-lg-12" style="border:1px solid black;height:500px">
-        <h1 style="text-align:center">Contain</h1>
-      </div>
-    </div>
-
-    <div class="row" style="border:1px solid black;height:600px;margin-top:10px;">
-      <div class="col-lg-12" style="background:orange;border:1px solid black;height:100px">
-        <h1 style="text-align:center">Contact and Address</h1>
-      </div>
-      <div class="col-lg-6" style="background:blue;border:1px solid black;height:500px"> 
-        <div class="row" style="background:red;border:1px solid black;height:100px">
-          Contact
+        <div class="row justify-content-center" style="border:1px solid black;height:auto">
+          <div class="row" style="height:auto;">
+            <h2 style="text-align:center;color:white;"><u>Phone</u></h2>
+          </div>
         </div>
-        <div class="row" style="background:purple;border:1px solid black;height:400px">
+        <div class="row" style="border:1px solid black;height:400px">
           Contact Contain
         </div>
       </div>
-      <div class="col-lg-6" style="background:violet;border:1px solid black;height:500px"> 
-        <div class="row" style="background:brown;border:1px solid black;height:100px">
-          Address
+      <div class="col-lg-4" style="border:1px solid black;height:auto"> 
+        <div class="row justify-content-center" style="border:1px solid black;height:auto">
+          <div class="row" style="height:100px;width:100px;">
+            <img style="h-100 w-100" src="{{ asset('assets/location.png') }}" alt="phone logo">
+          </div>
         </div>
-        <div class="row" style="background:grey;border:1px solid black;height:400px">
-          Address Contain
+        <div class="row justify-content-center" style="border:1px solid black;height:auto">
+          <div class="row" style="height:auto;">
+            <h2 style="text-align:center;color:white;"><u>Address</u></h2>
+          </div>
+        </div>
+        <div class="row" style="border:1px solid black;height:400px">
+          Contact Contain
+        </div>
+      </div>
+      <div class="col-lg-4" style="border:1px solid black;height:auto"> 
+        <div class="row justify-content-center" style="border:1px solid black;height:auto">
+          <div class="row" style="height:100px;width:100px;">
+            <img style="h-100 w-100" src="{{ asset('assets/email.png') }}" alt="phone logo">
+          </div>
+        </div>
+        <div class="row justify-content-center" style="border:1px solid black;height:auto">
+          <div class="row" style="height:auto;">
+            <h2 style="text-align:center;color:white;"><u>Email</u></h2>
+          </div>
+        </div>
+        <div class="row" style="border:1px solid black;height:400px">
+          Contact Contain
         </div>
       </div>
     </div>
-
-    <div class="row" style="border:1px solid black;height:50px;margin-top:10px;">Footer</div>
   </div>
   </div>
 </div>
