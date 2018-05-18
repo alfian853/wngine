@@ -11,11 +11,100 @@ use App\Skill;
 class JobController extends Controller
 {
     public function homeQuery(Request $request){
-      return redirect('google.com');
+
+    }
+
+    public function showPostingJobForm(){
+        $skill = Skill::all();
+
+        $skill_list = array();
+        foreach($skill as $s)
+            $skill_list[$s->id] = $s->name;
+
+        return view('company.postingJob', ['skill' => $skill_list]);
+    }
+
+    public function postingJob(Request $request){
+    $xx = Validator::make($request->all(),[
+      'name' => 'required|min:6',
+      'finishDate' => 'required|date_format:Y-m-d|after:'.date("Y-m-d"),
+      'job_list' => 'required|min:3',
+      'shortDescription' => 'required',
+      'documentnya' => 'mimes:pdf'
+    ],
+    [
+      'job_list.required' => 'you must pay :(',
+      'finishDate.after' => 'the deadline must be atleast tomorrow',
+      'job_list.min' => 'you must put atleast one skill point reward'
+    ]
+    )->validate($request->all());
+
+    $targetPath = null;
+    if($request->has('documentnya')){
+      $path = Storage::putFile('public', $request->file('documentnya'));
+      $targetPath = date('Y-m-d-H-m-s').'-'.$request->file('documentnya')->getClientOriginalName();
+      Storage::move($path,'job_documents/'.$targetPath);
+    }
+    // dd($targetPath)
+        $company_id = Auth::guard('company')->user()->c_id;
+    // dd($targetPath);
+        $job = Job::create([
+            'name'				=> $request->name,
+            'description'		=> $request->shortDescription,
+            'upload_date'		=> date('Y-m-d'),
+            'finish_date'		=> $request->finishDate,
+            'document'			=> $targetPath,
+            'company_id'		=> $company_id,
+        ]);
+
+
+        $skill_list = json_decode($request->job_list, true);
+        foreach($skill_list as $s_id => $point)
+        {
+            DB::table('job_skills')
+                ->insert([
+                    'job_id'	=>	$job->id,
+                    'skill_id'	=>	$s_id,
+                    'point'		=>	$point,
+                ]);
+        }
+
+        return redirect('job/detail/'.$job->id);
     }
 
     public function searchQuery(Request $request){
-      return "ntaps";
+
+        $data_sent = json_decode($request->data_send);
+        if($data_sent->type == "name-filter"){
+            $jobs = DB::table('jobs')
+            ->select('jobs.*',DB::raw('GROUP_CONCAT(job_skills.skill_id) as skills'),
+             DB::raw('GROUP_CONCAT(job_skills.point) as points'))
+            ->where('jobs.name','like','%'.$data_sent->query.'%')
+            ->join('job_skills','jobs.id','=','job_skills.job_id')
+            ->groupBy('jobs.id')->paginate(15);
+
+            return view('search_result_subpage',compact('jobs'));
+        }
+        else{
+            $data_sent = $data_sent->data;
+
+            $skill_search = [];
+
+            foreach ($data_sent as $data) {
+                array_push($skill_search,$data->id);
+            }
+            $jobs = DB::table('jobs')
+            ->select('jobs.*',DB::raw('GROUP_CONCAT(job_skills.skill_id) as skills'),
+             DB::raw('GROUP_CONCAT(job_skills.point) as points'))
+            ->join('job_skills','jobs.id','=','job_skills.job_id')
+            ->whereIn('job_skills.skill_id',$skill_search)
+            ->groupBy('jobs.id')->paginate(15);
+
+            //compact jobs artinya dia parsing $jobs dengan nama jobs
+            //cara lain parsing data ke view
+            return view('search_result_subpage',compact('jobs'));
+        }
+
     }
 
     public function showJobSearch(){
@@ -25,8 +114,6 @@ class JobController extends Controller
 	public function showDescriptionJob($id)
 	{
 		$job = Job::where('id', $id)->first();
-
-		//dd($job);
 
 		$data = array();
 

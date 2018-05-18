@@ -1,24 +1,26 @@
 var data = [
     {
-        id: 0,
+        id: 1,
         text: 'website front-end'
     },
     {
-        id: 1,
+        id: 2,
         text: 'website back-end'
     },
     {
-        id: 2,
+        id: 3,
         text: 'mobile android'
     },
     {
-        id: 3,
+        id: 4,
         text: 'mobile IOS'
     }
 ];
 
-var emptydata=[] 
+var emptydata=[]
 
+//used for changing page
+var latest_query = "";
 $(document).ready(function(){
   var isNameFilter = true;
 
@@ -45,6 +47,26 @@ $(document).ready(function(){
     $('#search-text').css('display','inline-block');
   });
 
+  function ajax_refresh(){
+      $('.pagination li a').click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        data_send = latest_query;
+        $.ajax({
+            url: $(this).attr('href').slice(21),//next page url
+            type: 'get',
+            data: {data_send},
+            success: function(data){
+                $('#search-result').html(data);
+                ajax_refresh();
+            }
+        }).fail(function(xhr, error, thrownError){
+            console.log(xhr, error, thrownError);
+        });
+    });
+ }
+
+
 
   $("#search-btn").click( function(event) {
     $.ajaxSetup({
@@ -52,43 +74,28 @@ $(document).ready(function(){
          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
       }
     });
-    alert($('#search-select2').select2('data'));
     console.log($('#search-select2').select2('data'));
     var data_send = null;
     if(isNameFilter){
-      data_send = JSON.stringify({"text" : $('#search-text').val()});
+      data_send = JSON.stringify({"type":"name-filter","query" : $('#search-text').val()});
+      latest_query = data_send;
     }
     else{
-      data_send = JSON.stringify($('#search-select2').select2('data'));
+      data_send = JSON.stringify({"type":"skill-filter","data" : $('#search-select2').select2('data')});
+      latest_query = data_send;
     }
     console.log(data_send);
     $.ajax({
-      type: 'post',
-      url: 'tesdoang',
-      data: {'query':data_send},
+      url: '/ajaxtest',
+      type: 'get',
+      data: {data_send},
       success: function (data) {
-          alert('successss '+data);
-      },
-      error: function(data){
-        console.log(data);
+          $('#search-result').html(data);
+          ajax_refresh();
       }
-  });
-
-
-
-    // $.get( "tesdoang",function(data) {
-    //  alert( "success" +data);
-    // })
-    //  .done(function() {
-    //    alert( "second success" );
-    //  })
-    //  .fail(function() {
-    //    alert( "error" );
-    //  })
-    //  .always(function() {
-    //    alert( "finished" );
-    //  });
-
+    }).fail(function (xhr, error, thrownError) {
+    console.log(xhr, error, thrownError);
+    });
   });
 
   $('.search-panel .dropdown-menu').find('a').click(function(e) {
@@ -98,5 +105,7 @@ $(document).ready(function(){
   	$('.search-panel span#search_concept').text(concept);
   	$('.input-group #search_param').val(param);
   });
+
+
 
 });

@@ -21,8 +21,8 @@
                 	 <span id="search_concept">By name</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li id="by-name"><a href="#contains">By name</a></li>
-                  <li id="by-category"><a href="#its_equal">By category</a></li>
+                  <li id="by-name"><a href="#by-name">By name</a></li>
+                  <li id="by-category"><a href="#by-category">By category</a></li>
                 </ul>
               </div>
                 <input type="hidden" name="search_param" value="all" id="search_param"/>
@@ -70,11 +70,12 @@
           <i class="fa fa-hourglass"></i>
           19 Hari : 23 Jam : 54 Menit
         </div>
-
-
-
     </div>
   </div>
+</div>
+</div>
+
+<div id="search-result" class="container">
 
 </div>
 
