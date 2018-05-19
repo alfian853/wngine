@@ -6,7 +6,7 @@ use App\Member;
 use App\Company;
 use App\Job;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Foundation\Auth\User as User
+use Illuminate\Foundation\Auth\User as User;
 
 class JobPolicy
 {

@@ -16,14 +16,7 @@ Route::get('/', function(){
     return redirect('/home');
 });
 
-Route::get('home', function () {
-  return view('home');
-});
-
-//search
-//Route::post('action','searchController@homeQuery');
-
-//members
+// member
 Route::get('members/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
 Route::post('members/register', 'MemberController@requestMailVerification')->name('post.member.register');
 Route::get('members/register', 'MemberController@register')->name('member.register');
@@ -35,7 +28,7 @@ Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@membe
 Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
 Route::get('members/viewProfile','MemberController@showProfile')->name('member.profile');
 
-//company
+// company
 Route::get('company/register','CompanyController@register')->name('company.register');
 Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
 Route::get('company/confirmation','CompanyController@confirmRegistration')->name('company.confirmation');
@@ -47,22 +40,15 @@ Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@compa
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
 Route::get('company/view_profile','CompanyController@showProfile')->name('company.profile');
 
-// Route::group(['middleware' => 'authUser:company'],function(){
-  Route::get('company/postjob','JobController@showPostingJobForm')->name('company.postingJob');
-  Route::post('company/postjob','JobController@PostingJob')->name('post.company.postingJob');
-// });
-
-
-//home
+// home
 Route::get('home', 'HomeController@index')->name('home');
 
 // Authentication Routes...
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-//user
-Route::get('user','UserController@index');
-
 //job
-Route::get('job/job_search','JobController@showJobSearch');
+Route::get('job/search','JobController@showJobSearch');
 Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
 Route::get('ajaxtest','JobController@searchQuery');
+Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');
+Route::post('job/create','JobController@PostingJob')->name('post.job.postingJob');
