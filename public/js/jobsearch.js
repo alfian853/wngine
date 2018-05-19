@@ -84,7 +84,7 @@ $(document).ready(function(){
       data_send = JSON.stringify({"type":"skill-filter","data" : $('#search-select2').select2('data')});
       latest_query = data_send;
     }
-    console.log(data_send);
+    // console.log(data_send);
     $.ajax({
       url: '/ajaxtest',
       type: 'get',

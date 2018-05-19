@@ -22,13 +22,21 @@
               Skill :
               @foreach ($job->skill_list as $skill)
                   @if($skill == 1)
-                      <i class="fa fa-desktop"></i>
+                     <abbr title="Front End" style="cursor: help;">
+                         <i class="fa fa-desktop"></i>
+                     </abbr>
                   @elseif ($skill == 2)
-                      <i class="fa fa-code"></i>
+                      <abbr title="Back End" style="cursor: help;">
+                          <i class="fa fa-code"></i>
+                      </abbr>
                   @elseif ($skill == 3)
-                      <i class="fa fa-android"></i>
+                      <abbr title="Android" style="cursor: help;">
+                          <i class="fa fa-android"></i>
+                      </abbr>
                   @elseif ($skill == 4)
-                      <i class="fa fa-apple"></i>
+                      <abbr title="IOS" style="cursor: help;">
+                          <i class="fa fa-apple"></i>
+                      </abbr>
                   @endif
               @endforeach
             </div>
@@ -43,12 +51,11 @@
             </div>
             <div class="container">
               <i class="fa fa-hourglass"></i>
-              {{-- 19 Hari : 23 Jam : 54 Menit --}}
               <?php
               $date1=date_create($job->upload_date);
               $date2=date_create($job->finish_date);
               $diff=date_diff($date1,$date2);
-              echo $diff->format("%d. days %h. hours");
+              echo $diff->format("%d days - %h hours");
               ?>
             </div>
         </div>
@@ -56,5 +63,7 @@
     </div>
     </div>
 @endforeach
+@if(count($jobs) > 0)
 <br />
 {{!! $jobs->links(); !!}}
+@endif
