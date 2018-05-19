@@ -36,45 +36,6 @@
 	</div>
 </div>
 
-<div class="container search-result-container" style="margin-top: 60px">
-  <div class="row" style="border:1px solid red;padding:10px">
-    <div class="col-sm-2" style="border:1px solid red;">
-      <img src="{{asset('assets/stuff.jpg')}}" width="100%" height="100%"/>
-    </div>
-    <div class="col-sm-10 row" style="border:1px solid yellow;">
-      <div class="col-sm-8" style="border:1px solid red;">
-        <h3>
-          front-end developer
-        </h3>
-        <p>
-          Submisikan hasil karya terbaikmu: Aplikasi Web/Mobile/Desktop, Games, atau IoT, untuk mendapatkan slot pameran BEKRAF Developer Day Jayapura
-        </p>
-      </div>
-      <div class="col-sm-4" style="border:1px solid red;">
-        <div class="container">
-          Skill :
-          <i class="fa fa-desktop"></i>
-          <i class="fa fa-android"></i>
-          <i class="fa fa-code"></i>
-        </div>
-        <div class="container">
-          <i class="icomoon icon-coin"></i>
-          Total point : 300
-          <img src="{{asset('assets/gold_coin.png')}}" width="20px" height="20px"/>
-        </div>
-        <div class="container">
-          <i class="fa fa-gift"></i>
-          Reward : 300$ + certificate
-        </div>
-        <div class="container">
-          <i class="fa fa-hourglass"></i>
-          19 Hari : 23 Jam : 54 Menit
-        </div>
-    </div>
-  </div>
-</div>
-</div>
-
 <div id="search-result" class="container">
 
 </div>

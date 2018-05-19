@@ -45,7 +45,7 @@ Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdFor
 Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
 Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdForm')->name('company.password.reset');
 Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
-Route::get('company/viewProfile','CompanyController@showProfile')->name('company.profile');
+Route::get('company/view_profile','CompanyController@showProfile')->name('company.profile');
 
 // Route::group(['middleware' => 'authUser:company'],function(){
   Route::get('company/postjob','JobController@showPostingJobForm')->name('company.postingJob');
@@ -64,5 +64,5 @@ Route::get('user','UserController@index');
 
 //job
 Route::get('job/job_search','JobController@showJobSearch');
-Route::get('job/detail/{id}','JobController@showDescriptionJob');
+Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
 Route::get('ajaxtest','JobController@searchQuery');

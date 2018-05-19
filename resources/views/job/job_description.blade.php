@@ -15,8 +15,8 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                    <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-100 w-100 rounded img-fluid mx-auto d-block ">
-                    <div class="row d-flex justify-content-center"></div>
+                <img src="{{ $data['company_photo'] }}" class= "h-100 w-100 rounded img-fluid mx-auto d-block ">
+                <div class="row d-flex justify-content-center"></div>
             </div>
         <div class="col-lg-6">
             <div class="card row">
@@ -40,7 +40,7 @@
                     </h5>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
-                 Point
+                    {{ $data['total_point']}}
                 </div>
             </div>
             <div class="card row">
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">
-        <div class="btn btn-warning" style="margin-right: 2px;">Download</div>
+        <a class="btn btn-warning" style="margin-right: 2px;" href="{{$data['document_url']}}" target="_blank">Download</a>
         <div class="btn btn-success" style="margin-left: 2px;">Take</div>
     </div>
 </div>

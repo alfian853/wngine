@@ -7,9 +7,11 @@
         </div>
         <div class="col-sm-10 row" style="border:1px solid yellow;">
           <div class="col-sm-8" style="border:1px solid red;">
-            <h3>
-              {{ $job->name }}({{$job->c_name}})
-            </h3>
+              <a href="{{route('job.detail',['id' => $job->id])}}" target="_blank">
+                 <h3>
+                      {{ $job->name }}({{$job->c_name}})
+                </h3>
+            </a>
             <p>
             {{ $job->description }}
             </p>

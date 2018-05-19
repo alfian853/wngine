@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Job;
 use App\Company;
 use App\Skill;
-
+use Storage;
+use Validator;
+use Auth;
 class JobController extends Controller
 {
     public function homeQuery(Request $request){
@@ -145,25 +147,27 @@ class JobController extends Controller
 		$data['job_name'] = $job->name;
 		$data['start_date'] = $job->upload_date;
 		$data['due_date'] = $job->finish_date;
-		$data['company_name'] = Company::select('c_name')
+        $company = Company::select('c_name','c_image')
 									->where('c_id', $job->company_id)
-									->first()
-									->c_name;
+									->first();
+		$data['company_name'] = $company->c_name;
+        $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
 		$data['description'] = $job->description;
-		$data['document_url'] = $job->document;
+		$data['document_url'] = asset('job_documents').'/'.$job->document;
 		$data['skills'] = array();
 
 		$job_skill = DB::table('job_skills')
 						->where('job_id', $job->id)
 						->get();
+        $total = 0;
 		foreach($job_skill as $v)
 		{
 			$skill = Skill::select('name')->where('id', $v->skill_id)->first()->name;
 			$data['skills'][$skill] = $v->point;
+            $total+=$v->point;
 		}
-
-		//dd($data);
-
+        $data['total_point'] = $total;
+		// dd($data);
 		return view('job.job_description', ['data' => $data]);
 	}
 }
