@@ -61,3 +61,39 @@
     height: 2px;
     width: 100%;
 }
+
+.popupunder{
+    width: 300px;
+	position:fixed;
+	top: 10px;
+	right: 10px;
+	z-index: 10;
+	border: 0;
+	padding: 20px;
+}
+.popupunder.alert-success{
+    border: 1px solid #198b49;
+	background:#27AE60;
+	color:#fff;
+}
+.popupunder .close{
+	font-size: 10px;
+	position:absolute !important;
+	right: 2px;
+	top: 3px;
+}
+
+.scroll-up{
+  width: 40px;
+  height: 43px;
+  bottom: 25px;
+  right: 25px;
+  position: fixed;
+  background-color: rgb(58, 59, 54);
+  text-align: center;
+  border-radius: 2px;
+  color: #ffffff;
+  font-size:35px;
+  z-index: 10000 !important;
+  visibility: hidden;
+}

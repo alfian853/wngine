@@ -2,10 +2,10 @@
   <head>
     <title>Wngine - @yield('title')</title>
     @section('add-script')
-      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+      {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> --}}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="{{ asset('css/animated_navbar.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/master.css') }}">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -29,9 +29,14 @@
           <strong>Success!</strong> {{ Session::get('alert') }}
         </div>
       @elseif (Session::get('alert-type') == 'failed')
-        <div class="alert alert-danger alert-dismissible fixed-top" style="margin-top:60px;">
+        {{-- <div class="alert alert-danger alert-dismissible fixed-top" style="margin-top:60px;">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Error!</strong> {{ Session::get('alert') }}
+        </div> --}}
+        <div class="container">
+        	<div class="row">
+        		<div class="popupunder alert alert-success fade in"><button type="button" class="close close-sm" data-dismiss="alert"><i class="glyphicon glyphicon-remove"></i></button><strong>Success : </strong> The update process has been completed successfull!</div>
+        	</div>
         </div>
       @elseif (Session::get('alert-type') == 'warning')
         <div class="alert alert-warning alert-dismissible fixed-top" style="margin-top:60px;">
@@ -40,7 +45,11 @@
         </div>
       @endif
     @endif
+    <a id="scroll_up" class="scroll-up" href="#top"><i class="fa fa-angle-double-up"></i></a>
 
     @yield('content')
+    <script src="{{asset('js/master.js')}}"></script>
+
   </body>
+
 </html>
