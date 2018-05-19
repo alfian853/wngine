@@ -160,8 +160,6 @@ class JobController extends Controller
     {
         $job = Job::find($id);
 
-        //dd(Auth::guard('member')->user()->can('take', Job::class));
-
 		$data = array();
 
 		$data['job_name'] = $job->name;
@@ -187,7 +185,6 @@ class JobController extends Controller
             $total+=$v->point;
 		}
         $data['total_point'] = $total;
-		// dd($data);
         return view('job.job_description', [
             'data' => $data,
             'job' => $job,
