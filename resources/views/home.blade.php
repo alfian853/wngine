@@ -39,58 +39,55 @@
   </div>
 
   <div class="col-lg-12" style="height:auto">
-    <h1 style="text-align:center;margin-top:30px;margin-bottom:30px">Our Advantages</h1>
+    <h1 style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Our Advantages</h1>
   </div>
 
     <div class="row d-flex justify-content-center">
       <div class="col-lg-4" style="height:auto">
-        <div class="col-lg-12" style="border:1px solid black;height:100px">
+        <div class="col-lg-12" style="height:100px">
           <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:auto;margin-top:10px;margin-bottom:10px">
+        <div class="col-lg-12" style="height:auto;margin-top:10px;margin-bottom:10px">
           <h2 style="text-align:center;">Advanced Your Skill</h2>
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:auto">
-          <p style="padding:10px 30px;font-style:italic;">
-          Nulla ornare, nulla et egestas hendrerit, ipsum dui vulputate dolor, 
-          et ornare orci erat eleifend pede. Fusce eros libero, vestibulum non, elementum eu, 
-          suscipit eget, leo. Donec consectetuer tincidunt diam.
-          Sed et mauris in ligula feugiat hendrerit. 
-          Cras neque purus, mollis non.
+        <div class="col-lg-12" style="height:auto">
+          <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
+            Join us will be the best solution for you to improve your skill in technology,
+            you'll get exercise to handle so many type of job which is unconsciously increase
+            your skill. We are a versed person in this part. We are very sure that we will the right 
+            person for you, so don't be hesitated with us. 
           </p>
         </div>
       </div>
       <div class="col-lg-4" style="height:auto">
-        <div class="col-lg-12" style="border:1px solid black;height:100px">
+        <div class="col-lg-12" style="height:100px">
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:auto;margin:10px 0">
+        <div class="col-lg-12" style="height:auto;margin:10px 0">
           <h2 style="text-align:center;">You'll Get Money and Point</h2>
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:auto">
-          <p style="padding:10px 30px;font-style:italic;">
-          Nulla ornare, nulla et egestas hendrerit, ipsum dui vulputate dolor, 
-          et ornare orci erat eleifend pede. Fusce eros libero, vestibulum non, elementum eu, 
-          suscipit eget, leo. Donec consectetuer tincidunt diam.
-          Sed et mauris in ligula feugiat hendrerit. 
-          Cras neque purus, mollis non.
+        <div class="col-lg-12" style="height:auto">
+          <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
+          Aside from you'll improve your skill. You'll get money from company which is posted a job 
+          that you take and you'll get coin from system based on criteria. The coin is very useful, 
+          cause it's can be used for you to get the more level of confidence from the related company, in 
+          other words it can make you easier to get a job.
           </p>
         </div>
       </div>
       <div class="col-lg-4" style="height:auto">
-        <div class="col-lg-12" style="border:1px solid black;height:100px">
+        <div class="col-lg-12" style="height:100px">
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:auto;margin:10px 0">
+        <div class="col-lg-12" style="height:auto;margin:10px 0">
           <h2 style="text-align:center;">Expand Your Connection</h2>
         </div>
-        <div class="col-lg-12" style="border:1px solid black;height:auto">
-          <p style="padding:10px 30px;font-style:italic;">
-          Nulla ornare, nulla et egestas hendrerit, ipsum dui vulputate dolor, 
-          et ornare orci erat eleifend pede. Fusce eros libero, vestibulum non, elementum eu, 
-          suscipit eget, leo. Donec consectetuer tincidunt diam.
-          Sed et mauris in ligula feugiat hendrerit. 
-          Cras neque purus, mollis non.
+        <div class="col-lg-12" style="height:auto">
+          <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
+            Without you being aware, in the process of doing your task, you'll do a formal 
+            communication with person in company. So you get good communication lesson at a time
+            you expand you connection. In the future of your career this part is one of the most important
+            thing.
           </p>
         </div>
       </div>
@@ -107,8 +104,8 @@
       </div>
     </div>
     
-    <div class="row" style="background:#1c7776;height:auto;margin-top:10px;">
-      <div class="col-lg-12 h1" style="margin-bottom:40px;font-size:75px;text-align:center;color:white;letter-spacing:5px;font-family: serif;">Our Contact</div>  
+    <div class="row" style="background:#1c7776;height:auto;margin-top:10px;padding:50px;">
+      <div class="col-lg-12 h1" style="margin-bottom:50px;font-size:75px;text-align:center;color:white;letter-spacing:5px;font-family: serif;">Our Contact</div>  
       <div class="col-lg-4" style="height:auto"> 
         <div class="row justify-content-center" style="height:auto">
           <div class="row" style="height:100px;width:100px;">
@@ -120,7 +117,7 @@
             <h2 style="text-align:center;color:white;font-weight:bold">Phone</h2>
           </div>
         </div>
-        <div class="col-lg-12" style="border-top:5px double white;height:400px;padding-top:30px;">
+        <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
           <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Main Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">031-7321117</div>
           <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Branch Office</div>
@@ -139,7 +136,7 @@
             <h2 style="text-align:center;color:white;font-weight:bold">Address</h2>
           </div>
         </div>
-        <div class="col-lg-12" style="border-top:5px double white;height:400px;padding-top:30px;">
+        <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
           <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Main Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Sidoarjo, East Java, Indonesia</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Jalan Makmur 8a, Komplek Indahri Blok B, No. 80</div>
@@ -160,7 +157,7 @@
             <h2 style="text-align:center;color:white;font-weight:bold">Email</h2>
           </div>
         </div>
-        <div class="col-lg-12" style="border-top:5px double white;height:400px;padding-top:30px;">
+        <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
           <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Main Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">wngine.noreply@gmail.com</div>
           <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Branch Office</div>
