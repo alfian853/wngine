@@ -159,9 +159,8 @@ class JobController extends Controller
 	public function showDescriptionJob($id)
     {
         $job = Job::find($id);
-
 		$data = array();
-
+        $data['id'] = $id;
 		$data['job_name'] = $job->name;
 		$data['start_date'] = $job->upload_date;
 		$data['due_date'] = $job->finish_date;
@@ -185,9 +184,53 @@ class JobController extends Controller
             $total+=$v->point;
 		}
         $data['total_point'] = $total;
+        $data['had_taken'] = self::jobWasTaken($id);
         return view('job.job_description', [
             'data' => $data,
             'job' => $job,
         ]);
 	}
+
+    public function jobWasTaken($jobId){
+        $res = DB::table('jobs_taken')->select('member_id')
+        ->where('member_id','=',Auth::guard('member')->user()->m_id)
+        ->where('job_id','=',$jobId)->first();
+
+        return $res != null;
+    }
+
+    public function takeJob(Request $request){
+        $job_id = json_decode($request["param"],true)['job_id'];
+        if($job_id != null){
+            $counter = DB::table('jobs_taken')->select(DB::raw('count(job_id) as job_count'))
+            ->where('member_id','=',Auth::guard('member')->user()->m_id)
+            ->groupBy('member_id')->first();
+            if($counter != null && $counter->job_count > 4){
+                return "Sorry, you can't take more than 5 job";
+            }
+            if(self::jobWasTaken($job_id)){
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'You had taken this job before'
+            ]);
+            }
+            // DB::table('jobs_taken')->insert(
+            //     ['job_id' => $job_id,
+            //      'member_id' => Auth::guard('member')->user()->m_id]
+            // );
+        }
+        else{
+            return response()->json([
+                'status' => 'failed',
+                'message' => "don't try to hacking us *_*"
+            ]);
+        }
+        return response()->json([
+            'status' => 'success',
+            'message' => "success taking the job, Do your best :)"
+        ]);
+    }
+
+
+
 }

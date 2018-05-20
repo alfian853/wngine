@@ -29,14 +29,9 @@
           <strong>Success!</strong> {{ Session::get('alert') }}
         </div>
       @elseif (Session::get('alert-type') == 'failed')
-        {{-- <div class="alert alert-danger alert-dismissible fixed-top" style="margin-top:60px;">
+        <div class="alert alert-danger alert-dismissible fixed-top" style="margin-top:60px;">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Error!</strong> {{ Session::get('alert') }}
-        </div> --}}
-        <div class="container">
-        	<div class="row">
-        		<div class="popupunder alert alert-success fade in"><button type="button" class="close close-sm" data-dismiss="alert"><i class="glyphicon glyphicon-remove"></i></button><strong>Success : </strong> The update process has been completed successfull!</div>
-        	</div>
         </div>
       @elseif (Session::get('alert-type') == 'warning')
         <div class="alert alert-warning alert-dismissible fixed-top" style="margin-top:60px;">

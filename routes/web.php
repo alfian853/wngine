@@ -49,6 +49,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //job
 Route::get('job/search','JobController@showJobSearch');
 Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
-Route::get('ajaxtest','JobController@searchQuery');
+Route::get('job/search_query','JobController@searchQuery');
 Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');
-Route::post('job/create','JobController@PostingJob')->name('post.job.postingJob');
+Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
+Route::post('job/take_job','JobController@takeJob');

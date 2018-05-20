@@ -5,10 +5,15 @@
 @section('add-script')
   @parent
   <link rel="stylesheet" href="{{ asset('css/jobdescription.css') }}">
+  <script src="{{asset('js/jobdetail.js')}}"></script>
 @endsection
 
 @section('content')
 <div class="container">
+    <input id="job-id" type="hidden" value="{{$data['id']}}"/>
+    {{csrf_field()}}
+    {{-- <meta name="_token" content="{!! csrf_token() !!}" /> --}}
+
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
             <div class="h1" style="font-family:script;font-style:italic;font-weight:bold;text-align:center">{{ $data['job_name'] }}</div>
@@ -100,7 +105,38 @@
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">
         <a class="btn btn-warning" style="margin-right: 2px;" href="{{$data['document_url']}}" target="_blank">Download</a>
         @can('take', App\Job::class)
-            <div class="btn btn-success" style="margin-left: 2px;">Take</div>
+            @if(! $data['had_taken'])
+            <button class="btn btn-success" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Take</button>
+        @endif
         @endcan
-</div>
+    </div>
+    <div class="modal" id="modal-take">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <h3>Terms and conditons</h3>
+            1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt<br />
+            2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt<br />
+            3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt <br />
+            <input type="checkbox" name="vehicle" value="Bike" id="tc-checkbox"
+            style="margin-top:10px">I have read and accept the general terms and conditions of business.<br>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+            <button type="button" class="btn btn-success" id="take-job">take the job</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 @endsection
