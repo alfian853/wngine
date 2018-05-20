@@ -9,21 +9,39 @@ use App\Company;
 use App\Skill;
 use Storage;
 use Validator;
-use Auth;
+//use Auth;
+use Illuminate\Support\Facades\Auth;
+
 class JobController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:company,member')
+            ->except([
+                'searchQuery',
+                'showDescriptionJob',
+                'showJobSearch',
+            ]
+        );
+    }
+
     public function homeQuery(Request $request){
 
     }
 
     public function showPostingJobForm(){
+        $user = Auth::user();
+
+        if($user->cannot('create', Job::class))
+            return redirect('/home');
+
         $skill = Skill::all();
 
         $skill_list = array();
         foreach($skill as $s)
             $skill_list[$s->id] = $s->name;
 
-        return view('company.postingJob', ['skill' => $skill_list]);
+        return view('job.job_create', ['skill' => $skill_list]);
     }
 
     public function postingJob(Request $request){
@@ -139,8 +157,10 @@ class JobController extends Controller
     }
 
 	public function showDescriptionJob($id)
-	{
-		$job = Job::where('id', $id)->first();
+    {
+        $job = Job::find($id);
+
+        //dd(Auth::guard('member')->user()->can('take', Job::class));
 
 		$data = array();
 
@@ -168,6 +188,9 @@ class JobController extends Controller
 		}
         $data['total_point'] = $total;
 		// dd($data);
-		return view('job.job_description', ['data' => $data]);
+        return view('job.job_description', [
+            'data' => $data,
+            'job' => $job,
+        ]);
 	}
 }

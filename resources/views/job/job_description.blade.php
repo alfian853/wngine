@@ -99,7 +99,12 @@
     </div>
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">
         <a class="btn btn-warning" style="margin-right: 2px;" href="{{$data['document_url']}}" target="_blank">Download</a>
-        <div class="btn btn-success" style="margin-left: 2px;">Take</div>
-    </div>
+        @if(Auth::guard('member')->user()->can('take', App\Job::class))
+            <div class="btn btn-success" style="margin-left: 2px;">Take</div>
+        @endif
+        @can('edit', $job)
+            <div class="btn btn-success" style="margin-left: 2px;">Take</div>
+            <div class="btn btn-success" style="margin-left: 2px;">Delete</div>
+        @endcan
 </div>
 @endsection
