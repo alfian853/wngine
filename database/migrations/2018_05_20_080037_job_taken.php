@@ -14,10 +14,12 @@ class jobTaken extends Migration
     public function up()
     {
         Schema::create('jobs_taken', function (Blueprint $table) {
-            $table->integer('member_id')->unsigned();
-            $table->foreign('member_id')->references('m_id')->on('members');
+            $table->string('worker_email',64);
+            $table->foreign('worker_email')->references('email')->on('members');
             $table->integer('job_id')->unsigned();
             $table->foreign('job_id')->references('id')->on('jobs');
+            $table->integer('status')->unsigned();
+            $table->string('comment',100);
         });
     }
 

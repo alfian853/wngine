@@ -97,4 +97,9 @@ class MemberController extends Controller
     {
       return view('members.viewProfile');
     }
+
+		public function showProfileById($id_member)
+    {
+      return view('members.viewProfile');
+    }
 }

@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
+/*
+  status jobs
+  0 = belum submit
+  1 = sudah di cek
+  2 = ada update lagi
+  3 = sudah submit, belum di cek
+  dimunculkan di list project dengan order descending
+*/
+
+
     public function __construct()
     {
         $this->middleware('auth:company,member')
@@ -156,40 +166,40 @@ class JobController extends Controller
       return view('job.job_search');
     }
 
-	public function showDescriptionJob($id)
-    {
-        $job = Job::find($id);
-		$data = array();
-        $data['id'] = $id;
-		$data['job_name'] = $job->name;
-		$data['start_date'] = $job->upload_date;
-		$data['due_date'] = $job->finish_date;
-        $company = Company::select('c_name','c_image')
-									->where('c_id', $job->company_id)
-									->first();
-		$data['company_name'] = $company->c_name;
-        $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
-		$data['description'] = $job->description;
-		$data['document_url'] = asset('job_documents').'/'.$job->document;
-		$data['skills'] = array();
+  	public function showDescriptionJob($id)
+      {
+          $job = Job::find($id);
+  		$data = array();
+          $data['id'] = $id;
+  		$data['job_name'] = $job->name;
+  		$data['start_date'] = $job->upload_date;
+  		$data['due_date'] = $job->finish_date;
+          $company = Company::select('c_name','c_image')
+  									->where('c_id', $job->company_id)
+  									->first();
+  		$data['company_name'] = $company->c_name;
+          $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
+  		$data['description'] = $job->description;
+  		$data['document_url'] = asset('job_documents').'/'.$job->document;
+  		$data['skills'] = array();
 
-		$job_skill = DB::table('job_skills')
-						->where('job_id', $job->id)
-						->get();
-        $total = 0;
-		foreach($job_skill as $v)
-		{
-			$skill = Skill::select('name')->where('id', $v->skill_id)->first()->name;
-			$data['skills'][$skill] = $v->point;
-            $total+=$v->point;
-		}
-        $data['total_point'] = $total;
-        $data['had_taken'] = self::jobWasTaken($id);
-        return view('job.job_description', [
-            'data' => $data,
-            'job' => $job,
-        ]);
-	}
+  		$job_skill = DB::table('job_skills')
+  						->where('job_id', $job->id)
+  						->get();
+          $total = 0;
+  		foreach($job_skill as $v)
+  		{
+  			$skill = Skill::select('name')->where('id', $v->skill_id)->first()->name;
+  			$data['skills'][$skill] = $v->point;
+              $total+=$v->point;
+  		}
+          $data['total_point'] = $total;
+          $data['had_taken'] = self::jobWasTaken($id);
+          return view('job.job_description', [
+              'data' => $data,
+              'job' => $job,
+          ]);
+  	}
 
     public function jobWasTaken($jobId){
         $res = DB::table('jobs_taken')->select('member_id')
@@ -216,7 +226,7 @@ class JobController extends Controller
             }
             DB::table('jobs_taken')->insert(
                 ['job_id' => $job_id,
-                 'member_id' => Auth::guard('member')->user()->m_id]
+                 'worker_email' => Auth::guard('member')->user()->email]
             );
         }
         else{
@@ -231,36 +241,35 @@ class JobController extends Controller
         ]);
     }
 
-
-    public function showWorkerListPanel(Request $request){
-        $row = DB::table('jobs_taken')->select('*')
-        ->where('job_id','=',$request->jobId)->first();
-
-        if($row == null){
-            Session::flash('alert',"You are not authorized to access this page id");
-            Session::flash('alert-type','failed');
-            return redirect('home');
-        }
-        dd($row);
-    }
-
     public function projectList(){
-      // dd(Auth::guard('company')->user()->c_id);
       $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
-      // dd($jobs);
-      return view('company.project-list', compact('jobs'));
+      return view('job.project-list', compact('jobs'));
     }
 
     public function projectListTake($id){
-      // dd(Auth::guard('company')->user()->c_id);
       $lists = DB::table('jobs_taken')->select('*')
-          ->join('members','members.m_id','=','jobs_taken.member_id')
+          ->join('members','members.email','=','jobs_taken.worker_email')
             ->where('job_id','=',$id)
             ->get();
-      // dd($lists);
-      return view('company.project-list-take', compact('lists'));
+      return view('job.project-list-detail', compact('lists'))->with(['job_id' => $id]);
     }
 
+    //not used
+    // public function updateRank(Request $request){
+    //   $ranks = json_decode($request->data_send,true)['data'];
+    //   foreach ($ranks as $key) {
+    //     var_dump($key);
+    //   }
+    //
+    // }
 
+    public function updateComment(Request $request){
+      $data = json_decode($request->data_send,true);
+      DB::table('jobs_taken')
+      ->where('job_id','=',$data['job_id'])
+      ->where('worker_email','=',$data['email'])
+      ->update(['comment' => $data['comment']]);
+      var_dump($data);
+    }
 
 }

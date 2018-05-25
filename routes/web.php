@@ -32,15 +32,13 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::post('members/password/reset','Auth\ForgotPasswordController@doMemberPwdRequest')->name('post.member.password.request');
 	Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 	Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
-	Route::get('members/viewProfile','MemberController@showProfile')->name('member.profile');
+  Route::get('members/view_profile','MemberController@showProfile')->name('member.profile');
+	Route::get('members/view_profile/{id}','MemberController@showProfileById')->name('member.profilebyid');
 
 	// company
 	Route::get('company/register','CompanyController@register')->name('company.register');
 	Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
 	Route::get('company/confirmation','CompanyController@confirmRegistration')->name('company.confirmation');
-
-	Route::get('company/project-list','CompanyController@projectList')->name('company.project-list');
-	Route::get('company/project-list/take/{id}','CompanyController@projectListTake')->name('company.project-list.take');
 
 
 	Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdForm')->name('company.password.request');
@@ -56,14 +54,18 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 	//job
+
+  Route::get('company/project-list','JobController@projectList')->name('company.project-list');
+	Route::get('company/project-list/detail/{id}','JobController@projectListTake')->name('company.project-list.detail');
+  Route::post('job/edit_comment','JobController@updateComment');
 	Route::get('job/search','JobController@showJobSearch');
 	Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
 	Route::get('job/search_query','JobController@searchQuery');
 	Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');
-	Route::get('job/worker_list/{jobId}','JobController@showWorkerListPanel')->name('job.workerlistPanel');
-	Route::get('job/list','JobController@showJobList')->name('job.list');
 	Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
 	Route::post('job/take_job','JobController@takeJob');
+  Route::post('job/update_rank','JobController@updateRank');
+
 // });
 //untuk test view apapun
 Route::get('/dummy',function(){

@@ -100,7 +100,7 @@
         {!! $errors->first('shortDescription','<span class="help-block text-danger">*:message</span>') !!}
       </label>
       <div class="col-sm-12">
-        <textarea rows="" cols="" name="shortDescription"  style="width: inherit;">{{old('shortDescription')}}</textarea>
+        <textarea rows="" cols="" name="shortDescription" style="width: inherit;">{{old('shortDescription')}}</textarea>
       </div>
     </div>
 
