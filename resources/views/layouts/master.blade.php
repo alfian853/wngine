@@ -10,6 +10,10 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+      <link rel="stylesheet" href="{{asset('jquery-ui-1.12.1/jquery-ui.min.css')}}">
+      <script src="{{asset('jquery-ui-1.12.1/external/jquery/jquery.js')}}"></script>
+      <script src="{{asset('jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>
+      
     @show
   </head>
   <body>

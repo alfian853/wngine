@@ -54,8 +54,8 @@
           <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
             Join us will be the best solution for you to improve your skill in technology,
             you'll get exercise to handle so many type of job which is unconsciously increase
-            your skill. We are a versed person in this part. We are very sure that we will the right 
-            person for you, so don't be hesitated with us. 
+            your skill. We are a versed person in this part. We are very sure that we will the right
+            person for you, so don't be hesitated with us.
           </p>
         </div>
       </div>
@@ -68,9 +68,9 @@
         </div>
         <div class="col-lg-12" style="height:auto">
           <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
-          Aside from you'll improve your skill. You'll get money from company which is posted a job 
-          that you take and you'll get coin from system based on criteria. The coin is very useful, 
-          cause it's can be used for you to get the more level of confidence from the related company, in 
+          Aside from you'll improve your skill. You'll get money from company which is posted a job
+          that you take and you'll get coin from system based on criteria. The coin is very useful,
+          cause it's can be used for you to get the more level of confidence from the related company, in
           other words it can make you easier to get a job.
           </p>
         </div>
@@ -84,7 +84,7 @@
         </div>
         <div class="col-lg-12" style="height:auto">
           <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
-            Without you being aware, in the process of doing your task, you'll do a formal 
+            Without you being aware, in the process of doing your task, you'll do a formal
             communication with person in company. So you get good communication lesson at a time
             you expand you connection. In the future of your career this part is one of the most important
             thing.
@@ -103,18 +103,18 @@
         <div class="btn btn-primary" style="margin-top:10px;">&#8711;</div>
       </div>
     </div>
-    
+
     <div class="row" style="background:#1c7776;height:auto;margin-top:10px;padding:50px;">
-      <div class="col-lg-12 h1" style="margin-bottom:50px;font-size:75px;text-align:center;color:white;letter-spacing:5px;font-family: serif;">Our Contact</div>  
-      <div class="col-lg-4" style="height:auto"> 
-        <div class="row justify-content-center" style="height:auto">
-          <div class="row" style="height:100px;width:100px;">
-            <img style="h-100 w-100" src="{{ asset('assets/phone.png') }}" alt="phone logo">
+      <div class="col-lg-12 h1" style="margin-bottom:50px;font-size:75px;text-align:center;color:white;letter-spacing:5px;font-family: serif;">Our Contact</div>
+      <div class="col-lg-4" style="">
+        <div class="row" style="">
+          <div class="row" style="margin: auto;">
+            <img style="width:10%;height: 6%;margin: auto;" src="{{ asset('assets/phone.png') }}" alt="phone logo">
           </div>
         </div>
         <div class="row justify-content-center" style="height:auto">
-          <div class="row" style="height:auto;">
-            <h2 style="text-align:center;color:white;font-weight:bold">Phone</h2>
+          <div class="row justify-content-center" style="height:auto;">
+            <center><h2 style="text-align:center;color:white;font-weight:bold">Phone</h2></center>
           </div>
         </div>
         <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
@@ -124,11 +124,11 @@
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">061-6320115</div>
         </div>
       </div>
-     
-      <div class="col-lg-4" style="height:auto"> 
-        <div class="row justify-content-center" style="height:auto">
-          <div class="row" style="height:100px;width:100px;">
-            <img style="h-100 w-100" src="{{ asset('assets/location.png') }}" alt="phone logo">
+
+      <div class="col-lg-4" style="">
+        <div class="row " style="">
+          <div class="row" style="margin: auto">
+            <img style="width:10%;height: 6%;margin: auto;"  src="{{ asset('assets/location.png') }}" alt="phone logo">
           </div>
         </div>
         <div class="row justify-content-center" style="height:auto">
@@ -145,11 +145,11 @@
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Jalan Kedongdoro 3a, Perumnas Blok 3c, No.78-79</div>
         </div>
       </div>
-      
-      <div class="col-lg-4" style="height:auto"> 
-        <div class="row justify-content-center" style="height:auto">
-          <div class="row" style="height:100px;width:100px;">
-            <img style="h-100 w-100" src="{{ asset('assets/email.png') }}" alt="phone logo">
+
+      <div class="col-lg-4" style="">
+        <div class="row" style="">
+          <div class="row" style="margin: auto">
+            <img style="width:10%;height: 6%;margin: auto;"  src="{{ asset('assets/email.png') }}" alt="phone logo">
           </div>
         </div>
         <div class="row justify-content-center" style="height:auto">
@@ -166,7 +166,7 @@
       </div>
 
     </div>
-    
+
 </div>
 
 @endsection

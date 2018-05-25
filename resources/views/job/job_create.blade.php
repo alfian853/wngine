@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="container">
-	<form class="form-horizontal" role="form" action="{{ route('post.company.postingJob') }}" method="post" enctype="multipart/form-data">
+	<form class="form-horizontal" role="form" action="{{ route('post.job.postingJob') }}" method="post" enctype="multipart/form-data">
 	<h2>Posting Job</h2>
 	<hr>
 	{{ csrf_field() }}

@@ -9,7 +9,7 @@ use App\Company;
 use App\Skill;
 use Storage;
 use Validator;
-//use Auth;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
@@ -214,10 +214,10 @@ class JobController extends Controller
                     'message' => 'You had taken this job before'
             ]);
             }
-            // DB::table('jobs_taken')->insert(
-            //     ['job_id' => $job_id,
-            //      'member_id' => Auth::guard('member')->user()->m_id]
-            // );
+            DB::table('jobs_taken')->insert(
+                ['job_id' => $job_id,
+                 'member_id' => Auth::guard('member')->user()->m_id]
+            );
         }
         else{
             return response()->json([
@@ -229,6 +229,36 @@ class JobController extends Controller
             'status' => 'success',
             'message' => "success taking the job, Do your best :)"
         ]);
+    }
+
+
+    public function showWorkerListPanel(Request $request){
+        $row = DB::table('jobs_taken')->select('*')
+        ->where('job_id','=',$request->jobId)->first();
+
+        if($row == null){
+            Session::flash('alert',"You are not authorized to access this page id");
+            Session::flash('alert-type','failed');
+            return redirect('home');
+        }
+        dd($row);
+    }
+
+    public function projectList(){
+      // dd(Auth::guard('company')->user()->c_id);
+      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
+      // dd($jobs);
+      return view('company.project-list', compact('jobs'));
+    }
+
+    public function projectListTake($id){
+      // dd(Auth::guard('company')->user()->c_id);
+      $lists = DB::table('jobs_taken')->select('*')
+          ->join('members','members.m_id','=','jobs_taken.member_id')
+            ->where('job_id','=',$id)
+            ->get();
+      // dd($lists);
+      return view('company.project-list-take', compact('lists'));
     }
 
 
