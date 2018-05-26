@@ -6,41 +6,51 @@
   @parent
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   <script src="{{ asset('js/home.js') }}"></script>
+
 @endsection
 
 @section('content')
-<div class="container-fluid">
-
-  <div id="carouselExampleIndicators" class="carousel slide row" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <div class="carousel-item active">
-        <img class="d-block img-fluid w-100" style="height:400px" src="{{ asset('assets/front1.jpeg') }}" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block img-fluid w-100" style="height:400px" src="{{ asset('assets/front4.jpeg') }}" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block img-fluid w-100" style="height:400px" src="{{ asset('assets/front3.jpeg') }}" alt="Third slide">
+<div id="slidercaption" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#slidercaption" data-slide-to="0" class="active"></li>
+    <li data-target="#slidercaption" data-slide-to="1"></li>
+    <li data-target="#slidercaption" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <img class="d-block img-fluid h-90 w-100" src="{{ asset('assets/front1.jpeg') }}" alt="Slide1">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>World of Code</h3>
+        <p>Wngine is the place for expert in coding</p>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    <div class="carousel-item">
+      <img class="d-block img-fluid h-90 w-100" src="{{ asset('assets/front2.jpeg') }}" alt="Slide2">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Latest Technological Developments</h3>
+        <p>Wngine give you knowledge of tecnology development</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block img-fluid h-90 w-100" src="{{ asset('assets/front3.jpeg') }}" alt="Slide3">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Expand your Networking</h3>
+        <p>Wngine will expand your network by learning in project</p>
+      </div>
+    </div>
   </div>
+  <a class="carousel-control-prev" href="#slidercaption" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#slidercaption" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
-  <div class="col-lg-12" style="height:auto">
-    <h1 style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Our Advantages</h1>
-  </div>
+<div class="container-fluid">
+    <h1 class="col-lg-12 arial-black" style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Our Advantages</h1>
 
     <div class="row d-flex justify-content-center">
       <div class="col-lg-4" style="height:auto">
@@ -104,14 +114,14 @@
       </div>
     </div>
     
-    <div class="row" style="height:auto;background:black">
-      <div class="col-lg-12 h1" style="text-align:center;font-size:75px;color:white">Wngine News</div>
+    <div class="row" id="news" style="height:auto;margin-top:20px;">
+      <div class="arial-black col-lg-12 h1" style="text-align:center;font-size:75px;color:white">Wngine News</div>
       
       <div class="col-lg-4" style="height:auto;padding:30px;">
         <div class="col-lg-12 h-100" style="border-radius:25px;background:white;">
           <div class="col-lg-12 h4" style="padding:10px;text-align:center;font-weight:bold;">Who’s developing quantum computers?</div>
           <hr>
-          <div style="text-align:center;">
+          <div style="text-align:center;font-style:italic">
             Here are classical computing stalwarts and the newest one of startups 
             they are vying with for a piece of the quantum-computing future. This technology will bring us
             to the new era of IT that take more advantages for human actually. Many researcher
@@ -148,7 +158,7 @@
         <div class="col-lg-12 h-100" style="border-radius:25px;background:white;">
           <div class="col-lg-12 h4" style="padding:10px;text-align:center;font-weight:bold;">What is blockchain?The most disruptive tech</div>
           <hr>
-          <div style="text-align:center;">
+          <div style="text-align:center;font-style:italic">
           The distributed ledger technology, better known as blockchain, 
           has the potential to eliminate huge amounts of record-keeping,
           save money and disrupt IT in ways not seen since the internet arrived.
@@ -190,7 +200,7 @@
         <div class="col-lg-12 h-100" style="border-radius:25px;background:white;">
           <div class="col-lg-12 h4" style="padding:10px;text-align:center;font-weight:bold;">Tech Talk : The Effect Prepping for GDPR</div>
           <hr>
-          <div style="text-align:center;">
+          <div style="text-align:center;font-style:italic">
           CSO's Michael Nadeau and Steve Ragan join Computerworld's Ken Mingis and IDG 
           Communications' Mark Lewis to look at what the new EU privacy rules mean. 
           They offer insights on how companies can prepare – and what happens if they don't.
@@ -234,30 +244,25 @@
           </div>
        </div>
       </div>
-
-      <div class="col-lg-12" style="border:1px solid white;height:150px;">
-      </div>
-
     </div>
 
-    <div class="row" style="background:#1c7776;height:auto;margin-top:10px;padding:50px;">
-      <div class="col-lg-12 h1" style="margin-bottom:50px;font-size:75px;text-align:center;color:white;letter-spacing:5px;font-family: serif;">Our Contact</div>
+    <div class="row" style="background:white;height:auto;padding:35px;">
+      <div class="col-lg-12 arial-black h1" style="margin-bottom:50px;font-size:75px;text-align:center;color:black;letter-spacing:5px;">Wngine Info</div>
       <div class="col-lg-4" style="">
         <div class="row" style="">
           <div class="row" style="margin: auto;">
-            <img style="width:10%;height: 6%;margin: auto;" src="{{ asset('assets/phone.png') }}" alt="phone logo">
-
+            <img class="rotate3d" style="width:10%;height: 10%;margin: auto;" src="{{ asset('assets/phone.png') }}" alt="phone logo">
           </div>
         </div>
         <div class="row justify-content-center" style="height:auto">
           <div class="row justify-content-center" style="height:auto;">
-            <center><h2 style="text-align:center;color:white;font-weight:bold">Phone</h2></center>
+            <center><h2 style="text-align:center;color:black;font-weight:bold">Phone</h2></center>
           </div>
         </div>
-        <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
-          <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Main Office</div>
+        <div class="col-lg-12" style="border-top:5px double black;height:250px;padding-top:30px;">
+          <div class="row h5 d-flex justify-content-center" style="color:black;font-weight:bold">Main Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">031-7321117</div>
-          <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Branch Office</div>
+          <div class="row h5 d-flex justify-content-center" style="color:black;font-weight:bold">Branch Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">061-6320115</div>
         </div>
       </div>
@@ -265,19 +270,19 @@
       <div class="col-lg-4" style="">
         <div class="row " style="">
           <div class="row" style="margin: auto">
-            <img style="width:10%;height: 6%;margin: auto;"  src="{{ asset('assets/location.png') }}" alt="phone logo">
+            <img  class="rotate3d" style="width:10%;height: 10%;margin: auto;"  src="{{ asset('assets/location.png') }}" alt="phone logo">
           </div>
         </div>
         <div class="row justify-content-center" style="height:auto">
           <div class="row" style="height:auto;">
-            <h2 style="text-align:center;color:white;font-weight:bold">Address</h2>
+            <h2 style="text-align:center;color:black;font-weight:bold">Address</h2>
           </div>
         </div>
-        <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
-          <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Main Office</div>
+        <div class="col-lg-12" style="border-top:5px double black;height:250px;padding-top:30px;">
+          <div class="row h5 d-flex justify-content-center" style="color:black;font-weight:bold">Main Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Sidoarjo, East Java, Indonesia</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Jalan Makmur 8a, Komplek Indahri Blok B, No. 80</div>
-          <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Branch Office</div>
+          <div class="row h5 d-flex justify-content-center" style="color:black;font-weight:bold">Branch Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Surabaya, East Java, Indonesia</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">Jalan Kedongdoro 3a, Perumnas Blok 3c, No.78-79</div>
         </div>
@@ -286,18 +291,18 @@
       <div class="col-lg-4" style="">
         <div class="row" style="">
           <div class="row" style="margin: auto">
-            <img style="width:10%;height: 6%;margin: auto;"  src="{{ asset('assets/email.png') }}" alt="phone logo">
+            <img class="rotate3d" style="width:10%;height: 10%;margin: auto;"  src="{{ asset('assets/email.png') }}" alt="phone logo">
           </div>
         </div>
         <div class="row justify-content-center" style="height:auto">
           <div class="row" style="height:auto;">
-            <h2 style="text-align:center;color:white;font-weight:bold">Email</h2>
+            <h2 style="text-align:center;color:black;font-weight:bold">Email</h2>
           </div>
         </div>
-        <div class="col-lg-12" style="border-top:5px double white;height:250px;padding-top:30px;">
-          <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Main Office</div>
+        <div class="col-lg-12" style="border-top:5px double black;height:250px;padding-top:30px;">
+          <div class="row h5 d-flex justify-content-center" style="color:black;font-weight:bold">Main Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">wngine.noreply@gmail.com</div>
-          <div class="row h5 d-flex justify-content-center" style="color:white;font-weight:bold">Branch Office</div>
+          <div class="row h5 d-flex justify-content-center" style="color:black;font-weight:bold">Branch Office</div>
           <div class="row h6 d-flex justify-content-center" style="font-weight:bold;font-style:italic">branchwngine.noreply@gmail.com</div>
         </div>
       </div>

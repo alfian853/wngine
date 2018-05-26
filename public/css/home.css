@@ -6,10 +6,6 @@
     width: 100px;
     border-radius: 50%;
     border: 5px dashed grey;
-}
-
-#quote
-{
     animation: anim 3s infinite;
 }
 
@@ -18,4 +14,32 @@
     0% {transform: scale(1) rotate(0deg)}
     50% {transform: scale(1.35) rotate(180deg)}
     100% {transform: scale(1) rotate(360deg)}
+}
+
+.h-90
+{
+    height:90%;
+}
+
+#news
+{
+    background-image: url("backNet.jpeg"); 
+}
+
+.rotate3d:hover
+{
+    animation: anim2 1s infinite;
+}
+
+@keyframes anim2
+{
+    0% {transform:  rotateX(0deg) rotateX(0deg)}
+    50% {transform: rotateX(180deg) rotateX(0deg)}
+    100% {transform: rotateX(360deg) rotateX(0deg)}
+}
+
+.arial-black
+{
+    font-family: "Arial Black";
+    font-weight: 900;
 }
