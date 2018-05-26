@@ -9,74 +9,27 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row container" style="margin-top:20px;">
-        <div class="col-lg-4 container" style="margin-top:10px;">
-            <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-75 rounded-circle img-fluid mx-auto d-block">
-            <div class="row d-flex justify-content-center">
-                <h3>Alcredo Simanjuntak</h3>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <h6 style="font-style:italic">"God in the first place"</h6>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <div class="btn btn-success" style="margin: 0 2px;">Edit Quotes</div>
-                <div class="btn btn-warning" style="margin: 0 2px;">Change Picture</div>
-            </div>
-        </div>
-        <div class="col-lg-8 container" style="border:1px solid black;padding:10px 40px;">
-            <h1>Skill</h1><hr>
-            <div class="col-12">
-                Programming 300pts<br />
-                <div class="progress mb-3">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                </div>
-                Programming 300pts<br />
-                <div class="progress mb-3">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: {{1/100}}">{{1/100}}</div>
-                </div>
-                Programming 300pts<br />
-                <div class="progress mb-3">
-                    3<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type3
-                </div>
-                <div class="progress mb-3">
-                    4<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type4
-                </div>
-                <div class="progress mb-3">
-                    5<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type5
-                </div>
-                <div class="progress mb-3">
-                    6<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type6
-                </div>
-                <div class="progress mb-3">
-                    7<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type7
-                </div>
-                <div class="progress mb-3">
-                    8<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type8
-                </div>
-                <div class="progress mb-3">
-                    9<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-                    Type9
-                </div>
-            </div>
-
-        </div>
+<div class="col-lg-12" style="margin-top:10px;">
+    <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block">
+    <div class="row d-flex justify-content-center">
+        <h3>Alcredo Simanjuntak</h3>
     </div>
-    <hr>
-
+    <div class="row d-flex justify-content-center">
+        <h6 style="font-style:italic">"God in the first place"</h6>
+    </div>
     <div class="col-lg-12 d-flex justify-content-center">
-        <div class="col-lg-6 btn btn-primary" id="point" style="border-right:1px dashed white;height:50px;"><h6>Point<br>100&#x20BD</h6></div>
-        <div class="col-lg-6 btn btn-primary" id="star" style="border-left:1px dashed white;height:50px;"><h6>Star<br>50&#x2605</h6></div>
+        <div class="btn btn-success" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm2">Edit Quotes</div>
+        <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm3">Change Picture</div>
+        <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm">Add Testimoni</div>
     </div>
-
+    <div class="col-lg-12 d-flex justify-content-center">
+        <div class="col-lg-1" style="font-weight:bold;background:grey;border-radius:10px 0 0 10px;text-align:center;width:auto;height:40px;margin-top:10px;padding:6px">Point</div>
+        <div class="col-lg-1" style="font-weight:bold;background:white;border-radius:0 10px 10px 0;text-align:center;width:auto;height:40px;margin-top:10px;padding:6px">100</div>
+    </div>
+</div>
+<div class="container">
     <hr>
-    <div class="card">
+    <div class="card row">
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
             <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -85,12 +38,33 @@
             </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
-            <div class="card-body">
-                x1
+            <div class="card-body" style="text-align:center">
+                Alcredo Simanjuntak<br>
+                08-06-1998<br>
+                Jalan Melanthon Siregar Gang Kukubalam, Siantar, Sumatera Utara<br>
+                simanjuntakalcredo@gmail.com<br>
+                082272521290<br>
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card row">
+        <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+            <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Skill
+            </button>
+            </h5>
+        </div>
+        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour">
+            <div class="card-body" style="text-align:center">
+                Backend<br>
+                Frontend<br>
+                Android Developer<br>
+                PHP<br>
+            </div>
+        </div>
+    </div>
+    <div class="card row">
         <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
             <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -99,12 +73,13 @@
             </h5>
         </div>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo">
-            <div class="card-body">
-                x2
+            <div class="card-body" style="text-align:center">
+                Scheduling App --- PrimeOne Tech<br>
+                Web --- PrimeOne Tech<br>
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card row">
         <div class="card-header" id="headingThree">
             <h5 class="mb-0">
             <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -113,13 +88,14 @@
             </h5>
         </div>
         <div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
-            <div class="card-body">
-                x3
+            <div class="card-body" style="text-align:center">
+                Script for marker --- PrimeOne Tech<br>
+                Absen by Android --- PrimeOne Tech<br>
             </div>
         </div>
     </div>
-    <hr>
 
+    <hr>
 
 	<div class="row">
 		<div class="col-md-8 col-center m-auto">
@@ -163,4 +139,77 @@
 	</div>
 
 </div>
+
+<!--Testimoni Modal-->
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Write You Testimoni</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    <i class="fa fa-pencil prefix grey-text"></i>
+                    <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
+                    <label data-error="wrong" data-success="right" for="form8">Your message</label>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Change Quote Modal-->
+<div class="modal fade" id="modalContactForm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Insert Your Quote</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    <i class="fa fa-pencil prefix grey-text"></i>
+                    <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
+                    <label data-error="wrong" data-success="right" for="form8">Your Quote</label>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-unique">Edit<i class="fa fa-paper-plane-o ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Change Picture Modal-->
+<div class="modal fade" id="modalContactForm3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Change Profile Picture</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    <i class="fa fa-pencil prefix grey-text"></i>
+                    <input type="file" name="fileupload" value="fileupload" id="fileupload">
+                    <label for="fileupload"> Select a image to upload</label><br>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-unique">Change<i class="fa fa-paper-plane-o ml-1"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
