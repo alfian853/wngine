@@ -5,6 +5,33 @@ function editComment(email){
   $('#modal-comment .modal-title').text('comment for '+email);
 }
 
+function getDownloadUrl(email){
+  var data_send = JSON.stringify({
+          "job_id" : $('meta[name="job-id"]').attr('content'),
+          "email": email
+  });
+  $.ajax({
+    url: '/job/get_submission_url',
+    type: 'GET',
+    data: {data_send},
+    success: function (data) {
+      // console.log('berhasil');
+      console.log(data);
+      window.open(data['url'],'_blank');
+      $('a[value="'+email+'"]').removeClass('btn-warning btn-success').addClass('btn-primary');
+      $('p[value="'+email+'"]').removeClass('text-warning text-success').addClass('text-primary');
+      $('p[value="'+email+'"]').text('Viewed');
+
+    }
+  }).fail(function (xhr, error, thrownError) {
+    console.log(xhr, error, thrownError);
+  });
+
+
+
+
+}
+
 $(document).ready(function(){
 
   $('#rank-table').DataTable();

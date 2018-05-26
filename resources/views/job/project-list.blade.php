@@ -34,8 +34,8 @@
           <td>{{$job->upload_date}}</td>
           <td>{{$job->finish_date}}</td>
           <td class="container" style="max-width: 10%;white-space: nowrap">
-            <a style="white-space: nowrap" href="{{asset('job_documents')}}/{{$job->document}}" class="btn btn-primary" download="">Detail</a>
-            <a style="white-space: nowrap" href="{{route('company.project-list.detail',['id' => $job->id])}}" class="btn btn-success">Manage</a>
+            <a style="white-space: nowrap" href="{{route('job.detail',['id' => $job->id])}}" class="btn btn-primary">Detail</a>
+            <a style="white-space: nowrap" href="{{route('company.job.detail',['id' => $job->id])}}" class="btn btn-success">Manage</a>
           </td>
         </tr>
         @endforeach

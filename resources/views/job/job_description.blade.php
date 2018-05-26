@@ -5,14 +5,16 @@
 @section('add-script')
   @parent
   <link rel="stylesheet" href="{{ asset('css/jobdescription.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
   <script src="{{asset('js/jobdetail.js')}}"></script>
+  <script src="{{asset('js/dropzone.js')}}"></script>
+
 @endsection
 
 @section('content')
 <div class="container">
     <input id="job-id" type="hidden" value="{{$data['id']}}"/>
-    {{csrf_field()}}
-    {{-- <meta name="_token" content="{!! csrf_token() !!}" /> --}}
+    <meta name="_token" content="{!! csrf_token() !!}" />
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
             <div class="h1" style="font-family:script;font-style:italic;font-weight:bold;text-align:center">{{ $data['job_name'] }}</div>
@@ -104,9 +106,7 @@
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">
         <a class="btn btn-warning" style="margin-right: 2px;" href="{{$data['document_url']}}" target="_blank">Download</a>
         @can('take', App\Job::class)
-            @if($data['had_taken'])
-              <button class="btn btn-success" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Submit</button>
-            @else
+            @if(!$data['had_taken'])
               <button class="btn btn-primary" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Take</button>
             @endif
         @endcan
@@ -115,6 +115,27 @@
         {{-- @endcan --}}
 
     </div>
+    @can('take', App\Job::class)
+        @if($data['had_taken'])
+          <section>
+            <h5 id="submit-name">File name: <a href="{{$data['file_path']}}">{{$data['file_name']}}</a></h5>
+            <h5 id="submit-time">Last submission: {{$data['submit_time']}}</h5><br />
+            @if($data['submit_time'] != '')
+            @endif
+
+            <div id="dropzone">
+              <form class="dropzone needsclick" id="submitJob" action="{{route('member.job.submit',['id' => $data['id'] ]) }}">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <div class="dz-message needsclick" name="filenya">
+                  Drop files here or click here to upload<br>
+                </div>
+              </form>
+            </div>
+          </section>
+        @endif
+    @endcan
+
+
     <div class="modal" id="modal-take">
       <div class="modal-dialog" style="width: 500px">
         <div class="modal-content">
@@ -147,13 +168,23 @@
     </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+  $(document).ready(function() {
 
+    // Dropzone.options.MyDropzone = {
+    //     init : function() {
+    //       myDropzone = this;
+    //         this.on("drop", function(event) {
+    //            alert("Form Action URL:- ");
+    //            //Put your ajax call here for upload image
+    //            console.log(myDropzone.files);
+    //         });
+    //     }
+    // };
     $('#take-job').click( function(event) {
         if(document.getElementById('tc-checkbox').checked == true){
             var param = JSON.stringify({"job_id" : $('#job-id').val()});
             $.ajax({
-              url: "{{url('/job/take_job/')}}"  ,
+              url: "{{url('/job/take_job/')}}",
               type: 'POST',
               data: { _token : $('input[name="_token"]').val(), param  },
               success: function (response) {

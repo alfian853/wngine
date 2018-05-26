@@ -56,7 +56,8 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 
 	//job
   Route::get('company/job/list','JobController@projectList')->name('company.job.list');
-	Route::get('company/job/detail/{id}','JobController@projectListTake')->name('company.project-list.detail');
+	Route::get('company/job/detail/{id}','JobController@projectListTake')->name('company.job.detail');
+  Route::post('member/job/submit/{id}','JobController@submitJob')->name('member.job.submit');
   Route::post('job/edit_comment','JobController@updateComment');
 	Route::get('job/search','JobController@showJobSearch');
 	Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
@@ -64,7 +65,7 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');
 	Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
 	Route::post('job/take_job','JobController@takeJob');
-  Route::post('job/update_rank','JobController@updateRank');
+  Route::get('job/get_submission_url','JobController@getSubmissionUrl');
 
 // });
 //untuk test view apapun

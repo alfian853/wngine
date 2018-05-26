@@ -23,7 +23,6 @@ class JobController extends Controller
   dimunculkan di list project dengan order descending
 */
 
-
     public function __construct()
     {
         $this->middleware('auth:company,member')
@@ -193,22 +192,32 @@ class JobController extends Controller
   			$data['skills'][$skill] = $v->point;
               $total+=$v->point;
   		}
-          $data['total_point'] = $total;
-          if(Auth::guard('member')->check()){
-            $data['had_taken'] = self::jobWasTaken($id);
-          }
-          return view('job.job_description', [
-              'data' => $data,
-              'job' => $job,
-          ]);
+      $data['total_point'] = $total;
+      if(Auth::guard('member')->check()){
+        $worker = self::getWorkerData($id);
+        $data['had_taken'] = false;
+        if($worker != null){
+          $data['had_taken'] = true;
+        }
+        $data['submited_file'] = "";
+        $data['submit_time'] = "";
+        if($worker->submission_path != null){
+          $data['file_name'] = substr($worker->submission_path,20);
+          $data['file_path'] = asset('job_submissions').'/'.$worker->submission_path;
+          $data['submit_time'] = $worker->last_submit_time;
+        }
+      }
+      return view('job.job_description', [
+          'data' => $data,
+          'job' => $job,
+      ]);
   	}
 
-    public function jobWasTaken($jobId){
-        $res = DB::table('jobs_taken')->select('worker_email')
+    public function getWorkerData($jobId){
+        $res = DB::table('jobs_taken')->select('worker_email','submission_path','last_submit_time')
         ->where('worker_email','=',Auth::guard('member')->user()->email)
         ->where('job_id','=',$jobId)->first();
-
-        return $res != null;
+        return $res;
     }
 
     public function takeJob(Request $request){
@@ -220,7 +229,7 @@ class JobController extends Controller
             if($counter != null && $counter->job_count > 4){
                 return "Sorry, you can't take more than 5 job";
             }
-            if(self::jobWasTaken($job_id)){
+            if(self::getWorkerData($job_id) != null){
                 return response()->json([
                     'status' => 'failed',
                     'message' => 'You had taken this job before'
@@ -248,8 +257,7 @@ class JobController extends Controller
     }
 
     public function projectList(){
-      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)
-      ->get();
+      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
       return view('job.project-list', compact('jobs'));
     }
 
@@ -278,6 +286,61 @@ class JobController extends Controller
       ->where('worker_email','=',$data['email'])
       ->update(['comment' => $data['comment']]);
       var_dump($data);
+    }
+
+    public function submitJob(Request $request){
+      // dd('errorsini'.$request->file('file'));
+      if($request->file('file') != null){
+        $path = Storage::putFile('public', $request->file('file'));
+        // dd($request->file('file'));
+        $targetPath = date('Y-m-d-H-m-s').'-'.$request->file('file')->getClientOriginalName();
+        // dd('errorsini2'.$request->file('file'));
+        $worker = self::getWorkerData($request->id);
+        $oldfile = $worker->submission_path;
+        $status = 3;
+        if($oldfile != null){
+          Storage::delete('job_submissions/'.$oldfile);
+          $status = 2;
+        }
+        $updateTime = date("Y-m-d H:i:s");
+        DB::table('jobs_taken')
+        ->where('job_id','=',$request->id)
+        ->where('worker_email','=',Auth::guard('member')->user()->email)
+        ->update(
+          [
+            'submission_path' => $targetPath,
+            'last_submit_time' => $updateTime,
+            'file_path' => 'job_submissions/'.$targetPath
+          ]
+        );
+        Storage::move($path,'job_submissions/'.$targetPath);
+        return response()->json([
+          'status' => 'success',
+          'message' => $updateTime
+        ]);
+      }
+      else{
+        return response()->json([
+            'status' => 'failed',
+            'message' => ''
+        ]);
+      }
+    }
+
+    public function getSubmissionUrl(Request $request){
+      $data = json_decode($request->data_send,true);
+      DB::table('jobs_taken')
+      ->where('worker_email','=',$data['email'])
+      ->where('job_id','=',$data['job_id'])
+      ->update(['status' => 1]);
+      $res = DB::table('jobs_taken')->select('submission_path')
+      ->where('worker_email','=',$data['email'])
+      ->where('job_id','=',$data['job_id'])->first();
+
+      return response()->json([
+          'status' => 'success',
+          'url' => asset('job_submissions').'/'.$res->submission_path
+      ]);
     }
 
 }

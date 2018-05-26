@@ -58,9 +58,10 @@
           <tr>
             <span>
               <td height="50">{{$i++}}</td>
-              <td height="50"><a href="">{{$list->m_name}}</a></td>
+              <td height="50"><a href="{{route('member.profilebyid',['id' => $list->m_id])}}">{{$list->m_name}}</a></td>
               <td height="50">{{$list->email}}</td>
-              <td height="50" value="{{$list->email}}" data-toggle="modal" data-target="#modal-comment" onclick="editComment('{{$list->email}}')">
+              <td height="50" value="{{$list->email}}"
+                data-toggle="modal" data-target="#modal-comment" style="cursor:pointer;" onclick="editComment('{{$list->email}}')">
                 <p>{{$list->status}}{{$list->comment}}</p>
               </td>
               <td height="50" style="width:200px">
@@ -72,27 +73,27 @@
                       <p class="text-primary">Viewed</p>
                       @break
                     @case(2)
-                      <p class="text-warning" >Submission updated</p>
+                      <p value="{{$list->email}}" class="text-warning" >Submission updated</p>
                       @break
                     @case(3)
-                      <p class="text-success" >Not viewed yet</p>
+                      <p value="{{$list->email}}" class="text-success" >Not viewed yet</p>
                       @break
                   @endswitch
               </td>
-              <td height="50">{{$list->last_submit}}</td>
+              <td height="50">{{$list->last_submit_time}}</td>
               <td height="50">
                 @switch ($list->status)
                   @case(0)
-                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-danger disabled btn-sm" target="_blank">download</a>
+                    <a href="" class="btn btn-danger disabled btn-sm" target="_blank">download</a>
                     @break
                   @case(1)
-                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-primary btn-sm" target="_blank">download</a>
+                    <a href="{{asset('job_submissions')}}/{{$list->submission_path}}" class="btn btn-primary btn-sm" target="_blank">download</a>
                     @break
                   @case(2)
-                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-warning btn-sm" target="_blank">download</a>
+                    <a value="{{$list->email}}" class="btn btn-warning btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
                     @break
                   @case(3)
-                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-success btn-sm" target="_blank">download</a>
+                    <a value="{{$list->email}}" class="btn btn-success btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
                     @break
                 @endswitch
               </td>
@@ -123,13 +124,9 @@
             <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
           <button type="button" class="btn btn-success" id="save-comment" value="">Save</button>
         </div>
-
       </div>
     </div>
   </div>
-
-
-
 
 </div>
 
