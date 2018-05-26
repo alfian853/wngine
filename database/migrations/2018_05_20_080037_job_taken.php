@@ -20,6 +20,8 @@ class jobTaken extends Migration
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->integer('status')->unsigned();
             $table->string('comment',100);
+            $table->string('submission_path',128);
+            $table->dateTime('last_submit');
         });
     }
 
@@ -30,6 +32,6 @@ class jobTaken extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taken_jobs');
+        Schema::dropIfExists('jobs_taken');
     }
 }

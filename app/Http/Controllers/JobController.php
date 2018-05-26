@@ -194,7 +194,9 @@ class JobController extends Controller
               $total+=$v->point;
   		}
           $data['total_point'] = $total;
-          $data['had_taken'] = self::jobWasTaken($id);
+          if(Auth::guard('member')->check()){
+            $data['had_taken'] = self::jobWasTaken($id);
+          }
           return view('job.job_description', [
               'data' => $data,
               'job' => $job,
@@ -202,8 +204,8 @@ class JobController extends Controller
   	}
 
     public function jobWasTaken($jobId){
-        $res = DB::table('jobs_taken')->select('member_id')
-        ->where('member_id','=',Auth::guard('member')->user()->m_id)
+        $res = DB::table('jobs_taken')->select('worker_email')
+        ->where('worker_email','=',Auth::guard('member')->user()->email)
         ->where('job_id','=',$jobId)->first();
 
         return $res != null;
@@ -213,8 +215,8 @@ class JobController extends Controller
         $job_id = json_decode($request["param"],true)['job_id'];
         if($job_id != null){
             $counter = DB::table('jobs_taken')->select(DB::raw('count(job_id) as job_count'))
-            ->where('member_id','=',Auth::guard('member')->user()->m_id)
-            ->groupBy('member_id')->first();
+            ->where('worker_email','=',Auth::guard('member')->user()->email)
+            ->groupBy('worker_email')->first();
             if($counter != null && $counter->job_count > 4){
                 return "Sorry, you can't take more than 5 job";
             }
@@ -226,7 +228,11 @@ class JobController extends Controller
             }
             DB::table('jobs_taken')->insert(
                 ['job_id' => $job_id,
-                 'worker_email' => Auth::guard('member')->user()->email]
+                 'worker_email' => Auth::guard('member')->user()->email,
+                 'status' => 0,
+                 'comment' => '',
+                 'last_submit' =>  date("Y-m-d H:i:s")
+               ]
             );
         }
         else{
@@ -242,14 +248,16 @@ class JobController extends Controller
     }
 
     public function projectList(){
-      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
+      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)
+      ->get();
       return view('job.project-list', compact('jobs'));
     }
 
     public function projectListTake($id){
       $lists = DB::table('jobs_taken')->select('*')
-          ->join('members','members.email','=','jobs_taken.worker_email')
+            ->join('members','members.email','=','jobs_taken.worker_email')
             ->where('job_id','=',$id)
+            ->orderBy('status','desc')
             ->get();
       return view('job.project-list-detail', compact('lists'))->with(['job_id' => $id]);
     }

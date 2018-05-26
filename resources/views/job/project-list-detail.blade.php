@@ -37,7 +37,6 @@
   <meta name="job-id" content="{{$job_id}}">
   <div class="col-lg-12" style="height:auto">
     <h1 style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Detail Project</h1>
-    <button id="submit-change" type="button" class="btn btn-success" id="take-job">submit change</button>
   </div>
   <div id="project-list" class="container row" style="margin : auto;">
     <div class="col-md-11">
@@ -47,8 +46,9 @@
             <th>No</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Last submit date</th>
             <th>Comment</th>
+            <th>status</th>
+            <th>Last submit date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -60,14 +60,41 @@
               <td height="50">{{$i++}}</td>
               <td height="50"><a href="">{{$list->m_name}}</a></td>
               <td height="50">{{$list->email}}</td>
-              <td height="50">{{$list->m_telp}}</td>
               <td height="50" value="{{$list->email}}" data-toggle="modal" data-target="#modal-comment" onclick="editComment('{{$list->email}}')">
-                <p>{{$list->comment}}</p>
+                <p>{{$list->status}}{{$list->comment}}</p>
               </td>
-              <!-- <td><img src="{{URL::to($list->m_image)}}" style="width: 100%"></td> -->
+              <td height="50" style="width:200px">
+                  @switch ($list->status)
+                    @case(0)
+                      <p class="text-danger">Not submit yet</p>
+                      @break
+                    @case(1)
+                      <p class="text-primary">Viewed</p>
+                      @break
+                    @case(2)
+                      <p class="text-warning" >Submission updated</p>
+                      @break
+                    @case(3)
+                      <p class="text-success" >Not viewed yet</p>
+                      @break
+                  @endswitch
+              </td>
+              <td height="50">{{$list->last_submit}}</td>
               <td height="50">
-                <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-danger btn-sm" target="_blank">View profile</a>
-                <a class="btn btn-warning btn-sm">View profile</a>
+                @switch ($list->status)
+                  @case(0)
+                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-danger disabled btn-sm" target="_blank">download</a>
+                    @break
+                  @case(1)
+                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-primary btn-sm" target="_blank">download</a>
+                    @break
+                  @case(2)
+                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-warning btn-sm" target="_blank">download</a>
+                    @break
+                  @case(3)
+                    <a href="{{route('member.profilebyid',['id' => $list->m_id])}}" class="btn btn-success btn-sm" target="_blank">download</a>
+                    @break
+                @endswitch
               </td>
             </span>
           </tr>

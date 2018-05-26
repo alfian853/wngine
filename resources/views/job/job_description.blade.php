@@ -13,7 +13,6 @@
     <input id="job-id" type="hidden" value="{{$data['id']}}"/>
     {{csrf_field()}}
     {{-- <meta name="_token" content="{!! csrf_token() !!}" /> --}}
-
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
             <div class="h1" style="font-family:script;font-style:italic;font-weight:bold;text-align:center">{{ $data['job_name'] }}</div>
@@ -105,10 +104,16 @@
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">
         <a class="btn btn-warning" style="margin-right: 2px;" href="{{$data['document_url']}}" target="_blank">Download</a>
         @can('take', App\Job::class)
-            @if(! $data['had_taken'])
-            <button class="btn btn-success" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Take</button>
-        @endif
+            @if($data['had_taken'])
+              <button class="btn btn-success" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Submit</button>
+            @else
+              <button class="btn btn-primary" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Take</button>
+            @endif
         @endcan
+        {{-- @can('create', App\Job::class) --}}
+          <button class="btn btn-danger" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">edit</button>
+        {{-- @endcan --}}
+
     </div>
     <div class="modal" id="modal-take">
       <div class="modal-dialog" style="width: 500px">

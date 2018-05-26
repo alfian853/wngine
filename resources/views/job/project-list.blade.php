@@ -23,7 +23,6 @@
           <th>Description</th>
           <th>Upload Date</th>
           <th>Finish Date</th>
-          <th>Document</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -34,8 +33,10 @@
           <td>{{$job->description}}</td>
           <td>{{$job->upload_date}}</td>
           <td>{{$job->finish_date}}</td>
-          <td><a href="{{asset('job_documents')}}/{{$job->document}}" class="btn btn-primary" download="">Download</a></td>
-          <td><a href="{{route('company.project-list.detail',['id' => $job->id])}}" class="btn btn-danger">Detail</a></td>
+          <td class="container" style="max-width: 10%;white-space: nowrap">
+            <a style="white-space: nowrap" href="{{asset('job_documents')}}/{{$job->document}}" class="btn btn-primary" download="">Detail</a>
+            <a style="white-space: nowrap" href="{{route('company.project-list.detail',['id' => $job->id])}}" class="btn btn-success">Manage</a>
+          </td>
         </tr>
         @endforeach
       </tbody>
