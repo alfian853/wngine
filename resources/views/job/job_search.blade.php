@@ -15,7 +15,6 @@
     <div class="row justify-content-center d-flex">
         <div class="col-xs-8 col-xs-offset-2">
   		    <div id="search-form" method="post" action="/action" class="input-group">
-            <meta name="_token" content="{!! csrf_token() !!}" />
               <div class="input-group-btn search-panel">
                 <button id="category-btn" type="button" style="width:150px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 	 <span id="search_concept">By name</span> <span class="caret"></span>

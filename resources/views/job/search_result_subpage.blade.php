@@ -63,7 +63,7 @@
     </div>
     </div>
 @endforeach
-@if(count($jobs) > 0)
+@if($jobs->links() != "")
 <br />
 {{!! $jobs->links(); !!}}
 @endif

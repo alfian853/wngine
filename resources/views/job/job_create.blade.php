@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="container">
-	<form class="form-horizontal" role="form" action="{{ route('post.company.postingJob') }}" method="post" enctype="multipart/form-data">
+	<form class="form-horizontal" role="form" action="{{ route('post.job.postingJob') }}" method="post" enctype="multipart/form-data">
 	<h2>Posting Job</h2>
 	<hr>
 	{{ csrf_field() }}
@@ -100,7 +100,7 @@
         {!! $errors->first('shortDescription','<span class="help-block text-danger">*:message</span>') !!}
       </label>
       <div class="col-sm-12">
-        <textarea rows="" cols="" name="shortDescription"  style="width: inherit;">{{old('shortDescription')}}</textarea>
+        <textarea rows="" cols="" name="shortDescription" style="width: inherit;">{{old('shortDescription')}}</textarea>
       </div>
     </div>
 

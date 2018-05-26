@@ -9,11 +9,21 @@ use App\Company;
 use App\Skill;
 use Storage;
 use Validator;
-//use Auth;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
+/*
+  status jobs
+  0 = belum submit
+  1 = sudah di cek
+  2 = ada update lagi
+  3 = sudah submit, belum di cek
+  dimunculkan di list project dengan order descending
+*/
+
+
     public function __construct()
     {
         $this->middleware('auth:company,member')
@@ -156,38 +166,110 @@ class JobController extends Controller
       return view('job.job_search');
     }
 
-	public function showDescriptionJob($id)
-    {
-        $job = Job::find($id);
+  	public function showDescriptionJob($id)
+      {
+          $job = Job::find($id);
+  		$data = array();
+          $data['id'] = $id;
+  		$data['job_name'] = $job->name;
+  		$data['start_date'] = $job->upload_date;
+  		$data['due_date'] = $job->finish_date;
+          $company = Company::select('c_name','c_image')
+  									->where('c_id', $job->company_id)
+  									->first();
+  		$data['company_name'] = $company->c_name;
+          $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
+  		$data['description'] = $job->description;
+  		$data['document_url'] = asset('job_documents').'/'.$job->document;
+  		$data['skills'] = array();
 
-		$data = array();
+  		$job_skill = DB::table('job_skills')
+  						->where('job_id', $job->id)
+  						->get();
+          $total = 0;
+  		foreach($job_skill as $v)
+  		{
+  			$skill = Skill::select('name')->where('id', $v->skill_id)->first()->name;
+  			$data['skills'][$skill] = $v->point;
+              $total+=$v->point;
+  		}
+          $data['total_point'] = $total;
+          $data['had_taken'] = self::jobWasTaken($id);
+          return view('job.job_description', [
+              'data' => $data,
+              'job' => $job,
+          ]);
+  	}
 
-		$data['job_name'] = $job->name;
-		$data['start_date'] = $job->upload_date;
-		$data['due_date'] = $job->finish_date;
-        $company = Company::select('c_name','c_image')
-									->where('c_id', $job->company_id)
-									->first();
-		$data['company_name'] = $company->c_name;
-        $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
-		$data['description'] = $job->description;
-		$data['document_url'] = asset('job_documents').'/'.$job->document;
-		$data['skills'] = array();
+    public function jobWasTaken($jobId){
+        $res = DB::table('jobs_taken')->select('member_id')
+        ->where('member_id','=',Auth::guard('member')->user()->m_id)
+        ->where('job_id','=',$jobId)->first();
 
-		$job_skill = DB::table('job_skills')
-						->where('job_id', $job->id)
-						->get();
-        $total = 0;
-		foreach($job_skill as $v)
-		{
-			$skill = Skill::select('name')->where('id', $v->skill_id)->first()->name;
-			$data['skills'][$skill] = $v->point;
-            $total+=$v->point;
-		}
-        $data['total_point'] = $total;
-        return view('job.job_description', [
-            'data' => $data,
-            'job' => $job,
+        return $res != null;
+    }
+
+    public function takeJob(Request $request){
+        $job_id = json_decode($request["param"],true)['job_id'];
+        if($job_id != null){
+            $counter = DB::table('jobs_taken')->select(DB::raw('count(job_id) as job_count'))
+            ->where('member_id','=',Auth::guard('member')->user()->m_id)
+            ->groupBy('member_id')->first();
+            if($counter != null && $counter->job_count > 4){
+                return "Sorry, you can't take more than 5 job";
+            }
+            if(self::jobWasTaken($job_id)){
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'You had taken this job before'
+            ]);
+            }
+            DB::table('jobs_taken')->insert(
+                ['job_id' => $job_id,
+                 'worker_email' => Auth::guard('member')->user()->email]
+            );
+        }
+        else{
+            return response()->json([
+                'status' => 'failed',
+                'message' => "don't try to hacking us *_*"
+            ]);
+        }
+        return response()->json([
+            'status' => 'success',
+            'message' => "success taking the job, Do your best :)"
         ]);
-	}
+    }
+
+    public function projectList(){
+      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
+      return view('job.project-list', compact('jobs'));
+    }
+
+    public function projectListTake($id){
+      $lists = DB::table('jobs_taken')->select('*')
+          ->join('members','members.email','=','jobs_taken.worker_email')
+            ->where('job_id','=',$id)
+            ->get();
+      return view('job.project-list-detail', compact('lists'))->with(['job_id' => $id]);
+    }
+
+    //not used
+    // public function updateRank(Request $request){
+    //   $ranks = json_decode($request->data_send,true)['data'];
+    //   foreach ($ranks as $key) {
+    //     var_dump($key);
+    //   }
+    //
+    // }
+
+    public function updateComment(Request $request){
+      $data = json_decode($request->data_send,true);
+      DB::table('jobs_taken')
+      ->where('job_id','=',$data['job_id'])
+      ->where('worker_email','=',$data['email'])
+      ->update(['comment' => $data['comment']]);
+      var_dump($data);
+    }
+
 }

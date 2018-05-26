@@ -1,0 +1,57 @@
+@extends('layouts.master')
+
+@section('title', 'Project List')
+
+@section('add-script')
+  @parent
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+
+@endsection
+
+@section('content')
+<div class="container-fluid">
+
+  <div class="col-lg-12" style="height:auto">
+    <h1 style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Project List</h1>
+  </div>
+  <div class="" style="padding: 5%">
+    <table id="project-list" class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Upload Date</th>
+          <th>Finish Date</th>
+          <th>Document</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($jobs as $job)
+        <tr>
+          <td>{{$job->name}}</td>
+          <td>{{$job->description}}</td>
+          <td>{{$job->upload_date}}</td>
+          <td>{{$job->finish_date}}</td>
+          <td><a href="{{asset('job_documents')}}/{{$job->document}}" class="btn btn-primary" download="">Download</a></td>
+          <td><a href="{{route('company.project-list.detail',['id' => $job->id])}}" class="btn btn-danger">Detail</a></td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+
+
+
+</div>
+<script>
+$('#project-list').DataTable();
+
+
+</script>
+@endsection

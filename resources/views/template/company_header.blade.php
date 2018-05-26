@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm borderYtoX">
   <ul class="navbar-nav  ml-auto">
     <li class="nav-item">
-      <a class="nav-link" href="#">Project List</a>
+      <a class="nav-link" href="{{URL::to('company/project-list')}}">Project List</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Company profile</a>

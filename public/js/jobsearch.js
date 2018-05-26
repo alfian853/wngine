@@ -69,11 +69,6 @@ $(document).ready(function(){
 
 
   $("#search-btn").click( function(event) {
-    $.ajaxSetup({
-      headers: {
-         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-      }
-    });
     console.log($('#search-select2').select2('data'));
     var data_send = null;
     if(isNameFilter){
@@ -84,9 +79,9 @@ $(document).ready(function(){
       data_send = JSON.stringify({"type":"skill-filter","data" : $('#search-select2').select2('data')});
       latest_query = data_send;
     }
-    // console.log(data_send);
+
     $.ajax({
-      url: '/ajaxtest',
+      url: '/job/search_query',
       type: 'get',
       data: {data_send},
       success: function (data) {
@@ -96,6 +91,7 @@ $(document).ready(function(){
     }).fail(function (xhr, error, thrownError) {
     console.log(xhr, error, thrownError);
     });
+
   });
 
   $('.search-panel .dropdown-menu').find('a').click(function(e) {
