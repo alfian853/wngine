@@ -21,7 +21,7 @@ class jobTaken extends Migration
             $table->integer('status')->unsigned();
             $table->string('comment',100);
             $table->string('submission_path',128);
-            $table->dateTime('last_submit');
+            $table->dateTime('last_submit_time');
         });
     }
 

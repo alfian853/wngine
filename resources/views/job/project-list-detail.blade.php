@@ -90,10 +90,10 @@
                     <a href="{{asset('job_submissions')}}/{{$list->submission_path}}" class="btn btn-primary btn-sm" target="_blank">download</a>
                     @break
                   @case(2)
-                    <a value="{{$list->email}}" class="btn btn-warning btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
+                    <a style="color:white;" value="{{$list->email}}" class="btn btn-warning btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
                     @break
                   @case(3)
-                    <a value="{{$list->email}}" class="btn btn-success btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
+                    <a style="color:white;" value="{{$list->email}}" class="btn btn-success btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
                     @break
                 @endswitch
               </td>
