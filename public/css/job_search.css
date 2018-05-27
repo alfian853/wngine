@@ -32,3 +32,16 @@
 .search-result-container{
   background: rgb(210, 210, 210);
 }
+
+.select2-selection__choice[title="website front-end"]{
+  background: rgb(255, 171, 71) !important;
+}
+.select2-selection__choice[title="website back-end"]{
+  background: rgb(79, 176, 255) !important;
+}
+.select2-selection__choice[title="mobile android"]{
+  background: rgb(79, 255, 70) !important;
+}
+.select2-selection__choice[title="mobile IOS"]{
+  background: rgb(204, 204, 204) !important;
+}

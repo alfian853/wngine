@@ -30,11 +30,11 @@ $(document).ready(function(){
     if(isNameFilter == false){return;}
     isNameFilter = false;
     $('#search-text').css('display','none');
-    $('<select id="search-select2" placeholder="di js nya" name="query[]" style="height:100%" multiple="true"></select>')
+    $('<select id="search-select2" style="height:100%" multiple="true"></select>')
     .insertAfter('#search-text');
     $("#search-select2").select2({
-      placeholder: "search by skill category",
-      data:data
+      placeholder : "search by skill category",
+      data : data
     });
 
   });
@@ -66,10 +66,7 @@ $(document).ready(function(){
     });
  }
 
-
-
-  $("#search-btn").click( function(event) {
-    console.log($('#search-select2').select2('data'));
+  function ajaxSearch(){
     var data_send = null;
     if(isNameFilter){
       data_send = JSON.stringify({"type":"name-filter","query" : $('#search-text').val()});
@@ -91,8 +88,13 @@ $(document).ready(function(){
     }).fail(function (xhr, error, thrownError) {
     console.log(xhr, error, thrownError);
     });
+  }
 
+  $("#search-btn").click( function(event) {
+    ajaxSearch();
   });
+
+
 
   $('.search-panel .dropdown-menu').find('a').click(function(e) {
   	e.preventDefault();

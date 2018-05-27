@@ -65,5 +65,5 @@
 @endforeach
 @if($jobs->links() != "")
 <br />
-{{!! $jobs->links(); !!}}
+{!! $jobs->links(); !!}
 @endif
