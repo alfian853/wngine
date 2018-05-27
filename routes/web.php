@@ -64,7 +64,7 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::get('job/search_query','JobController@searchQuery');
 	Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');
 	Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
-	Route::post('job/take_job','JobController@takeJob');
+	Route::post('job/take','JobController@takeJob')->name('post.job.take');
   Route::get('job/get_submission_url','JobController@getSubmissionUrl');
 
 // });

@@ -14,7 +14,7 @@
 @section('content')
 <div class="container">
     <input id="job-id" type="hidden" value="{{$data['id']}}"/>
-    <meta name="_token" content="{!! csrf_token() !!}" />
+    <meta name="csrf-token" content="{!! csrf_token() !!}" />
     <div class="col-lg-12" style="margin-top:30px;">
         <div class="row d-flex justify-content-center">
             <div class="h1 col-lg-12" style="font-family:script;;font-weight:bold;text-align:center">{{ $data['job_name'] }}</div>
@@ -72,7 +72,7 @@
             <div id="collapseOne" style="padding-left:20px;" class="collapse" aria-labelledby="headingOne">
                 {{ $data['description'] }}
             </div>
-        </div>        
+        </div>
     <hr>
     <div class="row d-flex justify-content-center" style="margin : 10px 0;">
         <a class="btn btn-warning" style="margin-right: 2px;" href="{{$data['document_url']}}" target="_blank">Download</a>
@@ -146,23 +146,20 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    // Dropzone.options.MyDropzone = {
-    //     init : function() {
-    //       myDropzone = this;
-    //         this.on("drop", function(event) {
-    //            alert("Form Action URL:- ");
-    //            //Put your ajax call here for upload image
-    //            console.log(myDropzone.files);
-    //         });
-    //     }
-    // };
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    console.log($('meta[name="csrf-token"]').attr('content'));
     $('#take-job').click( function(event) {
+
         if(document.getElementById('tc-checkbox').checked == true){
             var param = JSON.stringify({"job_id" : $('#job-id').val()});
             $.ajax({
-              url: "{{url('/job/take_job/')}}",
+              url: "{{route('post.job.take')}}",
               type: 'POST',
-              data: { _token : $('input[name="_token"]').val(), param  },
+              data: {param},
               success: function (response) {
                  if(response['status'] == 'success'){
                     $("button[data-target='#modal-take']").slideUp();

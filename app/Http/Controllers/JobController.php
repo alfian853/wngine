@@ -198,13 +198,15 @@ class JobController extends Controller
         $data['had_taken'] = false;
         if($worker != null){
           $data['had_taken'] = true;
-        }
-        $data['submited_file'] = "";
-        $data['submit_time'] = "";
-        if($worker->submission_path != null){
-          $data['file_name'] = substr($worker->submission_path,20);
-          $data['file_path'] = asset('job_submissions').'/'.$worker->submission_path;
-          $data['submit_time'] = $worker->last_submit_time;
+          $data['file_name'] = null;
+          $data['file_path'] = null;
+          $data['submit_time'] = null;
+
+          if($worker->submission_path != null){
+            $data['file_name'] = substr($worker->submission_path,20);
+            $data['file_path'] = asset('job_submissions').'/'.$worker->submission_path;
+            $data['submit_time'] = $worker->last_submit_time;
+          }
         }
       }
       return view('job.job_description', [
@@ -240,7 +242,7 @@ class JobController extends Controller
                  'worker_email' => Auth::guard('member')->user()->email,
                  'status' => 0,
                  'comment' => '',
-                 'last_submit' =>  date("Y-m-d H:i:s")
+                 'last_submit_time' =>  date("Y-m-d H:i:s")
                ]
             );
         }
