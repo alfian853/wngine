@@ -18,6 +18,8 @@
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<input type="hidden" name="username" value="{{$user->m_name}}"/>
+
 <div class="col-lg-12" style="margin-top:10px;">
     @if($user->m_image == "")
       <img id="profile-pict" src="{{ asset('assets/default-user.png') }}" class= "h-50 rounded img-fluid mx-auto d-block">
@@ -25,7 +27,8 @@
       <img id="profile-pict" src="{{ asset('members_photo/'.$user->m_image) }}" class= "h-50 rounded img-fluid mx-auto d-block">
     @endif
     <div class="row d-flex justify-content-center">
-        <h3>{{$user->m_name}}</h3>
+        <h3 id="username">{{$user->m_name}}</h3>
+        <a href="#" data-toggle="modal" data-target="#modal-edit-name" class="fa fa-pencil prefix grey-text"></a>
     </div>
     <div class="row d-flex justify-content-center">
         <h6 style="font-style:italic">"God in the first place"</h6>
@@ -166,6 +169,27 @@
 
 </div>
 
+<div class="modal fade" id="modal-edit-name" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100 font-weight-bold">Write your new nickname</h5>
+          <button id="dismiss-change-name" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form">
+            <label data-error="wrong" data-success="right" for="form8">Your new nickname</label>
+            <input type="text" id="name-input" class="md-textarea form-control"></input>
+          </div>
+          <button id="submit-name" class="btn btn-unique">change nickname<i class="fa fa-paper-plane-o ml-1"></i></button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
 <!--Testimoni Modal-->
 <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -238,6 +262,9 @@
         </div>
     </div>
 </div>
+
+
+
 <script type="text/javascript">
   $.ajaxSetup({
     headers: {

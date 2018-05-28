@@ -26,4 +26,26 @@ $(document).ready(function(){
           });
         }
     };
+
+    $('#submit-name').click(function(){
+      data_send = JSON.stringify({"new_nickname" : $('#name-input').val()});
+      console.log(data_send);
+      $.ajax({
+        url: "change_name/",
+        type: 'POST',
+        data: {data_send},
+        success: function (response) {
+          if(response['status'] == 'success'){
+           $('#username').text($('#name-input').val());
+          }
+          alert(response['message']);
+          $('#dismiss-change-name').trigger('click');
+
+        }
+      }).fail(function (xhr, error, thrownError) {
+          alert('something wrong :(');
+      });
+
+    });
+
 });

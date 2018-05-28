@@ -154,4 +154,23 @@ class MemberController extends Controller
 			}
 		}
 
+		public function updateName(Request $request){
+			$data = json_decode($request->data_send,true);
+			if($data['new_nickname'] != ""){
+				DB::table('members')
+				->where('m_id','=',Auth::guard('member')->user()->m_id)
+				->update(['m_name' => $data['new_nickname'] ]);
+				return response()->json([
+					'status' => 'success',
+					'message' => 'success change name'
+				]);
+			}
+			else{
+				return response()->json([
+					'status' => 'failed',
+					'message' => 'something wrong'
+				]);
+			}
+		}
+
 }

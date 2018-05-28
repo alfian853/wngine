@@ -36,6 +36,8 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
   Route::get('members/view_profile','MemberController@showProfile')->name('member.profile');
 	Route::get('members/view_profile/{nick}','MemberController@showProfileById')->name('member.profilebyid');
   Route::post('members/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
+  Route::post('members/change_name','MemberController@updateName')->name('post.member.changeName');
+
 	// company
 	Route::get('company/register','CompanyController@register')->name('company.register');
 	Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
