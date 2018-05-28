@@ -4,7 +4,7 @@
       <a class="nav-link" href="{{ route('member.register') }}">Sign up</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('member.login') }}">Login</a>
+      <a class="nav-link" href="{{ route('login') }}">Login</a>
     </li>
     <li>
       <a class="nav-link" href="partnership">About Us</a>

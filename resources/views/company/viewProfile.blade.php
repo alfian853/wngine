@@ -16,8 +16,12 @@
         </div>
         <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block ">
         <div class="row d-flex justify-content-center">
+            @if(Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
             <div class="btn btn-danger" style="margin-left: 2px;" >Posting Job</div>
-            <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modalContactForm3">Add Testimoni</div>
+            @endif
+            @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', \App\Company::class))
+                <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modalContactForm3">Add Testimoni</div>
+            @endif
         </div>
     </div>
 
