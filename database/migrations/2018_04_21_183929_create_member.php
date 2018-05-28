@@ -15,12 +15,13 @@ class CreateMember extends Migration
     {
       Schema::create('members', function (Blueprint $table) {
         $table->increments('m_id');
-        $table->string('m_name',50)->unique();
+        $table->string('m_name',50);
         $table->string('email',50)->unique();
 	      $table->date('m_borndate');
 	      $table->string('m_address',100);
 	      $table->string('password',72);
 	      $table->string('m_telp',15);
+        $table->integer('claimable_point')->default('0');
 	      $table->string('m_image',100)->nullable(true);
         $table->string('remember_token',60);
       });
