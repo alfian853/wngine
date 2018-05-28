@@ -10,8 +10,8 @@
 
 
 @section('content')
-
-<div class="container" style="margin-top:200px;">
+<p style="text-align:center;font-size:80px;">Wngine</p>
+<div class="container" style="margin-top:10px;">
     <div class="row justify-content-center d-flex">
         <div class="col-xs-8 col-xs-offset-2">
   		    <div id="search-form" method="post" action="/action" class="input-group">

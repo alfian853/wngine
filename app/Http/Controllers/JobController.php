@@ -120,6 +120,7 @@ class JobController extends Controller
             foreach ($jobs as $job) {
                 $job->skill_list = preg_split("/,/",$job->skill_list);
             }
+            //dd($jobs);
             return view('job.search_result_subpage',compact('jobs'));
         }
         else{
