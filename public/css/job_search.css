@@ -4,7 +4,6 @@
 }
 #search-text{
   width: 700px;
-  border: solid rgb(171, 172, 172) 1px;
   border-radius: 4px;
   padding-left: 5px;
   background: transparent;
@@ -27,10 +26,6 @@
 
 .select2-selection {
   height: 45px !important;
-}
-
-.search-result-container{
-  background: rgb(210, 210, 210);
 }
 
 .select2-selection__choice[title="website front-end"]{

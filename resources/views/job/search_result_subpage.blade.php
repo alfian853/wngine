@@ -1,24 +1,23 @@
 @foreach ($jobs as $job)
-    <div class="container search-result-container" style="margin-top: 30px">
-      <div class="row" style="border:1px solid red;padding:10px">
-        <div class="col-sm-2" style="border:1px solid red;">
-          <img class="e"
-          src="{{asset('company_photo/'.$job->c_image)}}" style="max-width:100px;max-height:100px;    background-size: cover;"/>
+    <div class="container search-result-container" style="margin-top: 20px;padding:10px;">
+      <div class="row" style="padding:10px;background:rgb(204, 204, 204);border-radius:20px;">
+        <div class="col-lg-2" style="">
+          <img class="h-100 w-100"
+            src="{{asset('assets/world.png')}}" style="background-size:cover;"
+          />
         </div>
-        <div class="col-sm-10 row" style="border:1px solid yellow;">
-          <div class="col-sm-8" style="border:1px solid red;">
-              <a href="{{route('job.detail',['id' => $job->id])}}" target="_blank">
-                 <h3>
-                      {{ $job->name }}({{$job->c_name}})
+        <div class="col-lg-7" style="background:white;border-radius:20px;">
+            <a href="{{route('job.detail',['id' => $job->id])}}" target="_blank">
+                <h3 style="text-align:center">
+                    {{ $job->name }}
                 </h3>
             </a>
-            <p>
-            {{ $job->description }}
+            <p style="text-align:center">
+                {{ $job->description }}
             </p>
-          </div>
-          <div class="col-sm-4" style="border:1px solid red;">
+        </div>
+        <div class="col-lg-3" style="text-align:center">
             <div class="container">
-
               Skill :
               @foreach ($job->skill_list as $skill)
                   @if($skill == 1)
@@ -60,10 +59,10 @@
             </div>
         </div>
       </div>
-    </div>
+      <div class="col-lg-2" style="font-size:15px;text-align:center;background:grey;border-radius:0 0 20px 20px;">00:00:00</div>
     </div>
 @endforeach
 @if($jobs->links() != "")
-<br />
+<br/>
 {!! $jobs->links(); !!}
 @endif
