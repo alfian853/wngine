@@ -46,4 +46,14 @@ class JobPolicy
     {
         return $user instanceof Member;
     }
+
+    public function companyListJob(User $user)
+    {
+        return $user instanceof Company;
+    }
+
+    public function memberListJob(User $user)
+    {
+        return $user instanceof Member;
+    }
 }

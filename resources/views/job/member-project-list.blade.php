@@ -21,38 +21,36 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
-          <th>Upload Date</th>
+          <th>Last submit date</th>
           <th>Finish Date</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         @foreach($jobs as $job)
-        <tr>
+          @if($job->isFinish)
+            <tr style="background: rgba(9, 182, 0, 0.58);">
+          @else
+            <tr>
+          @endif
           <td>{{$job->name}}</td>
           <td>{{$job->description}}</td>
-          <td>{{$job->upload_date}}</td>
+          <td>{{$job->last_submit_time}}</td>
           <td>{{$job->finish_date}}</td>
           <td class="container" style="max-width: 10%;white-space: nowrap">
             <a style="white-space: nowrap" href="{{route('job.detail',['id' => $job->id])}}" class="btn btn-primary">Detail</a>
-            <a style="white-space: nowrap" href="{{route('company.job.detail',['id' => $job->id])}}" class="btn btn-success">Manage</a>
+            <a style="white-space: nowrap" target="_black" href="{{$job->submission_path}}" class="btn btn-success">Download Submission</a>
           </td>
         </tr>
         @endforeach
       </tbody>
     </table>
   </div>
-
-
-
-
-
-
-
 </div>
-<script>
-$('#project-list').DataTable();
-
-
+<script type="text/javacript">
+  $('#project-list').DataTable({
+    'order' : [[3,'desc']]
+  });
 </script>
+
 @endsection

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
 
     Dropzone.options.changePict = {
         headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } ,
@@ -22,7 +21,6 @@ $(document).ready(function(){
             else{
 
             }
-
           });
         }
     };
