@@ -57,8 +57,9 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 	//job
-  Route::get('company/job/list','JobController@projectList')->name('company.job.list');
-	Route::get('company/job/detail/{id}','JobController@projectListTake')->name('company.job.detail');
+  Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
+  Route::get('member/job/list','JobController@memberProjectList')->name('member.job.list');
+	Route::get('company/job/detail/{id}','JobController@projectAdmin')->name('company.job.detail');
   Route::post('member/job/submit/{id}','JobController@submitJob')->name('member.job.submit');
   Route::post('job/edit_comment','JobController@updateComment');
 	Route::get('job/search','JobController@showJobSearch');
