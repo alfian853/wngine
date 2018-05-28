@@ -9,15 +9,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function(){
     return redirect('/home');
 });
 
-// Route::group(['middleware' => 'auth'], function() {
-
-    // Member
-	Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
-    Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');
+Route::group(['middleware' => 'auth:member'], function() {
+  Route::get('/dummy',function(){
+      return view('dummy');
+  });
+});
+  Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
+  Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');
 	Route::get('member/register', 'MemberController@register')->name('member.register');
 
 	Route::get('member/password/reset','Auth\ForgotPasswordController@memberPwdForm')->name('member.password.request');
@@ -34,7 +37,6 @@ Route::get('/', function(){
 	Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
 	Route::get('company/confirmation','CompanyController@confirmRegistration')->name('company.confirmation');
 
-
 	Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdForm')->name('company.password.request');
 	Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
 	Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdForm')->name('company.password.reset');
@@ -48,8 +50,6 @@ Route::get('/', function(){
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@doLogin');
-    Route::get('password_reset', 'Auth\ForgotPasswordController@showForm')->name('password_reset');
-    Route::post('password_reset', 'Auth\ForgotPasswordController@resetPass');
 
 	// Job
     Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
@@ -68,9 +68,7 @@ Route::get('/', function(){
 
 // });
 //untuk test view apapun
-Route::get('/dummy',function(){
-    return view('dummy');
-});
+
 
 // Errors
 Route::get('/404', function() {
@@ -80,4 +78,3 @@ Route::get('/404', function() {
 Route::get('/403', function() {
     return view('errors.403');
 })->name('403');
-
