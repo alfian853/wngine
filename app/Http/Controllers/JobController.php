@@ -259,8 +259,11 @@ class JobController extends Controller
     }
 
     public function projectList(){
-      $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
-      return view('job.project-list', compact('jobs'));
+        $user = Auth::user();
+        if($user->cannot('list', Job::class))
+            return redirect('/home');
+        $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
+        return view('job.project-list', compact('jobs'));
     }
 
     public function projectListTake($id){
