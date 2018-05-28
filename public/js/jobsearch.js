@@ -17,10 +17,39 @@ var data = [
     }
 ];
 
-var emptydata=[]
-
+var idtimer = [];
+var time_list = [];
 //used for changing page
 var latest_query = "";
+
+function int_to_time(detik){
+  var second = parseInt((detik%60));
+  var minute = parseInt((detik%3600)/60);
+  var hour = parseInt((detik/3600)%24);
+  var day = parseInt((detik/86400));
+  return ""+day+" D : "+hour+" H : "+minute+" m : "+second+" s";
+}
+
+function calcTimer(){
+  idtimer.length = 0;
+  time_list.length = 0;
+  $('[id^=time-]').each(function(i,element){
+    idtimer.push($('#time-'+i));
+    time_list.push(idtimer[i].attr('value'));
+  });
+  setInterval(function() {
+    for(var j = 0 ;j < time_list.length ; j++){
+      if(time_list[j] > 0){
+        idtimer[j].text(int_to_time(time_list[j]));
+        time_list[j]--;
+      }
+      else{
+        idtimer[j].text("time out");
+      }
+    }
+  }, 1000);
+}
+
 $(document).ready(function(){
   var isNameFilter = true;
 
@@ -42,8 +71,9 @@ $(document).ready(function(){
       type: 'get',
       data: {data_send},
       success: function (data) {
-          $('#search-result').html(data);
-          ajax_refresh();
+        $('#search-result').html(data);
+        calcTimer();
+        ajax_refresh();
       }
     }).fail(function (xhr, error, thrownError) {
     console.log(xhr, error, thrownError);
@@ -87,6 +117,7 @@ $(document).ready(function(){
             data: {data_send},
             success: function(data){
                 $('#search-result').html(data);
+                calcTimer();
                 ajax_refresh();
             }
         }).fail(function(xhr, error, thrownError){

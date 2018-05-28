@@ -1,3 +1,4 @@
+@php $index=0;@endphp
 @foreach ($jobs as $job)
     <div class="container search-result-container" style="margin-top: 20px;padding:10px;">
       <div class="row" style="padding:10px;background:rgb(204, 204, 204);border-radius:20px;">
@@ -59,7 +60,11 @@
             </div>
         </div>
       </div>
-      <div class="col-lg-2" style="font-size:15px;text-align:center;background:grey;border-radius:0 0 20px 20px;">00:00:00</div>
+      <div id="time-{{$index++}}"
+      value="{{strtotime($job->finish_date)-strtotime(date('Y-m-d'))}}"
+      class="col-lg-2" style="font-size:15px;text-align:center;background:grey;border-radius:0 0 20px 20px;">
+        00:00:00
+      </div>
     </div>
 @endforeach
 @if($jobs->links() != "")

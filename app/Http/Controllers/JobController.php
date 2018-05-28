@@ -300,12 +300,36 @@ class JobController extends Controller
     }
 
     public function projectAdmin($id){
+
+      $job = DB::table('jobs')->select('*')
+            ->where('id','=',$id)
+            ->where('company_id','=',Auth::guard('company')->user()->c_id)
+            ->first();
+      if($job == null){
+          Session::flash('alert','Anda tidak berhak mengakses laman tersebut');
+          Session::flash('alert-type','failed');
+          return redirect(route('home'));
+      }
+      $isFinish = strtotime($job->finish_date) < strtotime(date('Y-m-d'));
       $lists = DB::table('jobs_taken')->select('*')
             ->join('members','members.email','=','jobs_taken.worker_email')
             ->where('job_id','=',$id)
             ->orderBy('status','desc')
             ->get();
-      return view('job.project-list-detail', compact('lists'))->with(['job_id' => $id]);
+
+      if($isFinish){
+        $skills = DB::table('job_skills')->select('*')
+        ->where('job_id','=',$id)
+        ->join('skills','skills.id','=','skill_id')
+        ->get();
+        // dd($skills);
+        return view('job.project-list-detail-finished', compact('lists'))
+        ->with(['job_id' => $id,'skills' => $skills]);
+      }
+      else{
+        return view('job.project-list-detail', compact('lists'))->with(['job_id' => $id]);
+      }
+
     }
 
     public function updateComment(Request $request){
