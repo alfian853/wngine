@@ -52,7 +52,7 @@ class CompanyController extends Controller
 		$validator = $request->validate([
 			'name' => 'required|min:4',
 			'password' => 'required|min:8|confirmed',
-			'email' => 'required|email',
+			'email' => 'required|email|unique:company|unique:members',
 			'address' => 'required|min:5',
 			'telp' => 'required|min:8',
 		]);

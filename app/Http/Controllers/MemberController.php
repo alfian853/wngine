@@ -50,19 +50,18 @@ class MemberController extends Controller
 		$date = date("Y-m-d", $time);
 
 		Validator::make($request->all(),[
-			'name' => 'required|min:4',
-			'password' => 'required|min:8|confirmed|strong_pwd',
-			'password_confirmation' => 'same:password',
-			'email' => 'required|email|unique:members',
-			'address' => 'required|min:10',
-			'telp' => 'required|phone_number',
-			'tgllahir' => 'required|date_format:Y-m-d|before:'.$date,
-		],
-		[
-			'tgllahir.before' => 'your age must atleast 18 years old'
-		]
-	)->validate($request->all());
-
+			    'name' => 'required|min:4',
+    			'password' => 'required|min:8|confirmed|strong_pwd',
+    			'password_confirmation' => 'same:password',
+    			'email' => 'required|email|unique:members|unique:company',
+    			'address' => 'required|min:10',
+    			'telp' => 'required|phone_number',
+    			'tgllahir' => 'required|date_format:Y-m-d|before:'.$date,
+	    	],
+    		[
+	    		'tgllahir.before' => 'your age must atleast 18 years old'
+		    ]
+	    )->validate($request->all());
 
     $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
     Registrations::create([
