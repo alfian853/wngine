@@ -9,16 +9,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Mail\Mailer;
-use Illuminate\Support\Facades\Mail;
-
 Route::get('/', function(){
     return redirect('/home');
 });
 
 // Route::group(['middleware' => 'auth'], function() {
 
-// member
+    // Member
 	Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
     Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');
 	Route::get('member/register', 'MemberController@register')->name('member.register');
@@ -32,7 +29,7 @@ Route::get('/', function(){
     Route::post('member/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
     Route::post('member/change_name','MemberController@updateName')->name('post.member.changeName');
 
-	// company
+	// Company
 	Route::get('company/register','CompanyController@register')->name('company.register');
 	Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
 	Route::get('company/confirmation','CompanyController@confirmRegistration')->name('company.confirmation');
@@ -42,9 +39,9 @@ Route::get('/', function(){
 	Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
 	Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdForm')->name('company.password.reset');
 	Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
-	Route::get('company/view_profile','CompanyController@showProfile')->name('company.profile');
+	Route::get('company/profile','CompanyController@showProfile')->name('company.profile');
 
-	// home
+	// Home
 	Route::get('home', 'HomeController@index')->name('home');
 
 	// Authentication Routes...
@@ -52,7 +49,7 @@ Route::get('/', function(){
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@doLogin');
 
-	//job
+	// Job
     Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
     Route::get('member/job/list','JobController@memberProjectList')->name('member.job.list');
 	Route::get('company/job/detail/{id}','JobController@projectAdmin')->name('company.job.detail');
