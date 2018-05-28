@@ -6,6 +6,8 @@
   @parent
   <link rel="stylesheet" href="{{ asset('css/profileCompany.css') }}">
   <script src="{{ asset('js/profileCompany.js') }}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
+  <script src="{{asset('js/dropzone.js')}}"></script>
 @endsection
 
 @section('content')
@@ -17,7 +19,8 @@
         <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block ">
         <div class="row d-flex justify-content-center">
             @if(Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
-            <div class="btn btn-danger" style="margin-left: 2px;" >Posting Job</div>
+            <div class="btn btn-danger" style="margin:5px 2px;" >Posting Job</div>
+            <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
             @endif
             @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', \App\Company::class))
                 <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modalContactForm3">Add Testimoni</div>
@@ -110,6 +113,29 @@
     </div>
 </div>
 
+<!--Change picture Modal-->
+<div class="modal fade" id="modal-edit-pict" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Change Profile Picture</h4>
+                <button id="dismiss-modal-pict" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="dropzone">
+              <form class="dropzone needsclick" id="changePict" action="">
+                <div class="dz-message needsclick" name="filenya">
+                  Drop files here or click here to upload <i class="fa fa-paper-plane-o ml-1"></i><br>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                Please Upload jpg, jpeg or png file only
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="col-lg-12" style="margin-bottom:50px;">
     <div class="col-md-8 offset-md-2 col-10 offset-1 mt-5">
