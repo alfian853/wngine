@@ -22,57 +22,8 @@ class LoginController extends Controller
      *
      * @var string
      */
+    protected $redirectTo = '/home';
 
-     public function showMemberLoginForm(){
-       return view('members.login');
-     }
-
-     public function showCompanyLoginForm(){
-       return view('company.login');
-     }
-
-
-    public function logout(){
-      // Auth::logout() tidak bisa
-      Auth::guard('company')->logout();
-      Auth::guard('member')->logout();
-      return redirect('home');
-    }
-
-    public function doLoginMember(Request $request){
-
-      $credentials = $request->only('email','password');
-
-      if ($login = Auth::guard('member')->attempt($credentials)) {
-        Session::flash('alert','welcome ');
-        Session::flash('alert-type','success');
-        return redirect(route('home'));
-      }
-      else{
-        Session::flash('alert','Wrong Username/Password');
-        Session::flash('alert-type','failed');
-        return redirect(route('member.login'));
-      }
-    }
-
-    public function doLoginCompany(Request $request){
-
-      $credentials = $request->only('email','password');
-
-      if ($login = Auth::guard('company')->attempt($credentials)) {
-        Session::flash('alert','welcome '.$request['email']);
-        Session::flash('alert-type','success');
-          return redirect(route('home'));
-        }
-        else{
-          Session::flash('alert','Wrong Username/Password');
-          Session::flash('alert-type','failed');
-          return redirect(route('company.login'));
-        }
-
-    }
-
-    protected $redirectTo = '/';
     /**
      * Create a new controller instance.
      *
@@ -81,5 +32,54 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Shows login form.
+     *
+     * @return void
+     */
+    public function showLoginForm(){
+        return view('login');
+    }
+
+    /**
+     * Execute login.
+     *
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\Request
+     */
+    public function doLogin(Request $request){
+        $guards = ['member' => 'm_name', 'company' => 'c_name'];
+        $credentials = $request->only('email','password');
+
+        foreach($guards as $guard => $name)
+        {
+            if(Auth::guard($guard)->attempt($credentials))
+            {
+                $user = Auth::guard($guard)->user();
+
+                $request->session()->flash('alert', 
+                    'Welcome back to Wngine, '.$user->$name.'!');
+                $request->session()->flash('alert-type', 'success');
+                return redirect(route('home'));
+            }
+        }
+
+        $request->session()->flash('alert', 'Invalid Email/Password');
+        $request->session()->flash('alert-type', 'failed');
+
+        return redirect(route('login'));
+    }
+
+    /**
+     * Execute logout.
+     *
+     * @return Illuminate\Http\Request
+     */
+    public function logout(){
+      Auth::guard('company')->logout();
+      Auth::guard('member')->logout();
+      return redirect('home');
     }
 }

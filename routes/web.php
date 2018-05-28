@@ -16,11 +16,8 @@ Route::get('/', function(){
     return redirect('/home');
 });
 
-Route::post('members/login', 'Auth\LoginController@doLoginMember')->name('post.member.login');
-Route::post('members/login', 'Auth\LoginController@doLoginMember')->name('post.member.login');
-Route::get('members/login', 'Auth\LoginController@showMemberLoginForm')->name('member.login');
-Route::post('company/login', 'Auth\LoginController@doLoginCompany')->name('post.company.login');
-Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('company.login');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@doLogin');
 
 // Route::group(['middleware' => 'auth'], function() {
 
@@ -33,10 +30,10 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::post('members/password/reset','Auth\ForgotPasswordController@doMemberPwdRequest')->name('post.member.password.request');
 	Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 	Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
-  Route::get('members/view_profile','MemberController@showProfile')->name('member.profile');
+    Route::get('members/view_profile','MemberController@showProfile')->name('member.profile');
 	Route::get('members/view_profile/{nick}','MemberController@showProfileById')->name('member.profilebyid');
-  Route::post('members/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
-  Route::post('members/change_name','MemberController@updateName')->name('post.member.changeName');
+    Route::post('members/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
+    Route::post('members/change_name','MemberController@updateName')->name('post.member.changeName');
 
 	// company
 	Route::get('company/register','CompanyController@register')->name('company.register');
@@ -57,22 +54,32 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 	//job
-  Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
-  Route::get('member/job/list','JobController@memberProjectList')->name('member.job.list');
+    Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
+    Route::get('member/job/list','JobController@memberProjectList')->name('member.job.list');
 	Route::get('company/job/detail/{id}','JobController@projectAdmin')->name('company.job.detail');
-  Route::post('member/job/submit/{id}','JobController@submitJob')->name('member.job.submit');
-  Route::post('job/edit_comment','JobController@updateComment');
+    Route::post('member/job/submit/{id}','JobController@submitJob')->name('member.job.submit');
+    Route::post('job/edit_comment','JobController@updateComment');
 	Route::get('job/search','JobController@showJobSearch');
 	Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
 	Route::get('job/search_query','JobController@searchQuery');
 	Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');
 	Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
 	Route::post('job/take','JobController@takeJob')->name('post.job.take');
-  Route::get('job/get_submission_url','JobController@getSubmissionUrl');
-  Route::post('job/edit_description/{id}','JobController@editDescription');
+    Route::get('job/get_submission_url','JobController@getSubmissionUrl');
+    Route::post('job/edit_description/{id}','JobController@editDescription');
 
 // });
 //untuk test view apapun
 Route::get('/dummy',function(){
     return view('dummy');
 });
+
+// Errors
+Route::get('/404', function() {
+    return view('errors.404');
+})->name('404');
+
+Route::get('/403', function() {
+    return view('errors.403');
+})->name('403');
+
