@@ -256,8 +256,7 @@
               </form>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                {{-- <button class="btn btn-unique">Change</button> --}}
-                Please Upload jpg,jpeg or png file only
+                Please Upload jpg, jpeg or png file only
             </div>
         </div>
     </div>

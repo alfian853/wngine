@@ -133,7 +133,6 @@ class MemberController extends Controller
 			$request->validate([
 					'file' => 'mimes:png,jpg,jpeg'
 			]);
-			// dd($request);
 			if($request->file('file') != null){
 				$path = Storage::putFile('public', $request->file('file'));
 				$targetPath = date('Y-m-d-H-m-s').'-'.$request->file('file')->getClientOriginalName();
