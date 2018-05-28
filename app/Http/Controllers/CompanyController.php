@@ -100,6 +100,42 @@ class CompanyController extends Controller
 
     public function showProfile()
     {
-      return view('company.viewProfile');
+        if(!Auth::guard('company')->check())
+            return redirect(route('home'));
+
+        $company = Company::find(Auth::guard('company')->user()->c_id);
+        $job_list = Job::latest('id')
+            ->select('id', 'name', 'description')
+            ->where('company_id', $company->c_id)
+            ->take(4)
+            ->get();
+
+        //dd($job_list);
+
+        return view('company.viewProfile', [
+            'company' => $company,
+            'jobs' => $job_list,
+        ]);
+    }
+
+    public function showProfileById(int $id)
+    {
+        $company = Company::find($id);
+
+        if(!$company)
+            return redirect(route('home'));
+
+        $job_list = Job::latest('id')
+            ->select('id', 'name', 'description')
+            ->where('company_id', $company->c_id)
+            ->take(4)
+            ->get();
+
+        //dd($job_list);
+
+        return view('company.viewProfile', [
+            'company' => $company,
+            'jobs' => $job_list,
+        ]);
     }
 }

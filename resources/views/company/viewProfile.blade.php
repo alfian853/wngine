@@ -14,7 +14,7 @@
 <div class="container">
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
-            <div class="h1" style="font-family:Arial black;font-weight:bold;text-align:center">IT Company</div>
+            <div class="h1" style="font-family:Arial black;font-weight:bold;text-align:center">{{ $company->c_name }}</div>
         </div>
         <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block ">
         <div class="row d-flex justify-content-center">
@@ -32,60 +32,30 @@
 
     <div class="col-sm-12" style=" height:auto">
         <div class="col-sm-12 btn btn-primary" id="t1">Company Name</div>
-        <div class="col-sm-12 btn btn-default" id="s1">IT Company</div>
-        <div class="col-sm-12 btn btn-primary" id="t2">Owner</div>
-        <div class="col-sm-12 btn btn-default" id="s2">Explain about t2</div>
-        <div class="col-sm-12 btn btn-primary" id="t3">Established</div>
-        <div class="col-sm-12 btn btn-default" id="s3">Explain about t3</div>
-        <div class="col-sm-12 btn btn-primary" id="t4">Main Sector</div>
-        <div class="col-sm-12 btn btn-default" id="s4">Explain about t4</div>
+        <div class="col-sm-12 btn btn-default" id="s1">{{ $company->c_name }}</div>
         <div class="col-sm-12 btn btn-primary" id="t5">Address</div>
-        <div class="col-sm-12 btn btn-default" id="s5">Explain about t5</div>
+        <div class="col-sm-12 btn btn-default" id="s5">{{ $company->c_address }}</div>
         <div class="col-sm-12 btn btn-primary" id="t6">Email</div>
-        <div class="col-sm-12 btn btn-default" id="s6">Explain about t6</div>
+        <div class="col-sm-12 btn btn-default" id="s6">{{ $company->email }}</div>
         <div class="col-sm-12 btn btn-primary" id="t7">Telephone Number</div>
-        <div class="col-sm-12 btn btn-default" id="s7">Explain about t7</div>
-        <div class="col-sm-12 btn btn-primary" id="t8">Additional Info</div>
-        <div class="col-sm-12 btn btn-default" id="s8">Explain about t8</div>
+        <div class="col-sm-12 btn btn-default" id="s7">{{ $company->c_telp }}</div>
     </div>
 
     <hr>
 
-    <div class="col-lg-12 h1" style="font-family:Arial black;font-weight:bold;margin-top:30px;margin-bottom:30px;"><i>History Job</i></div>
+    <div class="col-lg-12 h1" style="font-family:Arial black;font-weight:bold;margin-top:30px;margin-bottom:30px;"><i>Recent Jobs</i></div>
 
     <div class="row">
+        @foreach($jobs as $j)
         <div class="card col-lg-3" >
             <img class="card-img-top" src="{{ asset('assets/job_icon.png') }}" style="border-radius:50%;" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">{{ $j->name }}</h5>
+                <p class="card-text">{{ $j->description }}</p>
+                <a href="{{ route('job.detail', $j->id) }}" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>
-        <div class="card col-lg-3" >
-        <img class="card-img-top" src="{{ asset('assets/job_icon.png') }}" style="border-radius:50%;" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card col-lg-3" >
-        <img class="card-img-top" src="{{ asset('assets/job_icon.png') }}" style="border-radius:50%;" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card col-lg-3" >
-        <img class="card-img-top" src="{{ asset('assets/job_icon.png') }}" style="border-radius:50%;" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 

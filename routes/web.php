@@ -14,17 +14,10 @@ Route::get('/', function(){
     return redirect('/home');
 });
 
-Route::group(['middleware' => 'auth:member'], function() {
-  Route::get('/dummy',function(){
-      return view('dummy');
-  });
-});
-  Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
-  Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');
+    // Member
+    Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
+    Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');
 	Route::get('member/register', 'MemberController@register')->name('member.register');
-
-	Route::get('member/password/reset','Auth\ForgotPasswordController@memberPwdForm')->name('member.password.request');
-	Route::post('member/password/reset','Auth\ForgotPasswordController@doMemberPwdRequest')->name('post.member.password.request');
 	Route::get('member/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 	Route::post('member/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
     Route::get('member/profile','MemberController@showProfile')->name('member.profile');
@@ -36,12 +29,10 @@ Route::group(['middleware' => 'auth:member'], function() {
 	Route::get('company/register','CompanyController@register')->name('company.register');
 	Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
 	Route::get('company/confirmation','CompanyController@confirmRegistration')->name('company.confirmation');
-
-	Route::get('company/password/reset','Auth\ForgotPasswordController@companyPwdForm')->name('company.password.request');
-	Route::post('company/password/reset','Auth\ForgotPasswordController@doCompanyPwdRequest')->name('post.company.password.request');
 	Route::get('company/password/reset_confirm','Auth\ForgotPasswordController@companyNewPwdForm')->name('company.password.reset');
 	Route::post('company/password/reset_confirm','Auth\ForgotPasswordController@doCompanyPwdReset')->name('post.company.password.reset');
-	Route::get('company/profile','CompanyController@showProfile')->name('company.profile');
+    Route::get('company/profile', 'CompanyController@showProfile')->name('company.profile');
+    Route::get('company/profile/{id}', 'CompanyController@showProfileById');
 
 	// Home
 	Route::get('home', 'HomeController@index')->name('home');
@@ -70,7 +61,11 @@ Route::group(['middleware' => 'auth:member'], function() {
 
 // });
 //untuk test view apapun
-
+Route::group(['middleware' => 'auth:member'], function() {
+  Route::get('/dummy',function(){
+      return view('dummy');
+  });
+});
 
 // Errors
 Route::get('/404', function() {
