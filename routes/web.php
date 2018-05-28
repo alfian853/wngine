@@ -16,9 +16,6 @@ Route::get('/', function(){
     return redirect('/home');
 });
 
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@doLogin');
-
 // Route::group(['middleware' => 'auth'], function() {
 
 // member
@@ -52,6 +49,8 @@ Route::post('login', 'Auth\LoginController@doLogin');
 
 	// Authentication Routes...
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@doLogin');
 
 	//job
     Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
