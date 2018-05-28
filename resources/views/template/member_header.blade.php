@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-sm borderYtoX">
   <ul class="navbar-nav  ml-auto">
     <li class="nav-item active">
-      <a class="nav-link" href="{{route('member.profile')}}">Profile</a>
+      <a class="nav-link" href="{{ route('member.profile') }}">Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">My project</a>
+      <a class="nav-link" href="{{ route('member.job.list') }}">My Projects</a>
     </li>
     <li>
       <a class="nav-link" href="{{ route('logout') }}">Log out</a>
