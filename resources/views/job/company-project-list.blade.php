@@ -28,7 +28,11 @@
       </thead>
       <tbody>
         @foreach($jobs as $job)
-        <tr>
+          @if($job->isFinish)
+            <tr style="background: rgba(9, 182, 0, 0.58);">
+          @else
+            <tr>
+          @endif
           <td>{{$job->name}}</td>
           <td>{{$job->description}}</td>
           <td>{{$job->upload_date}}</td>
@@ -51,7 +55,9 @@
 
 </div>
 <script>
-$('#project-list').DataTable();
+$('#project-list').DataTable({
+  'order' : [[3,'desc']]
+});
 
 
 </script>

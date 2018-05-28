@@ -23,7 +23,7 @@ Route::post('login', 'Auth\LoginController@doLogin');
 
 // member
 	Route::get('members/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
-	Route::post('members/register', 'MemberController@requestMailVerification')->name('post.member.register');
+  Route::post('members/register', 'MemberController@requestMailVerification')->name('post.member.register');
 	Route::get('members/register', 'MemberController@register')->name('member.register');
 
 	Route::get('members/password/reset','Auth\ForgotPasswordController@memberPwdForm')->name('member.password.request');

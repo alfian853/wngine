@@ -265,14 +265,21 @@ class JobController extends Controller
             return redirect('/home');
 
         $jobs = Job::where('company_id', $user->c_id)->get();
-        return view('job.project-list', compact('jobs'));
+        foreach ($jobs as $job) {
+            $job->isFinish = strtotime($job->finish_date) < strtotime(date('Y-m-d'));
+        }
+
+        return view('job.company-project-list', compact('jobs'));
     }
 
     public function memberProjectList(){
         $user = Auth::user();
 
-        if($user->cannot('memberListJob', Job::class))
-            return redirect('/home');
+        if($user->cannot('memberListJob', Job::class)){
+          Session::flash('alert','Anda belum login!');
+          Session::flash('alert-type','failed');
+          return redirect('/home');
+        }
 
         $jobs = DB::table('jobs_taken')
             ->select('*')
@@ -281,13 +288,14 @@ class JobController extends Controller
 
         foreach ($jobs as $job)
         {
+            $job->isFinish = strtotime($job->finish_date) < strtotime(date('Y-m-d'));
             if($job->last_submit_time != null)
             {
                 $job->submission_path = asset('job_submissions').'/'.$job->submission_path;
             }
         }
 
-        return view('members.project-list', compact('jobs'));
+        return view('job.member-project-list', compact('jobs'));
     }
 
     public function projectAdmin($id){
