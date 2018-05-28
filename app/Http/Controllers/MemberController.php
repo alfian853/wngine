@@ -3,12 +3,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Member;
+use Illuminate\Support\Facades\DB;
 use App\Registrations;
 use App\Mail\Mailer;
 use Session;
 use Mail;
 use Validator;
 use Auth;
+use Storage;
+
 
 class MemberController extends Controller
 {
@@ -93,13 +96,62 @@ class MemberController extends Controller
         return redirect('/tasks/'.$task->id);
     }
 
+		function getMemberData($nickname){
+			$user = DB::table('members')
+			->select(
+				'members.*',
+				DB::raw('sum(member_points.point) as total_point'),
+				DB::raw('GROUP_CONCAT(skills.name) as skill_name'),
+				DB::raw('GROUP_CONCAT(skills.id) as skill_id'),
+				DB::raw('GROUP_CONCAT(member_points.point) as skill_point')
+			)
+			->where('m_name','=',$nickname)
+			->join('member_points','member_points.member_id','=','members.m_id')
+			->join('skills','skills.id','=','member_points.skill_id')
+			->first();
+			$user->skills_name = preg_split("/,/",$user->skill_name);
+			$user->skills_point = preg_split("/,/",$user->skill_point);
+			$user->skills_id = preg_split("/,/",$user->skill_id);
+
+			return $user;
+		}
+
     public function showProfile()
     {
+      return view('members.viewProfile')->with([
+				'user' => self::getMemberData(Auth::guard('member')->user()->m_name)
+			]);
+    }
+
+		public function showProfileById($nick)
+    {
+			dd(self::getMemberData($nick));
       return view('members.viewProfile');
     }
 
-		public function showProfileById($id_member)
-    {
-      return view('members.viewProfile');
-    }
+		public function updateProfilPict(Request $request){
+			$request->validate([
+					'file' => 'mimes:png,jpg,jpeg'
+			]);
+			// dd($request);
+			if($request->file('file') != null){
+				$path = Storage::putFile('public', $request->file('file'));
+				$targetPath = date('Y-m-d-H-m-s').'-'.$request->file('file')->getClientOriginalName();
+				$oldfile = DB::table('members')
+				->select('members.m_image')
+				->where('m_name','=',$request->nick)->first()->m_image;
+				if($oldfile != null){
+					Storage::delete('members_photo/'.$oldfile);
+				}
+				Storage::move($path,'members_photo/'.$targetPath);
+				DB::table('members')
+				->where('m_name','=',$request->nick)
+				->update(['m_image' => $targetPath]);
+				return response()->json([
+					'status' => 'success',
+					'newpath' => asset('members_photo').'/'.$targetPath
+				]);
+			}
+		}
+
 }

@@ -34,8 +34,8 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::get('members/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 	Route::post('members/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
   Route::get('members/view_profile','MemberController@showProfile')->name('member.profile');
-	Route::get('members/view_profile/{id}','MemberController@showProfileById')->name('member.profilebyid');
-
+	Route::get('members/view_profile/{nick}','MemberController@showProfileById')->name('member.profilebyid');
+  Route::post('members/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
 	// company
 	Route::get('company/register','CompanyController@register')->name('company.register');
 	Route::post('company/register','CompanyController@requestMailVerification')->name('post.company.register');
@@ -66,6 +66,7 @@ Route::get('company/login', 'Auth\LoginController@showCompanyLoginForm')->name('
 	Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
 	Route::post('job/take','JobController@takeJob')->name('post.job.take');
   Route::get('job/get_submission_url','JobController@getSubmissionUrl');
+  Route::post('job/edit_description/{id}','JobController@editDescription');
 
 // });
 //untuk test view apapun

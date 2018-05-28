@@ -81,9 +81,9 @@
               <button class="btn btn-primary" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">Take</button>
             @endif
         @endcan
-        {{-- @can('create', App\Job::class) --}}
-          <button class="btn btn-danger" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-take">edit</button>
-        {{-- @endcan --}}
+        @if(Auth::guard('company')->check())
+          <button class="btn btn-danger" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-description">edit description</button>
+        @endif
     </div>
     @can('take', App\Job::class)
         @if($data['had_taken'])
@@ -111,37 +111,59 @@
 
 <!--RELATED JOBS AREA:::END-->
 
+  <div class="modal" id="modal-take">
+    <div class="modal-dialog" style="width: 500px">
+      <div class="modal-content">
 
-    <div class="modal" id="modal-take">
-      <div class="modal-dialog" style="width: 500px">
-        <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="">Take Job</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title" style="">Take Job</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
+        <div class="modal-body">
+          <h3>Terms and conditons</h3>
+          <ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
+          </ul>
+          <input type="checkbox" name="vehicle" value="Bike" id="tc-checkbox"
+          style="margin-top:10px">I have read and accept the general terms and conditions of business.<br>
+        </div>
 
-          <div class="modal-body">
-            <h3>Terms and conditons</h3>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
-            </ul>
-            <input type="checkbox" name="vehicle" value="Bike" id="tc-checkbox"
-            style="margin-top:10px">I have read and accept the general terms and conditions of business.<br>
-          </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-success" id="take-job">take the job</button>
+        </div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
-            <button type="button" class="btn btn-success" id="take-job">take the job</button>
-          </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal" id="modal-description">
+    <div class="modal-dialog" style="width: 500px">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="">Edit description</h4>
+          <button id="dismiss-modal-desc" type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <textarea id="edit-description" style="width:100%">{{$data['description']}}</textarea>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-success" id="save-description" value="">Save</button>
         </div>
       </div>
     </div>
+  </div>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -162,9 +184,7 @@
               data: {param},
               success: function (response) {
                  if(response['status'] == 'success'){
-                    $("button[data-target='#modal-take']").slideUp();
-                    $("#modal-take").hide();
-                    $(".modal-backdrop").hide();
+                    $("dismiss-modal-desc").trigger('click');
                  }
                  alert(response['message']);
               }

@@ -167,17 +167,17 @@ class JobController extends Controller
 
   	public function showDescriptionJob($id)
       {
-          $job = Job::find($id);
+      $job = Job::find($id);
   		$data = array();
-          $data['id'] = $id;
+      $data['id'] = $id;
   		$data['job_name'] = $job->name;
   		$data['start_date'] = $job->upload_date;
   		$data['due_date'] = $job->finish_date;
-          $company = Company::select('c_name','c_image')
-  									->where('c_id', $job->company_id)
-  									->first();
+      $company = Company::select('c_name','c_image')
+								->where('c_id', $job->company_id)
+								->first();
   		$data['company_name'] = $company->c_name;
-          $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
+      $data['company_photo'] = asset('company_photo').'/'.$company->c_image;
   		$data['description'] = $job->description;
   		$data['document_url'] = asset('job_documents').'/'.$job->document;
   		$data['skills'] = array();
@@ -291,7 +291,6 @@ class JobController extends Controller
     }
 
     public function submitJob(Request $request){
-      // dd('errorsini'.$request->file('file'));
       if($request->file('file') != null){
         $path = Storage::putFile('public', $request->file('file'));
         // dd($request->file('file'));

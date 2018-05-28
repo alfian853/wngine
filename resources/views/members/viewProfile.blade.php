@@ -5,26 +5,39 @@
 @section('add-script')
   @parent
   <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
   <script src="{{ asset('js/profile.js') }}"></script>
+  <script src="{{asset('js/dropzone.js')}}"></script>
+  <style>
+    #dropzone{
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  </style>
 @endsection
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="col-lg-12" style="margin-top:10px;">
-    <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block">
+    @if($user->m_image == "")
+      <img id="profile-pict" src="{{ asset('assets/default-user.png') }}" class= "h-50 rounded img-fluid mx-auto d-block">
+    @else
+      <img id="profile-pict" src="{{ asset('members_photo/'.$user->m_image) }}" class= "h-50 rounded img-fluid mx-auto d-block">
+    @endif
     <div class="row d-flex justify-content-center">
-        <h3>Alcredo Simanjuntak</h3>
+        <h3>{{$user->m_name}}</h3>
     </div>
     <div class="row d-flex justify-content-center">
         <h6 style="font-style:italic">"God in the first place"</h6>
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
         <div class="btn btn-success" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm2">Edit Quotes</div>
-        <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm3">Change Picture</div>
+        <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
         <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm">Add Testimoni</div>
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
         <div class="col-lg-1" style="font-weight:bold;background:grey;border-radius:10px 0 0 10px;text-align:center;width:auto;height:40px;margin-top:10px;padding:6px">Point</div>
-        <div class="col-lg-1" style="font-weight:bold;background:white;border-radius:0 10px 10px 0;text-align:center;width:auto;height:40px;margin-top:10px;padding:6px">100</div>
+        <div class="col-lg-1" style="font-weight:bold;background:white;border-radius:0 10px 10px 0;text-align:center;width:auto;height:40px;margin-top:10px;padding:6px">{{$user->total_point}}</div>
     </div>
 </div>
 <div class="container">
@@ -39,11 +52,10 @@
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
             <div class="card-body" style="text-align:center">
-                Alcredo Simanjuntak<br>
-                08-06-1998<br>
-                Jalan Melanthon Siregar Gang Kukubalam, Siantar, Sumatera Utara<br>
-                simanjuntakalcredo@gmail.com<br>
-                082272521290<br>
+                {{$user->email}}<br>
+                {{$user->m_telp}}<br>
+                {{$user->m_borndate}}<br>
+                {{$user->m_address}}<br>
             </div>
         </div>
     </div>
@@ -57,10 +69,24 @@
         </div>
         <div id="collapseFour" class="collapse show" aria-labelledby="headingFour">
             <div class="card-body" style="text-align:center">
-                Backend<br>
-                Frontend<br>
-                Android Developer<br>
-                PHP<br>
+                @php $max=count($user->skills_name) @endphp
+                @for($i=0;$i<$max ; $i++)
+                  @switch($user->skills_id[$i])
+                    @case("1")
+                    <i class="fa fa-desktop"></i>
+                    @break
+                    @case("2")
+                    <i class="fa fa-code"></i>
+                    @break
+                    @case("3")
+                    <i class="fa fa-android"></i>
+                    @break
+                    @case("4")
+                    <i class="fa fa-apple"></i>
+                    @break
+                  @endswitch
+                  {{$user->skills_name[$i]}} : {{$user->skills_point[$i]}}<br />
+                @endfor
             </div>
         </div>
     </div>
@@ -106,8 +132,8 @@
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#myCarousel" data-slide-to="1"></li>
 					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>   
-                
+				</ol>
+
                 <!-- Wrapper for carousel items -->
 				<div class="carousel-inner">
 					<div class="item carousel-item active">
@@ -126,7 +152,7 @@
 						<p class="overview"><b>Michael Holz</b>, Seo Analyst</p>
 					</div>
                 </div>
-                
+
 				<!-- Carousel controls -->
 				<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
 					<i class="fa fa-angle-left"></i>
@@ -189,27 +215,36 @@
 </div>
 
 <!--Change Picture Modal-->
-<div class="modal fade" id="modalContactForm3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-edit-pict" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Change Profile Picture</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button id="dismiss-modal-pict" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body mx-3">
-                <div class="md-form">
-                    <i class="fa fa-pencil prefix grey-text"></i>
-                    <input type="file" name="fileupload" value="fileupload" id="fileupload">
-                    <label for="fileupload"> Select a image to upload</label><br>
+            <div id="dropzone">
+              <form class="dropzone needsclick" id="changePict" action="{{route('post.member.changePict',['nick' => $user->m_name ]) }}">
+                <div class="dz-message needsclick" name="filenya">
+                  Drop files here or click here to upload <i class="fa fa-paper-plane-o ml-1"></i><br>
                 </div>
+              </form>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-unique">Change<i class="fa fa-paper-plane-o ml-1"></i></button>
+                {{-- <button class="btn btn-unique">Change</button> --}}
+                Please Upload jpg,jpeg or png file only
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
+
+</script>
 @endsection
