@@ -6,6 +6,7 @@ use App\Mail\Mailer as Mailer;
 use Mail;
 use App\Member;
 use App\Company;
+use Illuminate\Foundation\Auth\User as User;
 use Session;
 use DB;
 use Validator;
@@ -28,68 +29,77 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
-     public function memberPwdForm(){
-       return view("members.reset");
-     }
+    public function showForm()
+    {
+        return view('password_reset');
+    }
 
-     public function companyPwdForm(){
-       return view("company.reset");
-     }
+    public function resetPass(Request $request)
+    {
+        $email = $request->email;
 
-     public function doMemberPwdRequest(Request $request){
+        if($user = Member::where('email', $email)->get()->first()) // if email belongs to Member
+        {
+            $this->doPasswordRequest($user, 'member');
+            return redirect(route('home'));
+        }
+        else if($user = Company::where('email', $email)->get()->first()) // if email belongs to Company
+        {
+            $this->doPasswordRequest($user, 'company');
+            return redirect(route('home'));
+        }
+        else
+        {
+            $request->session()->flash('alert', 'Email couldn\'t be found.');
+            $request->session()->flash('alert-type', 'warning');
 
-       $userRow = Member::where('email',$request->email)->take(1)->get();
-       if(count($userRow) == 0){
-         Session::flash('alert',"Email not registered");
-         Session::flash('alert-type','warning');
-         return redirect(route('member.password.request'));
-       }
-       else {
-		// Old reset token found, delete first
-		if(count(DB::table('member_rpass')->where('email', $request->email)->get())) {
-			DB::table('member_rpass')->where('email',$request->email)->delete();
+            return redirect(route('password_reset'));
+        }
+    }
+
+    protected function doPasswordRequest(User $user, $role){
+        $table_name = array(
+            'company' => 'company_rpass',
+            'member' => 'member_rpass',
+        );
+        $column_name = array(
+            'company' => 'c_name',
+            'member' => 'm_name',
+        );
+        $mailer_content = array(
+            'company' => Mailer::$Company,
+            'member' => Mailer::$Member,
+        );
+
+        $name = $column_name[$role];
+
+        // Old reset token found, delete first
+		if(count(DB::table($table_name[$role])->where('email', $user->email)->get())) {
+			DB::table($table_name[$role])->where('email',$user->email)->delete();
 		}
 
-         $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
-         $userRow = $userRow[0];
-         $mailObj = new Mailer();
-         DB::table('member_rpass')->insert(
-           array('email' => $request->email, 'token' => $linkToken)
-         );
-         $mailObj->setResetPassMail($request->email,$userRow['m_name'],$linkToken,Mailer::$Member);
-         Mail::to($request->email)->send($mailObj);
-         Session::flash('alert','Please check your email');
-         Session::flash('alert-type','success');
-         return redirect(route('member.password.request'));
-       }
-     }
+        $linkToken = sha1("ha".$user->email.((string)date("l h:i:s"))."sh");
 
-     public function doCompanyPwdRequest(Request $request){
-       $userRow = Company::where('email',$request->email)->take(1)->get();
-       if(count($userRow) == 0){
-         Session::flash('alert',"Email not registered");
-         Session::flash('alert-type','warning');
-       }
-       else{
-		// Old reset token found, delete first
-		if(count(DB::table('company_rpass')->where('email', $request->email)->get())) {
-			DB::table('company_rpass')->where('email',$request->email)->delete();
-		}
+        $mailObj = new Mailer();
+        DB::table($table_name[$role])->insert(
+           array('email' => $user->email, 'token' => $linkToken)
+        );
+        $mailObj->setResetPassMail(
+            $user->email,
+            $user->$name,
+            $linkToken,
+            $mailer_content[$role]
+        );
+        Mail::to($user->email)->send($mailObj);
 
-         $linkToken = sha1("ha".$request->email.((string)date("l h:i:s"))."sh");
-         $userRow = $userRow[0];
-         $mailObj = new Mailer();
-         DB::table('company_rpass')->insert(
-           array('email' => $request->email, 'token' => $linkToken)
-         );
-         $mailObj->setResetPassMail($request->email,$userRow['m_name'],$linkToken,Mailer::$Company);
-         Mail::to($request->email)->send($mailObj);
-         Session::flash('alert','Please check your email');
-         Session::flash('alert-type','success');
-         return redirect('home');
-       }
-     }
+        session()->flash('alert', 'Confirmation link sent, please check your inbox');
+        session()->flash('alert-type','success');
+    }
 
      public function memberNewPwdForm(Request $request){
        $userRow = DB::table('member_rpass')->where('token',$request->token)->take(1)->get();
@@ -132,10 +142,4 @@ class ForgotPasswordController extends Controller
        return redirect('home');
      }
 
-
-
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
 }
