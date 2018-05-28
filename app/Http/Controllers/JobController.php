@@ -75,30 +75,30 @@ class JobController extends Controller
       Storage::move($path,'job_documents/'.$targetPath);
     }
     // dd($targetPath)
-        $company_id = Auth::guard('company')->user()->c_id;
-    // dd($targetPath);
-        $job = Job::create([
-            'name'				=> $request->name,
-            'description'		=> $request->shortDescription,
-            'upload_date'		=> date('Y-m-d'),
-            'finish_date'		=> $request->finishDate,
-            'document'			=> $targetPath,
-            'company_id'		=> $company_id,
-        ]);
+      $company_id = Auth::guard('company')->user()->c_id;
+  // dd($targetPath);
+      $job = Job::create([
+          'name'				=> $request->name,
+          'description'		=> $request->shortDescription,
+          'upload_date'		=> date('Y-m-d'),
+          'finish_date'		=> $request->finishDate,
+          'document'			=> $targetPath,
+          'company_id'		=> $company_id,
+      ]);
 
 
-        $skill_list = json_decode($request->job_list, true);
-        foreach($skill_list as $s_id => $point)
-        {
-            DB::table('job_skills')
-                ->insert([
-                    'job_id'	=>	$job->id,
-                    'skill_id'	=>	$s_id,
-                    'point'		=>	$point,
-                ]);
-        }
+      $skill_list = json_decode($request->job_list, true);
+      foreach($skill_list as $s_id => $point)
+      {
+          DB::table('job_skills')
+              ->insert([
+                  'job_id'	=>	$job->id,
+                  'skill_id'	=>	$s_id,
+                  'point'		=>	$point,
+              ]);
+      }
 
-        return redirect('job/detail/'.$job->id);
+      return redirect('job/detail/'.$job->id);
     }
 
     public function searchQuery(Request $request){
@@ -258,15 +258,39 @@ class JobController extends Controller
         ]);
     }
 
-    public function projectList(){
+    public function companyProjectList(){
         $user = Auth::user();
-        if($user->cannot('list', Job::class))
+
+        if($user->cannot('companyListJob', Job::class))
             return redirect('/home');
-        $jobs = Job::where('company_id',Auth::guard('company')->user()->c_id)->get();
+
+        $jobs = Job::where('company_id', $user->c_id)->get();
         return view('job.project-list', compact('jobs'));
     }
 
-    public function projectListTake($id){
+    public function memberProjectList(){
+        $user = Auth::user();
+
+        if($user->cannot('memberListJob', Job::class))
+            return redirect('/home');
+
+        $jobs = DB::table('jobs_taken')
+            ->select('*')
+            ->where('worker_email', $user->email)
+            ->join('jobs','jobs.id','=','jobs_taken.job_id')->get();
+
+        foreach ($jobs as $job)
+        {
+            if($job->last_submit_time != null)
+            {
+                $job->submission_path = asset('job_submissions').'/'.$job->submission_path;
+            }
+        }
+
+        return view('members.project-list', compact('jobs'));
+    }
+
+    public function projectAdmin($id){
       $lists = DB::table('jobs_taken')->select('*')
             ->join('members','members.email','=','jobs_taken.worker_email')
             ->where('job_id','=',$id)
@@ -274,15 +298,6 @@ class JobController extends Controller
             ->get();
       return view('job.project-list-detail', compact('lists'))->with(['job_id' => $id]);
     }
-
-    //not used
-    // public function updateRank(Request $request){
-    //   $ranks = json_decode($request->data_send,true)['data'];
-    //   foreach ($ranks as $key) {
-    //     var_dump($key);
-    //   }
-    //
-    // }
 
     public function updateComment(Request $request){
       $data = json_decode($request->data_send,true);
