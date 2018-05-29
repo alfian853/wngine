@@ -18,8 +18,8 @@
 @endsection
 
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
+<meta name="company-id" content="{{$company->c_id}}" />
 <div class="container">
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
@@ -36,7 +36,7 @@
             <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
             @endif
             @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', $company))
-                <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modalContactForm3">Add Testimoni</div>
+                <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-testimoni">Add Testimoni</div>
             @endif
         </div>
     </div>
@@ -77,24 +77,24 @@
 </div>
 
 <!--Testimoni Modal-->
-<div class="modal fade" id="modalContactForm3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-testimoni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Write You Testimoni</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button id="dismiss=testimoni" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form">
                     <i class="fa fa-pencil prefix grey-text"></i>
-                    <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
+                    <textarea type="text" id="edit-testimoni" class="md-textarea form-control" rows="4"></textarea>
                     <label data-error="wrong" data-success="right" for="form8">Your message</label>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+                <button id="submit-testimoni" class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
             </div>
         </div>
     </div>
@@ -171,5 +171,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
+
+</script>
 @endsection

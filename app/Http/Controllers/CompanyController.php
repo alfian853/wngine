@@ -132,8 +132,6 @@ class CompanyController extends Controller
             ->take(4)
             ->get();
 
-        //dd($job_list);
-
         return view('company.viewProfile', [
             'company' => $company,
             'jobs' => $job_list,
@@ -164,4 +162,31 @@ class CompanyController extends Controller
 				]);
 			}
 		}
+
+    public function updateTestimony(Request $request){
+      $company = Company::find($request->id);
+      $data = json_decode($request->data_send,true);
+      if(Auth::guard('member')->user()->can('write_testimony', $company)){
+        $query = DB::table('member_companies')->select('*')
+        ->where('member_id','=',Auth::guard('member')->user()->m_id)
+        ->where('company_id','=',$company->c_id);
+        if($query->first() == null){
+          DB::table('member_companies')->insert([
+            'member_id' => Auth::guard('member')->user()->m_id,
+            'company_id' => $company->c_id,
+            'content' => $data['new_testimoni']
+          ]);
+        }
+        else{
+          $query->update([
+            'content' => $data['new_testimoni']
+          ]);
+        }
+      }
+
+      return response()->json([
+          'status' => 'success',
+          'message' => 'Thanks for your testimoni'
+      ]);
+    }
 }

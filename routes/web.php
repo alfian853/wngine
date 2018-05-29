@@ -21,6 +21,7 @@ Route::group(['middleware' => 'authUser:member'], function() {
   Route::get('member/profile','MemberController@showProfile')->name('member.profile');
   Route::get('member/job/list','JobController@memberProjectList')->name('member.job.list');
   Route::post('member/job/submit/{id}','JobController@submitJob')->name('member.job.submit');
+  Route::post('member/job/add_company_testimony/{id}','CompanyController@updateTestimony');
 });
 Route::group(['middleware' => 'authUser:company'], function() {
   Route::get('company/profile', 'CompanyController@showProfile')->name('company.profile');
