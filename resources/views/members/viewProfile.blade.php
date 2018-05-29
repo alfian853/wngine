@@ -6,8 +6,8 @@
   @parent
   <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
-  <script src="{{ asset('js/profile.js') }}"></script>
   <script src="{{asset('js/dropzone.js')}}"></script>
+  <script src="{{ asset('js/profile.js') }}"></script>
   <style>
     #dropzone{
       margin-left: 5%;
