@@ -34,6 +34,7 @@
             @if($own_profile && Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
             <div class="btn btn-danger" style="margin:5px 2px;" >Posting Job</div>
             <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
+            <a href="" class="btn btn-success" style="margin: 5px 2px;" >Change Password</a>
             @endif
             @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', $company))
                 <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modal-testimoni">Add Testimoni</div>

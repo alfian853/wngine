@@ -41,6 +41,7 @@
       @if($own_profile)
         <div class="btn btn-success" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-quote">Edit Quotes</div>
         <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
+        <a href="" class="btn btn-danger" style="margin: 5px 2px;" >Change Password</a>
       @endif
         <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm">Add Testimoni</div>
     </div>
