@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Illuminate\Support\Facades\Hash;
 class ChangePasswordEmailController extends Controller
 {
     /*
@@ -78,12 +79,22 @@ class ChangePasswordEmailController extends Controller
         //    'new_password' => 'confirmed'
         //]);
 
-        dd($request->user());
+        //dd($request->user());
         
-        $new_email = $request->new_email;
+        //$new_email = $request->new_email;
         $old_password = $request->old_password;
         $new_password = $request->new_password;
 
         //if(!empty($new_email));
+        if(!Hash::check('alfian', $request->user()->password))
+            return Redirect::back()->withErrors([
+                'old_password' => 'Old password doesn\'t match',
+            ]);
+
+        $request->user()->fill([
+            'password' => Hash::make($new_password),
+        ])->save();
+
+        dd('password changed');
     }
 }
