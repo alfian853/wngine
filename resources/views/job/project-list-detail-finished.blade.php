@@ -86,6 +86,9 @@
                     @case(3)
                       <p value="{{$list->email}}" class="text-success" >Not viewed yet</p>
                       @break
+                    @case(4)
+                      <p value="{{$list->email}}" class="text-success" >Paid</p>
+                      @break
                   @endswitch
               </td>
               <td height="50">{{$list->last_submit_time}}</td>
@@ -103,9 +106,12 @@
                   @case(3)
                     <a style="color:white;" value="{{$list->email}}" class="btn btn-success btn-sm" onclick="getDownloadUrl('{{$list->email}}')">download</a>
                     @break
+                  @case(4)
+                  <a href="{{asset('job_submissions')}}/{{$list->submission_path}}" class="btn btn-success btn-sm" target="_blank">download</a>
+                    @break
                 @endswitch
                 <a style="color:white;background-color:rgb(255, 114, 0)"
-                value="{{$list->email}}" class="btn btn-sm" onclick="setId('{{$list->m_id}}')"
+                value="{{$list->email}}" class="btn btn-sm" onclick="setData('{{$list->m_id}}','{{$list->email}}')"
                 data-toggle="modal" data-target="#modal-pay">Pay</a>
               </td>
             </span>

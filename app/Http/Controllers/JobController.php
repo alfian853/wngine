@@ -20,6 +20,7 @@ class JobController extends Controller
   1 = sudah di cek
   2 = ada update lagi
   3 = sudah submit, belum di cek
+  4 = udah dibayar
   dimunculkan di list project dengan order descending
 */
 
@@ -398,10 +399,7 @@ class JobController extends Controller
       $data = json_decode($request->data_send,true);
       //validasi request vs data di table, poin request <= data di table
       $job_skills = DB::table('job_skills')->select('*')->where('job_id','=',$request->id)->get();
-      // dd($data);
       foreach ($job_skills as $skill) {
-        // dd((int)$data['skill_list'][$skill->skill_id]);
-        // dd($skill->point);
         if(array_key_exists((string)$skill->skill_id, $data['skill_list']) ){
           if((int)$data['skill_list'][$skill->skill_id] > $skill->point ){
             Session::flash('alert','Invalid request');
@@ -411,6 +409,16 @@ class JobController extends Controller
         }
       }
       $total = 0;
+      $check = DB::table('jobs_taken')
+      ->where('job_id','=',$request->id)
+      ->where('worker_email','=',$data['worker_email']);
+      if($check->first() == null){
+        Session::flash('alert','Invalid request');
+        Session::flash('alert-type','failed');
+        return redirect(route('home'));
+      }
+      $check->update(['status' => 4]);
+
       foreach ($data['skill_list'] as $key => $value) {
         DB::table('job_skills')
         ->where('job_id','=',$request->id)
@@ -435,7 +443,7 @@ class JobController extends Controller
 
       DB::table('members')->where('m_id','=',$data['worker_id'])
       ->increment('claimable_point',$total);
-      
+
 
 
     }

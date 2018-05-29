@@ -1,9 +1,11 @@
 var items={};
 var total_pay = 0;
 var selected_id = null;
+var selected_email = null;
 
-function setId(userId){
+function setData(userId,userEmail){
   selected_id = userId;
+  selected_email = userEmail;
 }
 
 function remove(id){
@@ -60,7 +62,11 @@ $(document).ready(function() {
     $.each( items, function( key, value ) {
       skill_list[ value[0] ] = value[1];
     });
-    var data_send = JSON.stringify({"worker_id" : selected_id,skill_list});
+    var data_send = JSON.stringify({
+      "worker_id" : selected_id,
+      "worker_email" : selected_email,
+      skill_list
+    });
     console.log(data_send);
     $('input[name="data_send"]').val(data_send);
   });

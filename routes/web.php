@@ -52,18 +52,10 @@ Route::group(['middleware' => 'authUser:company'], function() {
 
 	// Authentication Routes
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-<<<<<<< Updated upstream
-    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    Route::post('login', 'Auth\LoginController@doLogin');
-    Route::get('password_reset', 'Auth\ForgotPasswordController@showForm')->name('password_reset');
-    Route::post('password_reset', 'Auth\ForgotPasswordController@resetPass');
-    Route::get('password_change', 'Auth\ChangePasswordEmailController@doChange')->name('password_change');
-=======
   Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
   Route::post('login', 'Auth\LoginController@doLogin');
   Route::get('password_reset', 'Auth\ForgotPasswordController@showForm')->name('password_reset');
   Route::post('password_reset', 'Auth\ForgotPasswordController@resetPass');
->>>>>>> Stashed changes
 
 	// Job
   Route::post('job/edit_comment','JobController@updateComment');
