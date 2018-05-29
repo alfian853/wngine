@@ -53,12 +53,12 @@
             </button>
             </h5>
         </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
             <div class="card-body" style="text-align:center">
-                {{$user->email}}<br>
-                {{$user->m_telp}}<br>
-                {{$user->m_borndate}}<br>
-                {{$user->m_address}}<br>
+                Email : {{$user->email}}<br>
+                Telephone : {{$user->m_telp}}<br>
+                Birthday : {{$user->m_borndate}}<br>
+                Address : {{$user->m_address}}<br>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             </button>
             </h5>
         </div>
-        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour">
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
             <div class="card-body" style="text-align:center">
                 @php $max=count($user->skills_name) @endphp
                 @for($i=0;$i<$max ; $i++)
@@ -101,7 +101,7 @@
             </button>
             </h5>
         </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
             <div class="card-body" style="text-align:center">
                 Scheduling App --- PrimeOne Tech<br>
                 Web --- PrimeOne Tech<br>
@@ -116,7 +116,7 @@
             </button>
             </h5>
         </div>
-        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
             <div class="card-body" style="text-align:center">
                 Script for marker --- PrimeOne Tech<br>
                 Absen by Android --- PrimeOne Tech<br>

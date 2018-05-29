@@ -47,12 +47,16 @@
 
     <div class="row">
         @foreach($jobs as $j)
-        <div class="card col-lg-3" >
-            <img class="card-img-top" src="{{ asset('assets/job_icon.png') }}" style="border-radius:50%;" alt="Card image cap">
+        <div class="card col-lg-3" style="padding:20px;">
+            <img class="card-img-top h-50" src="{{ asset('assets/job_icon.png') }}" style="border-radius:50%;" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">{{ $j->name }}</h5>
-                <p class="card-text">{{ $j->description }}</p>
-                <a href="{{ route('job.detail', $j->id) }}" class="btn btn-primary">Go somewhere</a>
+                <div class="col-lg-12" style="height:85%;">
+                    <h5 class="card-title" style="text-align:center">{{ $j->name }}</h5>
+                    <p class="card-text" style="text-align:left">{{ $j->description }}</p>
+                </div>
+                <div class="row" style="height:15%;float:right">
+                    <a href="{{ route('job.detail', $j->id) }}" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
         </div>
         @endforeach
