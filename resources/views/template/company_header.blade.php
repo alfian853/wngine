@@ -1,4 +1,4 @@
-<div class="pos-f-t">
+<div class="pos-f-t fixed-top">
   <div class="collapse" id="navbarToggleExternalContent">
   <nav class="navbar borderYtoX">
     <ul class="navbar-nav ml-auto">
