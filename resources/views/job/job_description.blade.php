@@ -70,7 +70,9 @@
                 </h5>
             </div>
             <div id="collapseOne" style="padding-left:20px;" class="collapse" aria-labelledby="headingOne">
-                {{ $data['description'] }}
+                <p id="jobDesc">
+                  {{ $data['description'] }}
+                </p>
             </div>
         </div>
     <hr>
