@@ -22,6 +22,7 @@ class CreateCompany extends Migration
       	    $table->string('c_telp',15);
             $table->string('c_image',100)->nullable(true);
             $table->string('remember_token',60);
+            $table->integer('c_poin')->default(0);
         });
     }
 

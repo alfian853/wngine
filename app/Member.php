@@ -11,7 +11,7 @@ class Member extends Authenticable
 
 	protected $fillable = [
         'm_name', 'm_borndate', 'm_address',
-		'password', 'email', 'm_telp','query'
+		'password', 'email', 'm_telp','quote'
     ];
 
 	protected $guarded = ['m_borndate'];
