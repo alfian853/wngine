@@ -5,18 +5,16 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Session;
 use Illuminate\Support\Facades\Hash;
+
 class ChangePasswordEmailController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Login Controller
+    | Change Password Email Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
+    | This controller handles user's request to change their password
     |
     */
     /**
@@ -58,13 +56,9 @@ class ChangePasswordEmailController extends Controller
             'new_password' => 'required|confirmed',
         ]);
 
-        //dd($request->user());
-        
-        //$new_email = $request->new_email;
         $old_password = $request->old_password;
         $new_password = $request->new_password;
 
-        //if(!empty($new_email));
         if(!Hash::check($old_password, $request->user()->password))
             return Redirect::back()->withErrors([
                 'old_password' => 'Old password doesn\'t match',
