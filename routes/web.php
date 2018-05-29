@@ -44,12 +44,13 @@ Route::group(['middleware' => 'authUser:member'], function() {
 	// Home
 	Route::get('home', 'HomeController@index')->name('home');
 
-	// Authentication Routes...
+	// Authentication Routes
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@doLogin');
     Route::get('password_reset', 'Auth\ForgotPasswordController@showForm')->name('password_reset');
     Route::post('password_reset', 'Auth\ForgotPasswordController@resetPass');
+    Route:get('password_change', 'Auth/ChangePasswordEmailController')->name('password_change');
 
 	// Job
     Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
