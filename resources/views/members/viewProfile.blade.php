@@ -17,8 +17,10 @@
 @endsection
 
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<input type="hidden" name="username" value="{{$user->m_name}}"/>
+@if($own_profile)
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <input type="hidden" name="username" value="{{$user->m_name}}"/>
+@endif
 
 <div class="col-lg-12" style="margin-top:10px;">
     @if($user->m_image == "")
@@ -28,14 +30,18 @@
     @endif
     <div class="row d-flex justify-content-center">
         <h3 id="username">{{$user->m_name}}</h3>
-        <a href="#" data-toggle="modal" data-target="#modal-edit-name" class="fa fa-pencil prefix grey-text"></a>
+        @if($own_profile)
+          <a href="#" data-toggle="modal" data-target="#modal-edit-name" class="fa fa-pencil prefix grey-text"></a>
+        @endif
     </div>
     <div class="row d-flex justify-content-center">
         <h6 style="font-style:italic" id="id-quote">{{$user->quote}}</h6>
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
+      @if($own_profile)
         <div class="btn btn-success" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-quote">Edit Quotes</div>
         <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
+      @endif
         <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm">Add Testimoni</div>
     </div>
     <div class="col-lg-12 d-flex justify-content-center">

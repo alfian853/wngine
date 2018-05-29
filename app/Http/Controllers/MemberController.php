@@ -118,14 +118,17 @@ class MemberController extends Controller
     public function showProfile()
     {
       return view('members.viewProfile')->with([
-				'user' => self::getMemberData(Auth::guard('member')->user()->m_name)
+				'user' => self::getMemberData(Auth::guard('member')->user()->m_name),
+				'own_profile' => true
 			]);
     }
 
 		public function showProfileById($nick)
     {
-			dd(self::getMemberData($nick));
-      return view('members.viewProfile');
+      return view('members.viewProfile')->with([
+				'user' => self::getMemberData(Auth::guard('member')->user()->m_name),
+				'own_profile' => false
+			]);;
     }
 
 		public function updateProfilPict(Request $request){

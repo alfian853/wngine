@@ -44,9 +44,9 @@
                 </h5>
             </div>
             <div id="collapseFour" style="padding-left:20px;" class="collapse" aria-labelledby="headingFour">
-                @foreach ($data['skills'] as $v => $p)
-					<div> {{ $v }} {{ $p }} </div>
-				@endforeach
+              @foreach ($data['skills'] as $v => $p)
+          			<div> {{ $v }} {{ $p }} </div>
+  		        @endforeach
             </div>
         </div>
         <div class="card row">

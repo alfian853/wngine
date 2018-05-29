@@ -20,8 +20,8 @@ class jobTaken extends Migration
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->integer('status')->unsigned();
             $table->string('comment',100);
-            $table->string('submission_path',128);
-            $table->dateTime('last_submit_time');
+            $table->string('submission_path',128)->nullable();
+            $table->dateTime('last_submit_time')->nullable();
         });
     }
 
