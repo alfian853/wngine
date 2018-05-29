@@ -34,11 +34,23 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * Show the reset/forgot password request form
+     *
+     * @return view
+     */
     public function showForm()
     {
         return view('password_reset');
     }
 
+    /**
+     * Handle email checking for reset password.
+     * Determine which email belongs to what role.
+     *
+     * @param Illuminate\Http\Request $request
+     * @return view
+     */
     public function resetPass(Request $request)
     {
         $email = $request->email;
@@ -62,7 +74,14 @@ class ForgotPasswordController extends Controller
         }
     }
 
-    protected function doPasswordRequest(User $user, $role){
+    /**
+     * Handle sending token to user requesting password reset.
+     *
+     * @param Illuminate\Foundation\Auth\User  $user
+     * @param string  $role
+     * @return void
+     */
+    protected function doPasswordRequest(User $user, string $role){
         $table_name = array(
             'company' => 'company_rpass',
             'member' => 'member_rpass',
@@ -101,6 +120,12 @@ class ForgotPasswordController extends Controller
         session()->flash('alert-type','success');
     }
 
+    /**
+     * Show reset password form after token confirmation (Company)
+     *
+     * @param @param Illuminate\Http\Request $request
+     * @return view
+     */
      public function memberNewPwdForm(Request $request){
        $userRow = DB::table('member_rpass')->where('token',$request->token)->take(1)->get();
        if(count($userRow) == 0){
@@ -113,6 +138,12 @@ class ForgotPasswordController extends Controller
        }
      }
 
+    /**
+     * Show reset password form after token confirmation (Company)
+     *
+     * @param @param Illuminate\Http\Request $request
+     * @return view
+     */
      public function companyNewPwdForm(Request $request){
        $userRow = DB::table('company_rpass')->where('token',$request->token)->take(1)->get();
        if(count($userRow) == 0){
@@ -125,6 +156,12 @@ class ForgotPasswordController extends Controller
        }
      }
 
+     /**
+      * Reseting password for member.
+      *
+      * @param @param Illuminate\Http\Request $request
+      * @return view
+      */
      public function doMemberPwdReset(Request $request){
         Member::where('email',$request->email)->update(['password' => bcrypt($request->password_1)]);
         DB::table('member_rpass')->where('email',$request->email)->delete();
@@ -133,7 +170,12 @@ class ForgotPasswordController extends Controller
         return redirect('home');
      }
 
-
+     /**
+      * Reseting password for company.
+      *
+      * @param @param Illuminate\Http\Request $request
+      * @return view
+      */
      public function doCompanyPwdReset(Request $request){
        Company::where('email',$request->email)->update(['password' => bcrypt($request->password_1)]);
        DB::table('company_rpass')->where('email',$request->email)->delete();
