@@ -15,6 +15,9 @@
   <div class="col-lg-12" style="height:auto">
     <h1 style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Project List</h1>
   </div>
+  <div class="col-lg-12 d-flex justify-content-center">
+    <a href="{{ route('job.postingJob') }}" class="btn btn-primary ">Create Job</a>
+  </div>
   <div class="" style="padding: 5%">
     <table id="project-list" class="table table-condensed">
       <thead>
