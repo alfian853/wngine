@@ -86,7 +86,7 @@ class ChangePasswordEmailController extends Controller
         $new_password = $request->new_password;
 
         //if(!empty($new_email));
-        if(!Hash::check('alfian', $request->user()->password))
+        if(!Hash::check($old_password, $request->user()->password))
             return Redirect::back()->withErrors([
                 'old_password' => 'Old password doesn\'t match',
             ]);
