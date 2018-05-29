@@ -119,7 +119,8 @@ class MemberController extends Controller
     {
       return view('members.viewProfile')->with([
 				'user' => self::getMemberData(Auth::guard('member')->user()->m_id),
-				'own_profile' => true
+				'own_profile' => true,
+				'canTest' => false
 			]);
     }
 
