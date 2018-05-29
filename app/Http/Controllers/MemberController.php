@@ -95,7 +95,7 @@ class MemberController extends Controller
         return redirect('/tasks/'.$task->id);
     }
 
-		function getMemberData($nickname){
+		function getMemberData($id){
 			$user = DB::table('members')
 			->select(
 				'members.*',
@@ -104,31 +104,47 @@ class MemberController extends Controller
 				DB::raw('GROUP_CONCAT(skills.id) as skill_id'),
 				DB::raw('GROUP_CONCAT(member_points.point) as skill_point')
 			)
-			->where('m_name','=',$nickname)
+			->where('m_id','=',$id)
 			->join('member_points','member_points.member_id','=','members.m_id')
 			->join('skills','skills.id','=','member_points.skill_id')
 			->first();
 			$user->skills_name = preg_split("/,/",$user->skill_name);
 			$user->skills_point = preg_split("/,/",$user->skill_point);
 			$user->skills_id = preg_split("/,/",$user->skill_id);
-			// dd(Auth::guard('member')->user()->m_name);
-			//dd($user);
+
 			return $user;
 		}
 
     public function showProfile()
     {
       return view('members.viewProfile')->with([
-				'user' => self::getMemberData(Auth::guard('member')->user()->m_name),
+				'user' => self::getMemberData(Auth::guard('member')->user()->m_id),
 				'own_profile' => true
 			]);
     }
 
-		public function showProfileById($nick)
+		public function canGiveTestimoni($member){
+			$job_done_at_company = DB::table('jobs_taken')
+					->join('jobs', 'jobs.id', '=', 'jobs_taken.job_id')
+					->where('jobs_taken.worker_email', '=', $member->email)
+					->where('jobs_taken.status', '=', '4')
+					->where('jobs.company_id', '=', Auth::guard('company')->user()->c_id)
+					->first();
+				return ($job_done_at_company != null);
+
+		}
+
+		public function showProfileById($id)
     {
+			$canTest = false;
+			$member = self::getMemberData($id);
+			if(Auth::guard('company')->check()){
+				$canTest = self::canGiveTestimoni($member);
+			}
       return view('members.viewProfile')->with([
-				'user' => self::getMemberData(Auth::guard('member')->user()->m_name),
-				'own_profile' => false
+				'user' => $member,
+				'own_profile' => false,
+				'canTest' => $canTest
 			]);;
     }
 
@@ -192,6 +208,33 @@ class MemberController extends Controller
 					'message' => 'something wrong'
 				]);
 			}
+		}
+
+		public function updateTestimony(Request $request){
+			$member = Member::find($request->id);
+			$data = json_decode($request->data_send,true);
+			if(Auth::guard('company')->check() && self::canGiveTestimoni($member)){
+				$query = DB::table('company_members')->select('*')
+				->where('company_id','=',Auth::guard('company')->user()->c_id)
+				->where('member_id','=',$member->m_id);
+				if($query->first() == null){
+					DB::table('company_members')->insert([
+						'company_id' => Auth::guard('company')->user()->c_id,
+						'member_id' => $member->m_id,
+						'content' => $data['new_testimoni']
+					]);
+				}
+				else{
+					$query->update([
+						'content' => $data['new_testimoni']
+					]);
+				}
+			}
+
+			return response()->json([
+					'status' => 'success',
+					'message' => 'Thanks for your testimoni'
+			]);
 		}
 
 }

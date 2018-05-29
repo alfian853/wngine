@@ -17,10 +17,8 @@
 @endsection
 
 @section('content')
-@if($own_profile)
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <input type="hidden" name="username" value="{{$user->m_name}}"/>
-@endif
+  <meta name="member-id" content="{{$user->m_id}}"/>
 
 <div class="col-lg-12" style="margin-top:10px;">
     @if($user->m_image == "")
@@ -43,7 +41,9 @@
         <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
         <a href="{{ route('password_change') }}" class="btn btn-danger" style="margin: 5px 2px;" >Change Password</a>
       @endif
-        <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm">Add Testimoni</div>
+      @if($canTest)
+        <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-testimoni">Add Testimoni</div>
+      @endif
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
         <div class="col-lg-1" style="font-weight:bold;background:grey;border-radius:10px 0 0 10px;text-align:center;width:auto;height:40px;margin-top:10px;padding:6px">Point</div>
@@ -198,30 +198,29 @@
 
 
 <!--Testimoni Modal-->
-<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-testimoni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Write You Testimoni</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button id="dismiss=testimoni" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="">
             <div class="modal-body mx-3">
                 <div class="md-form">
                     <i class="fa fa-pencil prefix grey-text"></i>
-                    <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
+                    <textarea type="text" id="edit-testimoni" class="md-textarea form-control" rows="4"></textarea>
                     <label data-error="wrong" data-success="right" for="form8">Your message</label>
                 </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button id="submit-testimoni" class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!--Change Quote Modal-->
 <div class="modal fade" id="modal-quote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

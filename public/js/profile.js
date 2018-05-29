@@ -67,6 +67,22 @@ $(document).ready(function(){
       });
 
     });
+    $('#submit-testimoni').click(function(){
+      data_send = JSON.stringify({"new_testimoni" : $('#edit-testimoni').val()});
+      console.log($('meta[name="member-id"]').attr('content'));
+      $.ajax({
+        url: "/company/job/add_member_testimony/"+$('meta[name="member-id"]').attr('content'),
+        type: 'POST',
+        data: {data_send},
+        success: function (response) {
+          alert(response['message']);
+          $('#dismiss-testimoni').trigger('click');
+        }
+      }).fail(function (xhr, error, thrownError) {
+          alert('something wrong :(');
+      });
+
+    });
 
 
 });
