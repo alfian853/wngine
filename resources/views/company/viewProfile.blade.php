@@ -35,7 +35,7 @@
             <a href="{{ route('job.postingJob') }}" class="btn btn-danger" style="margin:5px 2px;">Posting Job</a>
             <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
             @endif
-            @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', \App\Company::class))
+            @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', $company))
                 <div class="btn btn-warning" style="margin-left: 2px;" data-toggle="modal" data-target="#modalContactForm3">Add Testimoni</div>
             @endif
         </div>
