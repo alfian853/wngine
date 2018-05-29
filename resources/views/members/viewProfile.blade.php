@@ -31,10 +31,10 @@
         <a href="#" data-toggle="modal" data-target="#modal-edit-name" class="fa fa-pencil prefix grey-text"></a>
     </div>
     <div class="row d-flex justify-content-center">
-        <h6 style="font-style:italic">"God in the first place"</h6>
+        <h6 style="font-style:italic" id="id-quote">{{$user->quote}}</h6>
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
-        <div class="btn btn-success" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm2">Edit Quotes</div>
+        <div class="btn btn-success" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-quote">Edit Quotes</div>
         <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
         <div class="btn btn-primary" style="margin: 5px 2px;" data-toggle="modal" data-target="#modalContactForm">Add Testimoni</div>
     </div>
@@ -215,24 +215,24 @@
 </div>
 
 <!--Change Quote Modal-->
-<div class="modal fade" id="modalContactForm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-quote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Insert Your Quote</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button id="dismiss-quote" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form">
                     <i class="fa fa-pencil prefix grey-text"></i>
-                    <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
+                    <textarea type="text" id="edit-quote" class="md-textarea form-control" rows="4"></textarea>
                     <label data-error="wrong" data-success="right" for="form8">Your Quote</label>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-unique">Edit<i class="fa fa-paper-plane-o ml-1"></i></button>
+                <button id="submit-quote" class="btn btn-unique">Edit<i class="fa fa-paper-plane-o ml-1"></i></button>
             </div>
         </div>
     </div>

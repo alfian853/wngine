@@ -62,8 +62,8 @@
       </div>
       <div id="time-{{$index++}}"
       value="{{strtotime($job->finish_date)-strtotime(date('Y-m-d'))}}"
-      class="col-lg-2" style="font-size:15px;text-align:center;background:grey;border-radius:0 0 20px 20px;">
-        00:00:00
+      class="col-lg-3" style="font-size:15px;text-align:center;background:grey;border-radius:0 0 20px 20px;">
+        calculate...
       </div>
     </div>
 @endforeach

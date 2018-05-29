@@ -46,4 +46,27 @@ $(document).ready(function(){
 
     });
 
+
+    $('#submit-quote').click(function(){
+      data_send = JSON.stringify({"new_quote" : $('#edit-quote').val()});
+      console.log(data_send);
+      $.ajax({
+        url: "change_quote/",
+        type: 'POST',
+        data: {data_send},
+        success: function (response) {
+          if(response['status'] == 'success'){
+           $('#id-quote').text($('#edit-quote').val());
+          }
+          alert(response['message']);
+          $('#dismiss-quote').trigger('click');
+
+        }
+      }).fail(function (xhr, error, thrownError) {
+          alert('something wrong :(');
+      });
+
+    });
+
+
 });

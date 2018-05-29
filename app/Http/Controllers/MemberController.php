@@ -171,4 +171,23 @@ class MemberController extends Controller
 			}
 		}
 
+		public function updateQuote(Request $request){
+			$data = json_decode($request->data_send,true);
+			if($data['new_quote'] != ""){
+				DB::table('members')
+				->where('m_id','=',Auth::guard('member')->user()->m_id)
+				->update(['quote' => $data['new_quote'] ]);
+				return response()->json([
+					'status' => 'success',
+					'message' => 'success change quote'
+				]);
+			}
+			else{
+				return response()->json([
+					'status' => 'failed',
+					'message' => 'something wrong'
+				]);
+			}
+		}
+
 }

@@ -14,16 +14,23 @@ Route::get('/', function(){
     return redirect('/home');
 });
 
+Route::group(['middleware' => 'authUser:member'], function() {
+  Route::get('/dummy',function(){
+      return view('dummy');
+  });
+  Route::post('member/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
+  Route::post('member/change_name','MemberController@updateName')->name('post.member.changeName');
+  Route::post('member/change_quote','MemberController@updateQuote');
+  Route::get('member/profile','MemberController@showProfile')->name('member.profile');
+});
+
     // Member
     Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
     Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');
 	Route::get('member/register', 'MemberController@register')->name('member.register');
 	Route::get('member/password/reset_confirm','Auth\ForgotPasswordController@memberNewPwdForm')->name('member.password.reset');
 	Route::post('member/password/reset_confirm','Auth\ForgotPasswordController@doMemberPwdReset')->name('post.member.password.reset');
-    Route::get('member/profile','MemberController@showProfile')->name('member.profile');
 	Route::get('member/profile/{nick}','MemberController@showProfileById')->name('member.profilebyid');
-    Route::post('member/change_profile/{nick}','MemberController@updateProfilPict')->name('post.member.changePict');
-    Route::post('member/change_name','MemberController@updateName')->name('post.member.changeName');
 
 	// Company
 	Route::get('company/register','CompanyController@register')->name('company.register');
@@ -61,11 +68,6 @@ Route::get('/', function(){
 
 // });
 //untuk test view apapun
-Route::group(['middleware' => 'auth:member'], function() {
-  Route::get('/dummy',function(){
-      return view('dummy');
-  });
-});
 
 // Errors
 Route::get('/404', function() {
