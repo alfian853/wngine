@@ -322,7 +322,6 @@ class JobController extends Controller
         ->where('job_id','=',$id)
         ->join('skills','skills.id','=','skill_id')
         ->get();
-        // dd($skills);
         return view('job.project-list-detail-finished', compact('lists'))
         ->with(['job_id' => $id,'skills' => $skills]);
       }
@@ -393,6 +392,52 @@ class JobController extends Controller
           'status' => 'success',
           'url' => asset('job_submissions').'/'.$res->submission_path
       ]);
+    }
+
+    public function payWorker(Request $request){
+      $data = json_decode($request->data_send,true);
+      //validasi request vs data di table, poin request <= data di table
+      $job_skills = DB::table('job_skills')->select('*')->where('job_id','=',$request->id)->get();
+      // dd($data);
+      foreach ($job_skills as $skill) {
+        // dd((int)$data['skill_list'][$skill->skill_id]);
+        // dd($skill->point);
+        if(array_key_exists((string)$skill->skill_id, $data['skill_list']) ){
+          if((int)$data['skill_list'][$skill->skill_id] > $skill->point ){
+            Session::flash('alert','Invalid request');
+            Session::flash('alert-type','failed');
+            return redirect(route('home'));
+          }
+        }
+      }
+      $total = 0;
+      foreach ($data['skill_list'] as $key => $value) {
+        DB::table('job_skills')
+        ->where('job_id','=',$request->id)
+        ->where('skill_id','=',$key)
+        ->decrement('point',(int)$value);
+        $query = DB::table('member_points')
+        ->where('member_id','=',$data['worker_id'])
+        ->where('skill_id','=',$key);
+        if($query->first() == null){
+          DB::table('member_points')
+          ->insert([
+            'member_id' => $data['worker_id'],
+            'skill_id' => $key,
+            'point' => (int)$value
+          ]);
+        }
+        else{
+          $query->increment('point',(int)$value);
+        }
+        $total+=(int)$value;
+      }
+
+      DB::table('members')->where('m_id','=',$data['worker_id'])
+      ->increment('claimable_point',$total);
+      
+
+
     }
 
 }

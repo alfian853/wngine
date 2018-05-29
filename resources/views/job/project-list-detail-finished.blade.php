@@ -6,6 +6,7 @@
   @parent
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="{{ asset('js/job_admin.js') }}"></script>
+  <script src="{{ asset('js/finished_project.js') }}"></script>
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
   <style>
@@ -33,9 +34,12 @@
 
 @section('content')
   <h1>finished</h1>
+  @php $total=0; @endphp
   @foreach ($skills as $skill)
-    {{$skill->point}}<br />
+    {{-- @php $total+=$skill->point;@endphp --}}
+    {{$skill->name}} : {{$skill->point}}
   @endforeach
+  <h1>total point: {{$total}}</h1>
 <div class="container-fluid">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="job-id" content="{{$job_id}}">
@@ -101,7 +105,7 @@
                     @break
                 @endswitch
                 <a style="color:white;background-color:rgb(255, 114, 0)"
-                value="{{$list->email}}" class="btn btn-sm" onclick="pay('{{$list->email}}')"
+                value="{{$list->email}}" class="btn btn-sm" onclick="setId('{{$list->m_id}}')"
                 data-toggle="modal" data-target="#modal-pay">Pay</a>
               </td>
             </span>
@@ -137,27 +141,62 @@
 
   <div class="modal" id="modal-pay">
     <div class="modal-dialog" style="width: 500px">
-      <div class="modal-content">
-
+      <form action="{{route('company.job.pay',['id' => $job_id])}}" method="post" class="modal-content">
+        {{csrf_field()}}
         <!-- Modal Header -->
+        <input type="hidden" name="data_send" value="ini json"/>
         <div class="modal-header">
           <h4 class="modal-title" style="">Pay</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <div class="modal-body">
-          
-
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="row d-flex justify-content-center">
+                <div class="col-sm-5">
+                  <div class="col-sm-12">
+                    <p>Skill</p>
+                  </div>
+                  <div class="col-sm-12">
+                    <select id="input-skill" type="text" style="width:100%;text-align:center" placeholder="skill" class="js-example-basic-single d-flex justify-content-center">
+                      @foreach($skills as $skill)
+                        <option value="{{ $skill->id }}" max="{{$skill->point}}"> {{ $skill->name }} </option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="col-sm-12">
+                    <p>Point</p>
+                  </div>
+                  <div class="col-sm-12">
+                    <input id="input-point" style="width:70px" type="number" name="point" placeholder="Point" value="50" class="form-control"/>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="col-sm-12">
+                    <p>Action</p>
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="button" id="add-skill" value="add"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12" id="skill-list">
+            </div>
+          </div>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
-          <button type="button" class="btn btn-success" id="submit-pay" value="">Pay</button>
+          <h6 id="pay-sum" style="float:left">Total pay : 0 point</h6>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+          <button type="submit" class="btn btn-success" id="submit-pay" value="">Pay</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-
 </div>
 
 @endsection
