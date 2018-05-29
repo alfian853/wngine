@@ -86,7 +86,7 @@
             <input id="input-point" type="number" name="point" placeholder="Point" value="50" class="form-control"/>
           </div>
           <div class="col-sm-3 d-flex justify-content-center">
-            <input type="button" id="add-skill" value="Add"/>
+            <input class="fa fa-plus-square-o" type="button" id="add-skill" value="Add"/>
           </div>
         </div>
         </div>

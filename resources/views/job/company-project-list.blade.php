@@ -18,9 +18,6 @@
       <a href="{{route('job.postingJob')}}" target="_blank" style="color:green;font-size:25px;" class="fa fa-plus-square-o">add project</a>
     </div>
   </div>
-  <div class="col-lg-12 d-flex justify-content-center">
-    <a href="{{ route('job.postingJob') }}" class="btn btn-primary ">Create Job</a>
-  </div>
   <div class="" style="padding: 5%">
     <table id="project-list" class="table table-condensed">
       <thead>
