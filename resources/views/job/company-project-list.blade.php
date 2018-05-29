@@ -14,6 +14,9 @@
 
   <div class="col-lg-12" style="height:auto">
     <h1 style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Project List</h1>
+    <div class="d-flex justify-content-center">
+      <a href="{{route('job.postingJob')}}" target="_blank" style="color:green;font-size:25px;" class="fa fa-plus-square-o">add project</a>
+    </div>
   </div>
   <div class="col-lg-12 d-flex justify-content-center">
     <a href="{{ route('job.postingJob') }}" class="btn btn-primary ">Create Job</a>

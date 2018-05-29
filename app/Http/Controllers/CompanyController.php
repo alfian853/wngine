@@ -115,6 +115,7 @@ class CompanyController extends Controller
         return view('company.viewProfile', [
             'company' => $company,
             'jobs' => $job_list,
+            'own_profile' => true
         ]);
     }
 
@@ -136,6 +137,7 @@ class CompanyController extends Controller
         return view('company.viewProfile', [
             'company' => $company,
             'jobs' => $job_list,
+            'own_profile' => false
         ]);
     }
 

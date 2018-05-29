@@ -39,7 +39,11 @@
           <td>{{$job->finish_date}}</td>
           <td class="container" style="max-width: 10%;white-space: nowrap">
             <a style="white-space: nowrap" href="{{route('job.detail',['id' => $job->id])}}" class="btn btn-primary">Detail</a>
-            <a style="white-space: nowrap" target="_black" href="{{$job->submission_path}}" class="btn btn-success">Download Submission</a>
+            @if($job->submission_path != null)
+              <a style="white-space: nowrap" target="_black" href="{{$job->submission_path}}" class="btn btn-success">Download Submission</a>
+            @else
+              <a style="white-space: nowrap" target="_black" href="{{$job->submission_path}}" class="btn btn-danger disabled">Download Submission</a>
+            @endif
           </td>
         </tr>
         @endforeach

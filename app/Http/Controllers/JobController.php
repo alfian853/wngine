@@ -308,8 +308,9 @@ class JobController extends Controller
         foreach ($jobs as $job)
         {
             $job->isFinish = strtotime($job->finish_date) < strtotime(date('Y-m-d'));
+
             if($job->last_submit_time != null)
-            {
+            { 
                 $job->submission_path = asset('job_submissions').'/'.$job->submission_path;
             }
         }
@@ -460,8 +461,6 @@ class JobController extends Controller
 
       DB::table('members')->where('m_id','=',$data['worker_id'])
       ->increment('claimable_point',$total);
-
-
 
     }
 

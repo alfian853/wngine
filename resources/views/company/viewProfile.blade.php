@@ -31,8 +31,8 @@
           <img id="profile-pict" src="{{ asset('company_photo/'.$company->c_image) }}" class= "h-50 rounded img-fluid mx-auto d-block">
         @endif
         <div class="row d-flex justify-content-center">
-            @if(Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
-            <a href="{{ route('job.postingJob') }}" class="btn btn-danger" style="margin:5px 2px;">Posting Job</a>
+            @if($own_profile && Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
+            <div class="btn btn-danger" style="margin:5px 2px;" >Posting Job</div>
             <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
             @endif
             @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', $company))
