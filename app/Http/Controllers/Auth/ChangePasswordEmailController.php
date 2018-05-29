@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 use Illuminate\Support\Facades\Hash;
 class ChangePasswordEmailController extends Controller
@@ -41,43 +42,21 @@ class ChangePasswordEmailController extends Controller
      * @return void
      */
     public function showForm(){
-        //return view('');
+        return view('password_change');
     }
 
     /**
-     * Execute login.
+     * Execute change password
      *
      * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\Request
+     * @return view
      */
-    public function doLogin(Request $request){
-        $guards = ['member' => 'm_name', 'company' => 'c_name'];
-        $credentials = $request->only('email','password');
-
-        foreach($guards as $guard => $name)
-        {
-            if(Auth::guard($guard)->attempt($credentials))
-            {
-                $user = Auth::guard($guard)->user();
-
-                $request->session()->flash('alert', 
-                    'Welcome back to Wngine, '.$user->$name.'!');
-                $request->session()->flash('alert-type', 'success');
-                return redirect(route('home'));
-            }
-        }
-
-        $request->session()->flash('alert', 'Invalid Email/Password');
-        $request->session()->flash('alert-type', 'failed');
-
-        return redirect(route('login'));
-    }
-
     public function doChange(Request $request)
     {
-        //$request->validate([
-        //    'new_password' => 'confirmed'
-        //]);
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
 
         //dd($request->user());
         
@@ -95,6 +74,9 @@ class ChangePasswordEmailController extends Controller
             'password' => Hash::make($new_password),
         ])->save();
 
-        dd('password changed');
+        $request->session()->flash('alert', 'Password successfully reset');
+        $request->session()->flash('alert-type', 'success');
+
+        return redirect(route('home'));
     }
 }

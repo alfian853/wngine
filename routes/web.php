@@ -57,8 +57,8 @@ Route::group(['middleware' => 'authUser:company'], function() {
     Route::post('login', 'Auth\LoginController@doLogin');
     Route::get('password_reset', 'Auth\ForgotPasswordController@showForm')->name('password_reset');
     Route::post('password_reset', 'Auth\ForgotPasswordController@resetPass');
-    Route::get('password_change', 'Auth\ChangePassEmailController@showForm')->name('password_change');
-    Route::post('password_change', 'Auth\ChangePassEmailController@doChange');
+    Route::get('password_change', 'Auth\ChangePasswordEmailController@showForm')->name('password_change');
+    Route::post('password_change', 'Auth\ChangePasswordEmailController@doChange');
 
 	// Job
     Route::post('job/edit_comment','JobController@updateComment');
