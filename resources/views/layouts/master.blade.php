@@ -15,7 +15,7 @@
 
     @show
   </head>
-  <body>
+  <body style="margin-top:56px;">
     @if (Auth::guard('company')->user() != null)
       @include('template.company_header')
     @elseif (Auth::guard('member')->user() != null)

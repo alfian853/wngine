@@ -10,7 +10,7 @@
 @section('content')
 <div class="container">
   <form class="form-horizontal" style="margin-top:10%" role="form" action="{{route('post.member.register')}}" method="post">
-	<h2>Form Registration</h2>
+	<h2 class="col-lg-12 d-flex justify-content-center">Form Registration</h2>
 	<hr>
 	{{ csrf_field() }}
 	<div class="form-group">

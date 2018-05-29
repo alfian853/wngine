@@ -206,16 +206,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="">
             <div class="modal-body mx-3">
                 <div class="md-form">
                     <i class="fa fa-pencil prefix grey-text"></i>
                     <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
                     <label data-error="wrong" data-success="right" for="form8">Your message</label>
                 </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
-            </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
