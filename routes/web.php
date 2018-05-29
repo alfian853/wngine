@@ -28,7 +28,9 @@ Route::group(['middleware' => 'authUser:company'], function() {
   Route::get('company/job/detail/{id}','JobController@projectAdmin')->name('company.job.detail');
   Route::post('company/job/pay/{id}','JobController@payWorker')->name('company.job.pay');
   Route::post('company/change_profile/{id}','CompanyController@updateProfilPict')->name('post.company.changePict');
+  Route::post('job/edit_description/{id}','JobController@editDescription');
 });
+
 
 
 
@@ -67,8 +69,6 @@ Route::group(['middleware' => 'authUser:company'], function() {
 	Route::post('job/create','JobController@postingJob')->name('post.job.postingJob');
 	Route::post('job/take','JobController@takeJob')->name('post.job.take');
   Route::get('job/get_submission_url','JobController@getSubmissionUrl');
-  Route::post('job/edit_description/{id}','JobController@editDescription');
-
 // });
 //untuk test view apapun
 

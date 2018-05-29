@@ -17,7 +17,7 @@ $(document).ready(function(){
             prevFile = file;
         });
         this.on('success',function(file,response){//success get response
-          console.log(response);
+          // console.log(response);
           if(response['status'] == "success"){
             $('#submit-name').text("File name: "+prevFile['upload']['filename']);
             $('#submit-time').text("Last submission: "+response['message']);
@@ -32,22 +32,25 @@ $(document).ready(function(){
 
   $('#save-description').click(function(event){
 
-    console.log($('#edit-description').text());
-    // $.ajax({
-    //   url: "job/edit_description/"+$('#job-id').val(),
-    //   type: 'POST',
-    //   data: {},
-    //   success: function (response) {
-    //      if(response['status'] == 'success'){
-    //         $("button[data-target='#modal-take']").slideUp();
-    //         $("#modal-take").hide();
-    //         $(".modal-backdrop").hide();
-    //      }
-    //      alert(response['message']);
-    //   }
-    // }).fail(function (xhr, error, thrownError) {
-    //     alert('something wrong :(');
-    // });
+    var data_send = JSON.stringify({
+            "new_description": $('#edit-description').val()
+    });
+    // console.log();
+    $.ajax({
+      url: "/job/edit_description/"+$('#job-id').val(),
+      type: 'POST',
+      data: {data_send},
+      success: function (response) {
+        // console.log(response);
+         if(response['status'] == 'success'){
+           $('#jobDesc').text($('#edit-description').val());
+         }
+         alert(response['message']);
+         $('#dismiss-modal-desc').trigger('click');
+      }
+    }).fail(function (xhr, error, thrownError) {
+        alert('something wrong :(');
+    });
 
   });
 

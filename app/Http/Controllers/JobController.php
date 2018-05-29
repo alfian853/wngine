@@ -310,7 +310,7 @@ class JobController extends Controller
             $job->isFinish = strtotime($job->finish_date) < strtotime(date('Y-m-d'));
 
             if($job->last_submit_time != null)
-            { 
+            {
                 $job->submission_path = asset('job_submissions').'/'.$job->submission_path;
             }
         }
@@ -357,6 +357,23 @@ class JobController extends Controller
       ->where('worker_email','=',$data['email'])
       ->update(['comment' => $data['comment']]);
       var_dump($data);
+    }
+
+    public function editDescription(Request $request){
+      $job = Job::where('id','=',$request->id)
+      ->where('company_id','=',Auth::guard('company')->user()->c_id);
+      if($job->first() == null){
+        Session::flash('alert','Invalid request');
+        Session::flash('alert-type','failed');
+        return redirect(route('home'));
+      }
+      $data = json_decode($request->data_send,true);
+      $job->update(['description' => $data['new_description']]);
+
+      return response()->json([
+        'status' => 'success',
+        'message' => 'success edit job description'
+      ]);
     }
 
     public function submitJob(Request $request){
@@ -461,7 +478,6 @@ class JobController extends Controller
 
       DB::table('members')->where('m_id','=',$data['worker_id'])
       ->increment('claimable_point',$total);
-
     }
 
 }

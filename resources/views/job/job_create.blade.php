@@ -67,7 +67,7 @@
             <p style="text-align:center;">Point</p>
           </div>
           <div class="col-sm-3">
-            <p style="text-align:center;">Rp50.000/point</p>
+            <p style="text-align:center;">Action</p>
           </div>
           </div>
         </div>
@@ -86,7 +86,7 @@
             <input id="input-point" type="number" name="point" placeholder="Point" value="50" class="form-control"/>
           </div>
           <div class="col-sm-3 d-flex justify-content-center">
-            <input type="button" id="add-skill" value="Add"/>
+            <a class="fa fa-plus-square-o" style="color:rgb(5, 255, 45);font-size:35px;cursor:pointer" type="button" id="add-skill" value="Add"></a>
           </div>
         </div>
         </div>

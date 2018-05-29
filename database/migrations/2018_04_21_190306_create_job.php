@@ -15,7 +15,7 @@ class CreateJob extends Migration
 	        $table->integer('company_id')->unsigned();
 	        $table->date('upload_date');
 	        $table->date('finish_date');
-          $table->string('document',100)->unique();
+          $table->string('document',100)->nullable();
 	        $table->foreign('company_id')->references('c_id')->on('company')
           ->onDelete('cascade')->onUpdate('cascade');
         });
