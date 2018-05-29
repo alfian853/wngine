@@ -62,7 +62,7 @@ Route::group(['middleware' => 'authUser:company'], function() {
 
 	// Job
     Route::post('job/edit_comment','JobController@updateComment');
-	Route::get('job/search','JobController@showJobSearch');
+	Route::get('job/search','JobController@showJobSearch')->name('job.search');
 	Route::get('job/detail/{id}','JobController@showDescriptionJob')->name('job.detail');
 	Route::get('job/search_query','JobController@searchQuery');
 	Route::get('job/create','JobController@showPostingJobForm')->name('job.postingJob');

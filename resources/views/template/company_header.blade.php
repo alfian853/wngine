@@ -6,13 +6,13 @@
         <a class="nav-link"  href="{{ route('home') }}">Home</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link"  href="{{ route('job.search') }}">Search</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link"  href="{{ route('company.job.list') }}">Project List</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"  href="{{ route('company.profile') }}">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Top Up</a>
       </li>
       <li>
         <a class="nav-link"  href="{{ route('logout') }}">Log out</a>

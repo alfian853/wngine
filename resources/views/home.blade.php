@@ -6,7 +6,8 @@
   @parent
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   <script src="{{ asset('js/home.js') }}"></script>
-
+  <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Gloria+Hallelujah|Great+Vibes|Nanum+Pen+Script|Permanent+Marker|Russo+One" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Alike|Carrois+Gothic+SC|Crafty+Girls|Faster+One|Rye" rel="stylesheet"> 
 @endsection
 
 @section('content')
@@ -20,22 +21,22 @@
     <div class="carousel-item active">
       <img class="d-block img-fluid h-90 w-100" src="{{ asset('assets/front1.jpeg') }}" alt="Slide1">
       <div class="carousel-caption d-none d-md-block">
-        <h3>World of Code</h3>
-        <p>Wngine is the place for expert in coding</p>
+        <h3 style="font-family:Carrois Gothic SC">World of Code</h3>
+        <p style="font-family:Alike">Wngine is the place for expert in coding</p>
       </div>
     </div>
     <div class="carousel-item">
       <img class="d-block img-fluid h-90 w-100" src="{{ asset('assets/front2.jpeg') }}" alt="Slide2">
       <div class="carousel-caption d-none d-md-block">
-        <h3>Latest Technological Developments</h3>
-        <p>Wngine give you knowledge of tecnology development</p>
+        <h3 style="font-family:Carrois Gothic SC">Latest Technological Developments</h3>
+        <p style="font-family:Alike">Wngine give you knowledge of tecnology development</p>
       </div>
     </div>
     <div class="carousel-item">
       <img class="d-block img-fluid h-90 w-100" src="{{ asset('assets/front3.jpeg') }}" alt="Slide3">
       <div class="carousel-caption d-none d-md-block">
-        <h3>Expand your Networking</h3>
-        <p>Wngine will expand your network by learning in project</p>
+        <h3 style="font-family:Carrois Gothic SC">Expand your Networking</h3>
+        <p style="font-family:Alike">Wngine will expand your network by learning in project</p>
       </div>
     </div>
   </div>
@@ -50,7 +51,7 @@
 </div>
 
 <div class="container-fluid">
-    <h1 class="col-lg-12 arial-black" style="text-align:center;margin-top:30px;margin-bottom:30px;font-size:60px;font-weight:bold">Our Advantages</h1>
+    <h1 class="col-lg-12 arial-black" style="font-family:Rye;text-align:center;margin-top:30px;margin-bottom:30px;font-size:80px;font-weight:bold">Our Advantages</h1>
 
     <div class="row d-flex justify-content-center">
       <div class="col-lg-4" style="height:auto">
@@ -58,10 +59,10 @@
           <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
         <div class="col-lg-12" style="height:auto;margin-top:10px;margin-bottom:10px">
-          <h2 style="text-align:center;">Advanced Your Skill</h2>
+          <h2 style="text-align:center;font-family:Carrois Gothic SC">Advanced Your Skill</h2>
         </div>
         <div class="col-lg-12" style="height:auto">
-          <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
+          <p style="font-family:Gloria Hallelujah;border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
             Join us will be the best solution for you to improve your skill in technology,
             you'll get exercise to handle so many type of job which is unconsciously increase
             your skill. We are a versed person in this part. We are very sure that we will the right
@@ -74,10 +75,10 @@
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
         <div class="col-lg-12" style="height:auto;margin:10px 0">
-          <h2 style="text-align:center;">You'll Get Money and Point</h2>
+          <h2 style="text-align:center;font-family:Carrois Gothic SC">You'll Get Money and Point</h2>
         </div>
         <div class="col-lg-12" style="height:auto">
-          <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
+          <p style="font-family:Gloria Hallelujah;border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
           Aside from you'll improve your skill. You'll get money from company which is posted a job
           that you take and you'll get coin from system based on criteria. The coin is very useful,
           cause it's can be used for you to get the more level of confidence from the related company, in
@@ -90,10 +91,10 @@
         <img id="quote" src="{{ asset('assets/quote.png') }}" alt="quote">
         </div>
         <div class="col-lg-12" style="height:auto;margin:10px 0">
-          <h2 style="text-align:center;">Expand Your Connection</h2>
+          <h2 style="text-align:center;font-family:Carrois Gothic SC">Expand Your Connection</h2>
         </div>
         <div class="col-lg-12" style="height:auto">
-          <p style="border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
+          <p style="font-family:Gloria Hallelujah;border-top:2px dashed black;text-align:center;padding:10px 30px;font-style:italic;">
             Without you being aware, in the process of doing your task, you'll do a formal
             communication with person in company. So you get good communication lesson at a time
             you expand you connection. In the future of your career this part is one of the most important
@@ -104,14 +105,11 @@
     </div>
 
     <div class="col-lg-12" style="height:auto;margin-top:20px;">
-      <h2 style="text-align:center;font-style:italic;font-weight:bold;margin-top:10px;padding:30px;">
+      <h2 style="font-family:Crafty Girls;text-align:center;font-style:italic;font-weight:bold;margin-top:10px;padding:30px;">
         Your work is going to fill a whole part of your life, and the only way to be truly satisfied
         is to do what you believe is great work. And the only way to do great work is to love what you do
       </h2>
-      <div class="col-lg-12 h4 d-flex justify-content-center">--Steve Jobs--</div>
-      <div class="col-lg-12 d-flex justify-content-center">
-        <div class="btn btn-primary" style="margin-top:10px;">&#8711;</div>
-      </div>
+      <div class="col-lg-12 h4 d-flex justify-content-center" style="font-family:Carrois Gothic SC">--Steve Jobs--</div>
     </div>
     
     <div class="row" id="news" style="height:auto;margin-top:20px;">

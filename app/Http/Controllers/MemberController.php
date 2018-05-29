@@ -111,7 +111,8 @@ class MemberController extends Controller
 			$user->skills_name = preg_split("/,/",$user->skill_name);
 			$user->skills_point = preg_split("/,/",$user->skill_point);
 			$user->skills_id = preg_split("/,/",$user->skill_id);
-
+			// dd(Auth::guard('member')->user()->m_name);
+			//dd($user);
 			return $user;
 		}
 

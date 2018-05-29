@@ -6,11 +6,11 @@
   @parent
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
   <link href="{{asset('css/job_search.css')}}" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet"> 
 @endsection
 
-
 @section('content')
-<p style="text-align:center;font-size:80px;">Wngine</p>
+<p style="text-align:center;font-size:100px;font-family:Bungee Inline">Wngine</p>
 <div class="container" style="margin-top:10px;">
     <div class="row justify-content-center d-flex">
         <div class="col-xs-8 col-xs-offset-2">
