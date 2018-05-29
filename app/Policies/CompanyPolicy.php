@@ -30,4 +30,23 @@ class CompanyPolicy
 
         return $user instanceof Member && count($job_done_at_company);
     }
+
+    /**
+     * Determine whether the user (company) can write a testimony
+     * for a certain member.
+     *
+     * @param  \Illuminate\Foundation\Auth\User  $user
+     * @return boolean
+     */
+    public function write_testimony_to_member(User $user, Member $member)
+    {
+        $job_done_at_company = DB::table('jobs_taken')
+            ->join('jobs', 'jobs.id', '=', 'jobs_taken.job_id')
+            ->where('jobs_taken.worker_email', '=', $member->email)
+            ->where('jobs_taken.status', '=', '4')
+            ->where('jobs.company_id', '=', $user->c_id)
+            ->get();
+
+        return $user instanceof Company && count($job_done_at_company);
+    }
 }
