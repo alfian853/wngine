@@ -68,6 +68,24 @@ class JobController extends Controller
       'job_list.min' => 'you must put atleast one skill point reward'
     ]
     )->validate($request->all());
+    $skill_list = json_decode($request->job_list, true);
+    $sum_point = 0;
+    foreach($skill_list as $s_id => $point)
+    {
+      $sum_point+=$point;
+    }
+    if($sum_point > Auth::guard('company')->user()->c_poin){
+      Session::flash('alert','Not enough poin in your account, please do top up :)');
+      Session::flash('alert-type','warning');
+      Session::flashInput($request->all());
+      $skill = Skill::all();
+      $skill_list = array();
+      foreach($skill as $s){
+        $skill_list[$s->id] = $s->name;
+      }
+
+      return view('job.job_create',['skill' => $skill_list]);
+    }
 
     $targetPath = null;
     if($request->has('documentnya')){
@@ -77,7 +95,7 @@ class JobController extends Controller
     }
     // dd($targetPath)
       $company_id = Auth::guard('company')->user()->c_id;
-  // dd($targetPath);
+
       $job = Job::create([
           'name'				=> $request->name,
           'description'		=> $request->shortDescription,
@@ -88,7 +106,6 @@ class JobController extends Controller
       ]);
 
 
-      $skill_list = json_decode($request->job_list, true);
       foreach($skill_list as $s_id => $point)
       {
           DB::table('job_skills')

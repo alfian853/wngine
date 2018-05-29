@@ -12,7 +12,7 @@ class Company extends Authenticable
 
 	protected $fillable = [
         'c_name', 'c_address',
-		'password', 'email', 'c_telp','c_image','remember_token'
+		'password', 'email', 'c_telp','c_image','remember_token','c_poin'
     ];
 
 	public $timestamps = false;
