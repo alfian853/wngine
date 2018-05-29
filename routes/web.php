@@ -31,9 +31,6 @@ Route::group(['middleware' => 'authUser:company'], function() {
   Route::post('job/edit_description/{id}','JobController@editDescription');
 });
 
-
-
-
     // Member
   Route::get('member/confirmation','MemberController@confirmRegistration')->name('member.confirmation');
   Route::post('member/register', 'MemberController@requestMailVerification')->name('post.member.register');

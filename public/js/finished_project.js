@@ -47,7 +47,7 @@ $(document).ready(function() {
         '<p>'+point+'</p>'+
         '</div>'+
         '<div class="col-sm-3" style="text-align:left;">'+
-        '<input type="button" class="skill-remove" value="cancel" onclick="remove('+id+')"/>'+
+        '<a class="skill-remove fa fa-times" style="color:rgb(255, 5, 5);font-size:35px;cursor:pointer" class="skill-remove" value="cancel" onclick="remove('+id+')"></a>'+
         '</div>'+
         '</div>'
       );

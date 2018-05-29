@@ -70,7 +70,7 @@
               <td height="50">{{$list->email}}</td>
               <td height="50" value="{{$list->email}}"
                 data-toggle="modal" data-target="#modal-comment" style="cursor:pointer;" onclick="editComment('{{$list->email}}')">
-                <p>{{$list->status}}{{$list->comment}}</p>
+                <p>{{$list->comment}}</p>
               </td>
               <td height="50" style="width:200px">
                   @switch ($list->status)
@@ -185,7 +185,7 @@
                     <p>Action</p>
                   </div>
                   <div class="col-sm-12">
-                    <input type="button" id="add-skill" value="add"/>
+                    <a class="fa fa-plus-square-o" style="color:rgb(5, 255, 45);font-size:35px;cursor:pointer" id="add-skill" value="add"></a>
                   </div>
                 </div>
               </div>
