@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="container">
-  <form class="form-horizontal" role="form" action="{{route('post.member.register')}}" method="post">
+  <form class="form-horizontal" style="margin-top:10%" role="form" action="{{route('post.member.register')}}" method="post">
 	<h2>Form Registration</h2>
 	<hr>
 	{{ csrf_field() }}
