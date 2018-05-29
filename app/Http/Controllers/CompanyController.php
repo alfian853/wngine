@@ -138,4 +138,28 @@ class CompanyController extends Controller
             'jobs' => $job_list,
         ]);
     }
+
+    public function updateProfilPict(Request $request){
+			$request->validate([
+					'file' => 'mimes:png,jpg,jpeg'
+			]);
+			if($request->file('file') != null){
+				$path = Storage::putFile('public', $request->file('file'));
+				$targetPath = date('Y-m-d-H-m-s').'-'.$request->file('file')->getClientOriginalName();
+				$oldfile = DB::table('company')
+				->select('company.c_image')
+				->where('c_id','=',$request->id)->first()->c_image;
+				if($oldfile != null){
+					Storage::delete('company_photo/'.$oldfile);
+				}
+				Storage::move($path,'company_photo/'.$targetPath);
+				DB::table('company')
+				->where('c_id','=',$request->id)
+				->update(['c_image' => $targetPath]);
+				return response()->json([
+					'status' => 'success',
+					'newpath' => asset('company_photo').'/'.$targetPath
+				]);
+			}
+		}
 }

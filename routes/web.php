@@ -27,6 +27,7 @@ Route::group(['middleware' => 'authUser:company'], function() {
   Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
   Route::get('company/job/detail/{id}','JobController@projectAdmin')->name('company.job.detail');
   Route::post('company/job/pay/{id}','JobController@payWorker')->name('company.job.pay');
+  Route::post('company/change_profile/{id}','CompanyController@updateProfilPict')->name('post.company.changePict');
 });
 
 

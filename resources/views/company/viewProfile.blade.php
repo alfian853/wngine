@@ -8,15 +8,28 @@
   <script src="{{ asset('js/profileCompany.js') }}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
   <script src="{{asset('js/dropzone.js')}}"></script>
+  <style>
+    #dropzone{
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  </style>
+
 @endsection
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <div class="container">
     <div class="col-lg-12" style="margin-top:10px;">
         <div class="row d-flex justify-content-center">
             <div class="h1" style="font-family:Arial black;font-weight:bold;text-align:center">{{ $company->c_name }}</div>
         </div>
-        <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block ">
+        @if($company->c_image == "")
+          <img id="profile-pict" src="{{ asset('assets/default-user.png') }}" class= "h-50 rounded img-fluid mx-auto d-block">
+        @else
+          <img id="profile-pict" src="{{ asset('company_photo/'.$company->c_image) }}" class= "h-50 rounded img-fluid mx-auto d-block">
+        @endif
         <div class="row d-flex justify-content-center">
             @if(Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
             <div class="btn btn-danger" style="margin:5px 2px;" >Posting Job</div>
@@ -98,7 +111,7 @@
                 </button>
             </div>
             <div id="dropzone">
-              <form class="dropzone needsclick" id="changePict" action="">
+              <form class="dropzone needsclick" id="changePict" action="{{route('post.company.changePict',['id' => $company->c_id])}}">
                 <div class="dz-message needsclick" name="filenya">
                   Drop files here or click here to upload <i class="fa fa-paper-plane-o ml-1"></i><br>
                 </div>
@@ -156,7 +169,7 @@
                 </a>
             </div>
         </div>
-    </div>            
+    </div>
 </div>
 
 @endsection
