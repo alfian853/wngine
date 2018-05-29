@@ -50,7 +50,7 @@ Route::group(['middleware' => 'authUser:member'], function() {
     Route::post('login', 'Auth\LoginController@doLogin');
     Route::get('password_reset', 'Auth\ForgotPasswordController@showForm')->name('password_reset');
     Route::post('password_reset', 'Auth\ForgotPasswordController@resetPass');
-    Route:get('password_change', 'Auth/ChangePasswordEmailController@doChange')->name('password_change');
+    Route::get('password_change', 'Auth/ChangePasswordEmailController@doChange')->name('password_change');
 
 	// Job
     Route::get('company/job/list','JobController@companyProjectList')->name('company.job.list');
