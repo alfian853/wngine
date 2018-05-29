@@ -19,7 +19,7 @@
         <img src="{{ asset('assets/officedesk.jpg') }}" class= "h-50 rounded img-fluid mx-auto d-block ">
         <div class="row d-flex justify-content-center">
             @if(Auth::guard('company')->check() && Auth::guard('company')->user()->can('create', \App\Job::class))
-            <div class="btn btn-danger" style="margin:5px 2px;" >Posting Job</div>
+            <a href="{{ route('job.postingJob') }}" class="btn btn-danger" style="margin:5px 2px;">Posting Job</a>
             <div class="btn btn-warning" style="margin: 5px 2px;" data-toggle="modal" data-target="#modal-edit-pict">Change Picture</div>
             @endif
             @if(Auth::guard('member')->check() && Auth::guard('member')->user()->can('write_testimony', \App\Company::class))
