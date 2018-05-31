@@ -335,7 +335,6 @@ class JobController extends Controller
             ->where('job_id','=',$id)
             ->orderBy('status','desc')
             ->get();
-
       if($isFinish){
         $skills = DB::table('job_skills')->select('*')
         ->where('job_id','=',$id)
@@ -397,7 +396,8 @@ class JobController extends Controller
           [
             'submission_path' => $targetPath,
             'last_submit_time' => $updateTime,
-            'file_path' => 'job_submissions/'.$targetPath
+            'submission_path' => 'job_submissions/'.$targetPath,
+            'status' => $status
           ]
         );
         Storage::move($path,'job_submissions/'.$targetPath);

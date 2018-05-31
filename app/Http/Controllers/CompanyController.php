@@ -98,6 +98,12 @@ class CompanyController extends Controller
 
     }
 
+    public function getTestimony($id){
+      return DB::table('member_companies')->select('*')
+      ->where('company_id','=',$id)
+      ->join('members','members.m_id','=','member_id')->get();
+    }
+
     public function showProfile()
     {
         if(!Auth::guard('company')->check())
@@ -115,7 +121,8 @@ class CompanyController extends Controller
         return view('company.viewProfile', [
             'company' => $company,
             'jobs' => $job_list,
-            'own_profile' => true
+            'own_profile' => true,
+            'testimonies' => self::getTestimony($company->c_id)
         ]);
     }
 
@@ -131,12 +138,12 @@ class CompanyController extends Controller
             ->where('company_id', $company->c_id)
             ->take(4)
             ->get();
-
         return view('company.viewProfile', [
             'company' => $company,
             'jobs' => $job_list,
-            'own_profile' => false
-        ]);
+            'own_profile' => false,
+            'testimonies' => self::getTestimony($company->c_id)
+          ]);
     }
 
     public function updateProfilPict(Request $request){
